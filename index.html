@@ -1008,7 +1008,7 @@
         <!-- CUSTOM NAME GAMEPASS -->
         <div class="gamepass-card">
           <span class="badge badge-popular">Popular</span>
-          <div class="gamepass-icon">&#9998;</div>
+          <div class="gamepass-icon"><img src="https://tr.rbxcdn.com/180DAY-2cd7f246a3a03278f469a272a979a003/150/150/Image/Png/noFilter" alt="Custom Name" style="width:64px;height:64px;border-radius:12px;"></div>
           <div class="gamepass-name">Custom Name</div>
           <div class="gamepass-desc">Stand out from the crowd with your own custom display name in-game.</div>
           <div class="gamepass-price"><span class="robux-icon"></span> Robux</div>
@@ -1147,8 +1147,8 @@
 
     // ── Dashboard / Roblox Lookup ──
     const GAME_PASSES = [
-      { id: 1709189399, name: 'Custom Name', icon: '&#9998;' }
-      // Add more gamepasses here: { id: GAMEPASS_ID, name: 'Name', icon: 'emoji' }
+      { id: 1709189399, name: 'Custom Name', icon: '', img: 'https://tr.rbxcdn.com/180DAY-2cd7f246a3a03278f469a272a979a003/150/150/Image/Png/noFilter' }
+      // Add more gamepasses here: { id: GAMEPASS_ID, name: 'Name', icon: '', img: 'IMAGE_URL' }
     ];
 
     // CORS proxy for Roblox APIs
@@ -1290,7 +1290,7 @@
         const item = document.createElement('div');
         item.className = 'owned-item ' + (isOwned ? 'owned' : 'not-owned');
         item.innerHTML = `
-          <div class="owned-item-icon">${pass.icon}</div>
+          <div class="owned-item-icon">${pass.img ? `<img src="${pass.img}" alt="${pass.name}" style="width:40px;height:40px;border-radius:8px;">` : pass.icon}</div>
           <div class="owned-item-info">
             <div class="owned-item-name">${pass.name}</div>
             <div class="owned-item-status ${isOwned ? 'status-owned' : 'status-not-owned'}">
