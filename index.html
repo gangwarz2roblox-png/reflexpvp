@@ -350,6 +350,102 @@
       box-shadow: 0 0 20px rgba(0, 255, 90, 0.3);
     }
 
+    /* ── Leaderboard ── */
+    .leaderboard-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .leaderboard-table {
+      width: 100%;
+      margin-top: 32px;
+      border-collapse: separate;
+      border-spacing: 0 8px;
+    }
+
+    .leaderboard-row {
+      background: rgba(10, 15, 10, 0.9);
+      border: 1px solid #1a3d1f;
+      transition: all 0.3s;
+    }
+
+    .leaderboard-row:hover {
+      border-color: #00ff5a;
+      box-shadow: 0 0 15px rgba(0, 255, 90, 0.1);
+    }
+
+    .leaderboard-row td {
+      padding: 12px 16px;
+      vertical-align: middle;
+    }
+
+    .leaderboard-row td:first-child {
+      border-radius: 12px 0 0 12px;
+      width: 50px;
+      text-align: center;
+    }
+
+    .leaderboard-row td:last-child {
+      border-radius: 0 12px 12px 0;
+    }
+
+    .lb-rank {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #5a5a5a;
+    }
+
+    .lb-rank-1 { color: #ffd700; }
+    .lb-rank-2 { color: #c0c0c0; }
+    .lb-rank-3 { color: #cd7f32; }
+
+    .lb-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lb-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #1a3d1f;
+    }
+
+    .lb-name {
+      font-weight: 600;
+      color: #e0e0e0;
+      font-size: 15px;
+    }
+
+    .lb-username {
+      color: #5a5a5a;
+      font-size: 12px;
+    }
+
+    .lb-visits {
+      text-align: right;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #00ff5a;
+    }
+
+    .lb-visits span {
+      font-size: 11px;
+      color: #5a5a5a;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+
+    .lb-empty {
+      text-align: center;
+      color: #5a5a5a;
+      padding: 32px;
+    }
+
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -1120,6 +1216,7 @@
     <a href="#dashboard" onclick="showSection('dashboard')">Dashboard</a>
     <a href="#team" onclick="showSection('team')">Team</a>
     <a href="#turfs" onclick="showSection('turfs')">Turfs</a>
+    <a href="#leaderboard" onclick="showSection('leaderboard')">Leaderboard</a>
     <a href="https://www.roblox.com/games/132442651443504/Reflex-PvP-Comeback" target="_blank">Play Now</a>
   </nav>
 
@@ -1266,6 +1363,17 @@
     </div>
   </section>
 
+  <!-- Leaderboard Section -->
+  <section id="leaderboard" class="leaderboard-section" style="display:none;">
+    <h2 class="section-title">LEADERBOARD</h2>
+    <p class="section-subtitle">Most active visitors</p>
+    <table class="leaderboard-table">
+      <tbody id="leaderboardBody">
+        <tr><td colspan="3" class="lb-empty">Loading leaderboard...</td></tr>
+      </tbody>
+    </table>
+  </section>
+
   <!-- Footer -->
   <footer>
     <p>&copy; 2026 REFLEX PVP &mdash; Not affiliated with Roblox Corporation.</p>
@@ -1317,6 +1425,8 @@
         userAvatar.src = avatarURL;
         userName.textContent = user.global_name || user.username;
         userBar.style.display = 'flex';
+        // Track visit in Firebase
+        if (typeof trackVisit === 'function') trackVisit(user);
       }
     }
 
@@ -1371,10 +1481,12 @@
       const dash = document.getElementById('dashboard');
       const team = document.getElementById('team');
       const turfs = document.getElementById('turfs');
+      const lb = document.getElementById('leaderboard');
       store.style.display = 'none';
       dash.style.display = 'none';
       team.style.display = 'none';
       turfs.style.display = 'none';
+      lb.style.display = 'none';
       if (section === 'store') {
         store.style.display = 'block';
       } else if (section === 'dashboard') {
@@ -1390,6 +1502,9 @@
         loadTeam();
       } else if (section === 'turfs') {
         turfs.style.display = 'block';
+      } else if (section === 'leaderboard') {
+        lb.style.display = 'block';
+        loadLeaderboard();
       }
     }
 
@@ -1672,6 +1787,75 @@
       }
       renderPlaylist();
       updateNowPlaying();
+    }
+  </script>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCa844jPRTXBJj5xd6k6dxO9KMfF-AG9xI",
+      authDomain: "reflexpvp-605a4.firebaseapp.com",
+      databaseURL: "https://reflexpvp-605a4-default-rtdb.firebaseio.com",
+      projectId: "reflexpvp-605a4",
+      storageBucket: "reflexpvp-605a4.firebasestorage.app",
+      messagingSenderId: "1098833666715",
+      appId: "1:1098833666715:web:36e9cf32bf48bea35b1c3e"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // Track visit when user logs in with Discord
+    function trackVisit(user) {
+      if (!user || !user.id) return;
+      const userRef = db.ref('visits/' + user.id);
+      userRef.once('value').then(snapshot => {
+        const data = snapshot.val();
+        const avatarURL = user.avatar
+          ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`
+          : `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator || '0') % 5}.png`;
+        userRef.set({
+          displayName: user.global_name || user.username,
+          username: user.username,
+          avatar: avatarURL,
+          visits: (data?.visits || 0) + 1,
+          lastVisit: Date.now()
+        });
+      });
+    }
+
+    // Load leaderboard
+    function loadLeaderboard() {
+      const tbody = document.getElementById('leaderboardBody');
+      db.ref('visits').orderByChild('visits').limitToLast(20).once('value').then(snapshot => {
+        const entries = [];
+        snapshot.forEach(child => {
+          entries.push(child.val());
+        });
+        entries.sort((a, b) => b.visits - a.visits);
+
+        if (entries.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="3" class="lb-empty">No visitors yet. Be the first!</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = entries.map((entry, i) => `
+          <tr class="leaderboard-row">
+            <td><span class="lb-rank ${i < 3 ? 'lb-rank-' + (i+1) : ''}">#${i + 1}</span></td>
+            <td>
+              <div class="lb-user">
+                <img class="lb-avatar" src="${entry.avatar}" alt="avatar">
+                <div>
+                  <div class="lb-name">${entry.displayName}</div>
+                  <div class="lb-username">@${entry.username}</div>
+                </div>
+              </div>
+            </td>
+            <td class="lb-visits">${entry.visits} <span>visits</span></td>
+          </tr>
+        `).join('');
+      });
     }
   </script>
 
