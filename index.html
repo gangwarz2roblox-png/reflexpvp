@@ -226,6 +226,130 @@
       border: 1px solid #00aaff;
     }
 
+    /* ── Turfs Section ── */
+    .turfs-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .turfs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .turf-card {
+      background: rgba(10, 15, 10, 0.9);
+      border: 1px solid #1a3d1f;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .turf-card:hover {
+      border-color: #00ff5a;
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px rgba(0, 255, 90, 0.1);
+    }
+
+    .turf-card.featured {
+      border-color: #00ff5a;
+      box-shadow: 0 0 30px rgba(0, 255, 90, 0.15);
+    }
+
+    .turf-card.featured::before {
+      content: 'BEST VALUE';
+      position: absolute;
+      top: 12px;
+      right: -28px;
+      background: #00ff5a;
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 32px;
+      transform: rotate(45deg);
+      letter-spacing: 1px;
+    }
+
+    .turf-size {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 24px;
+      color: #00ff5a;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .turf-desc {
+      color: #7a7a7a;
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .turf-price {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 42px;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .turf-price span {
+      font-size: 18px;
+      color: #5a5a5a;
+    }
+
+    .turf-features {
+      text-align: left;
+      margin: 20px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .turf-features li {
+      color: #b0b0b0;
+      font-size: 13px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .turf-features li::before {
+      content: '\2713';
+      color: #00ff5a;
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .turf-buy-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 14px 0;
+      background: linear-gradient(135deg, #00ff5a, #00cc47);
+      color: #000;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      margin-top: 12px;
+    }
+
+    .turf-buy-btn:hover {
+      background: linear-gradient(135deg, #33ff7a, #00ff5a);
+      box-shadow: 0 0 20px rgba(0, 255, 90, 0.3);
+    }
+
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -994,6 +1118,7 @@
     <a href="#gamepasses" onclick="showSection('store')">Gamepasses</a>
     <a href="#dashboard" onclick="showSection('dashboard')">Dashboard</a>
     <a href="#team" onclick="showSection('team')">Team</a>
+    <a href="#turfs" onclick="showSection('turfs')">Turfs</a>
     <a href="https://www.roblox.com/games/132442651443504/Reflex-PvP-Comeback" target="_blank">Play Now</a>
   </nav>
 
@@ -1089,6 +1214,54 @@
         <div class="team-name">Loading...</div>
         <div class="team-tag">Owner</div>
       </div>
+    </div>
+  </section>
+
+  <!-- Turfs Section -->
+  <section id="turfs" class="turfs-section" style="display:none;">
+    <h2 class="section-title">TURFS / GANGS</h2>
+    <p class="section-subtitle">Claim your territory in Reflex PVP</p>
+    <div class="turfs-grid">
+
+      <div class="turf-card">
+        <div class="turf-size">SMALL TURF</div>
+        <div class="turf-price">&pound;5 <span>GBP</span></div>
+        <div class="turf-desc">Perfect for starting your gang and claiming a small piece of the map.</div>
+        <ul class="turf-features">
+          <li>Small territory zone</li>
+          <li>Basic gang perks</li>
+          <li>Gang name tag</li>
+        </ul>
+        <a href="PAYPAL_LINK_HERE" class="turf-buy-btn" target="_blank">Buy with PayPal</a>
+      </div>
+
+      <div class="turf-card featured">
+        <div class="turf-size">MEDIUM TURF</div>
+        <div class="turf-price">&pound;10 <span>GBP</span></div>
+        <div class="turf-desc">Expand your territory and dominate a larger area of the map.</div>
+        <ul class="turf-features">
+          <li>Medium territory zone</li>
+          <li>Enhanced gang perks</li>
+          <li>Gang name tag</li>
+          <li>Custom gang colour</li>
+        </ul>
+        <a href="PAYPAL_LINK_HERE" class="turf-buy-btn" target="_blank">Buy with PayPal</a>
+      </div>
+
+      <div class="turf-card">
+        <div class="turf-size">LARGE TURF</div>
+        <div class="turf-price">&pound;20 <span>GBP</span></div>
+        <div class="turf-desc">Maximum territory for the most powerful gangs on the server.</div>
+        <ul class="turf-features">
+          <li>Large territory zone</li>
+          <li>Premium gang perks</li>
+          <li>Gang name tag</li>
+          <li>Custom gang colour</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="PAYPAL_LINK_HERE" class="turf-buy-btn" target="_blank">Buy with PayPal</a>
+      </div>
+
     </div>
   </section>
 
@@ -1196,15 +1369,15 @@
       const store = document.querySelector('main');
       const dash = document.getElementById('dashboard');
       const team = document.getElementById('team');
+      const turfs = document.getElementById('turfs');
+      store.style.display = 'none';
+      dash.style.display = 'none';
+      team.style.display = 'none';
+      turfs.style.display = 'none';
       if (section === 'store') {
         store.style.display = 'block';
-        dash.style.display = 'none';
-        team.style.display = 'none';
       } else if (section === 'dashboard') {
-        store.style.display = 'none';
         dash.style.display = 'block';
-        team.style.display = 'none';
-        // Auto-load if already linked
         const savedRoblox = localStorage.getItem('roblox_user');
         if (savedRoblox) {
           const user = JSON.parse(savedRoblox);
@@ -1212,10 +1385,10 @@
           checkGamepasses(user.id);
         }
       } else if (section === 'team') {
-        store.style.display = 'none';
-        dash.style.display = 'none';
         team.style.display = 'block';
         loadTeam();
+      } else if (section === 'turfs') {
+        turfs.style.display = 'block';
       }
     }
 
