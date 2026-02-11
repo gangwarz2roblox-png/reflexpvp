@@ -1151,10 +1151,12 @@
       // Add more gamepasses here: { id: GAMEPASS_ID, name: 'Name', icon: 'emoji' }
     ];
 
-    // Roblox API proxies (avoids CORS issues)
-    const USERS_API = 'https://users.roproxy.com';
-    const THUMBNAILS_API = 'https://thumbnails.roproxy.com';
-    const INVENTORY_API = 'https://inventory.roproxy.com';
+    // CORS proxy for Roblox APIs
+    function robloxFetch(url) {
+      return fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(url))
+        .then(r => r.json())
+        .then(d => JSON.parse(d.contents));
+    }
 
     // ── Team / Owners ──
     const TEAM_MEMBERS = [
@@ -1239,13 +1241,8 @@
       btn.textContent = 'Verifying...';
 
       try {
-        // Look up user by username
-        const res = await fetch(`${USERS_API}/v1/usernames/users`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ usernames: [username], excludeBannedUsers: true })
-        });
-        const data = await res.json();
+        // Look up user by username via search
+        const data = await robloxFetch(`https://users.roblox.com/v1/users/search?keyword=${encodeURIComponent(username)}&limit=10`);
 
         if (!data.data || data.data.length === 0) {
           error.textContent = 'User not found. Check the spelling and try again.';
@@ -1255,11 +1252,11 @@
           return;
         }
 
-        const user = data.data[0];
+        // Find exact match
+        const user = data.data.find(u => u.name.toLowerCase() === username.toLowerCase()) || data.data[0];
 
         // Get avatar thumbnail
-        const avatarRes = await fetch(`${THUMBNAILS_API}/v1/users/avatar-headshot?userIds=${user.id}&size=150x150&format=Png&isCircular=true`);
-        const avatarData = await avatarRes.json();
+        const avatarData = await robloxFetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${user.id}&size=150x150&format=Png&isCircular=true`);
         user.avatarUrl = avatarData.data?.[0]?.imageUrl || '';
 
         localStorage.setItem('roblox_user', JSON.stringify(user));
@@ -1296,8 +1293,7 @@
       for (const pass of GAME_PASSES) {
         let isOwned = false;
         try {
-          const res = await fetch(`${INVENTORY_API}/v1/users/${userId}/items/GamePass/${pass.id}`);
-          const data = await res.json();
+          const data = await robloxFetch(`https://inventory.roblox.com/v1/users/${userId}/items/GamePass/${pass.id}`);
           isOwned = data.data && data.data.length > 0;
         } catch (e) {
           isOwned = false;
