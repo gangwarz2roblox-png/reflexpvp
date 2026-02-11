@@ -1160,40 +1160,26 @@
 
     // ── Team / Owners ──
     const TEAM_MEMBERS = [
-      { discordId: '1357419387639955740', role: 'Owner' },
-      { discordId: '1347286095972532305', role: 'Owner' }
+      { discordId: '1357419387639955740', role: 'Owner', displayName: 'RM/E1', username: 'reaalrm', avatar: 'https://cdn.discordapp.com/avatars/1357419387639955740/18d1bb8b91d989ddc28ca82014648ec0.png?size=256' },
+      { discordId: '1347286095972532305', role: 'Owner', displayName: 'Msav!', username: 'skzold566', avatar: 'https://cdn.discordapp.com/avatars/1347286095972532305/5de6c2657b695c06910b2be8e174c4c4.png?size=256' }
     ];
 
     let teamLoaded = false;
 
-    async function loadTeam() {
+    function loadTeam() {
       if (teamLoaded) return;
       teamLoaded = true;
 
       for (const member of TEAM_MEMBERS) {
-        try {
-          const res = await fetch(`/api/discord/user/${member.discordId}`);
-          const user = await res.json();
+        const card = document.getElementById(`team-${member.discordId}`);
+        card.querySelector('.team-avatar-wrap').innerHTML = `<img src="${member.avatar}" alt="avatar">`;
+        card.querySelector('.team-name').textContent = member.displayName;
+        card.querySelector('.team-tag').textContent = member.role;
 
-          if (user.username) {
-            const card = document.getElementById(`team-${member.discordId}`);
-            const avatarURL = user.avatar
-              ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`
-              : `https://cdn.discordapp.com/embed/avatars/${(BigInt(user.id) >> 22n) % 6n}.png`;
-
-            card.querySelector('.team-avatar-wrap').innerHTML = `<img src="${avatarURL}" alt="avatar">`;
-            card.querySelector('.team-name').textContent = user.global_name || user.username;
-            card.querySelector('.team-tag').textContent = member.role;
-
-            // Add username below display name
-            const usernameEl = document.createElement('div');
-            usernameEl.className = 'team-username';
-            usernameEl.textContent = '@' + user.username;
-            card.querySelector('.team-name').after(usernameEl);
-          }
-        } catch (e) {
-          // Keep the placeholder if fetch fails
-        }
+        const usernameEl = document.createElement('div');
+        usernameEl.className = 'team-username';
+        usernameEl.textContent = '@' + member.username;
+        card.querySelector('.team-name').after(usernameEl);
       }
     }
 
