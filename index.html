@@ -1151,10 +1151,10 @@
       // Add more gamepasses here: { id: GAMEPASS_ID, name: 'Name', icon: 'emoji' }
     ];
 
-    // Local proxy to Roblox APIs (avoids CORS issues)
-    const USERS_API = '/api/roblox/users';
-    const THUMBNAILS_API = '/api/roblox/thumbnails';
-    const INVENTORY_API = '/api/roblox/inventory';
+    // Roblox API proxies (avoids CORS issues)
+    const USERS_API = 'https://users.roproxy.com';
+    const THUMBNAILS_API = 'https://thumbnails.roproxy.com';
+    const INVENTORY_API = 'https://inventory.roproxy.com';
 
     // ── Team / Owners ──
     const TEAM_MEMBERS = [
