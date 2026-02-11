@@ -1,0 +1,5 @@
+node_modules/
+server.js
+bot.js
+package.json
+package-lock.json
