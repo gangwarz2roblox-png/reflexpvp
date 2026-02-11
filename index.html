@@ -1822,7 +1822,7 @@
           visits: (data?.visits || 0) + 1,
           lastVisit: Date.now()
         });
-      });
+      }).catch(err => console.error('Track visit error:', err));
     }
 
     // Load leaderboard
@@ -1855,6 +1855,9 @@
             <td class="lb-visits">${entry.visits} <span>visits</span></td>
           </tr>
         `).join('');
+      }).catch(err => {
+        console.error('Leaderboard error:', err);
+        tbody.innerHTML = '<tr><td colspan="3" class="lb-empty">Failed to load leaderboard.</td></tr>';
       });
     }
   </script>
