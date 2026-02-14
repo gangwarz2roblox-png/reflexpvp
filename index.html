@@ -1331,6 +1331,13 @@
         <div class="team-name">Loading...</div>
         <div class="team-tag">Owner</div>
       </div>
+      <div class="team-card" id="team-1439071425389531247">
+        <div class="team-avatar-wrap">
+          <div class="team-avatar-placeholder"></div>
+        </div>
+        <div class="team-name">Loading...</div>
+        <div class="team-tag">Admin</div>
+      </div>
     </div>
   </section>
 
@@ -1460,7 +1467,8 @@
     // ── Team / Owners ──
     const TEAM_MEMBERS = [
       { discordId: '1357419387639955740', role: 'Owner', displayName: 'RM/E1', username: 'reaalrm', avatar: 'https://cdn.discordapp.com/avatars/1357419387639955740/18d1bb8b91d989ddc28ca82014648ec0.png?size=256' },
-      { discordId: '1428597075028869134', role: 'Mod', displayName: 'Pb', username: 'pinballm', avatar: 'https://cdn.discordapp.com/embed/avatars/0.png' }
+      { discordId: '1428597075028869134', role: 'Mod', displayName: 'Pb', username: 'pinballm', avatar: 'https://cdn.discordapp.com/embed/avatars/0.png' },
+      { discordId: '1439071425389531247', role: 'Admin', displayName: 'Reaal_RYDA', username: 'ryda0019', avatar: '' }
     ];
 
     let teamLoaded = false;
@@ -1471,7 +1479,9 @@
 
       for (const member of TEAM_MEMBERS) {
         const card = document.getElementById(`team-${member.discordId}`);
-        card.querySelector('.team-avatar-wrap').innerHTML = `<img src="${member.avatar}" alt="avatar">`;
+        if (member.avatar) {
+          card.querySelector('.team-avatar-wrap').innerHTML = `<img src="${member.avatar}" alt="avatar">`;
+        }
         card.querySelector('.team-name').textContent = member.displayName;
         card.querySelector('.team-tag').textContent = member.role;
 
