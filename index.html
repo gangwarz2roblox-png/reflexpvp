@@ -1291,39 +1291,22 @@
   <section id="dashboard" class="dashboard-section" style="display:none;">
     <div class="dash-container">
       <h2 class="section-title">DASHBOARD</h2>
-      <p class="section-subtitle">Enter your Roblox username to link your account</p>
+      <p class="section-subtitle">View your purchases and account info</p>
 
-      <!-- Roblox Username Lookup -->
-      <div class="roblox-lookup" id="robloxLookup">
-        <div class="lookup-box">
-          <div class="lookup-icon">&#127918;</div>
-          <h3 class="lookup-title">Link Your Roblox Account</h3>
-          <p class="lookup-desc">Enter your Roblox username to verify ownership — no password needed!</p>
-          <div class="lookup-input-wrap">
-            <input type="text" id="robloxUsername" class="lookup-input" placeholder="Your Roblox username...">
-            <button class="lookup-btn" id="lookupBtn" onclick="lookupRobloxUser()">Verify</button>
-          </div>
-          <p class="lookup-error" id="lookupError" style="display:none;"></p>
+      <!-- Discord Profile Card -->
+      <div class="profile-card" id="dashProfile">
+        <img id="dashAvatar" class="profile-avatar" src="" alt="avatar">
+        <div class="profile-info">
+          <div class="profile-name" id="dashDisplayName">Loading...</div>
+          <div class="profile-username" id="dashUserTag"></div>
         </div>
       </div>
 
-      <!-- Roblox Profile (shown after lookup) -->
-      <div class="roblox-profile" id="robloxProfile" style="display:none;">
-        <div class="profile-card">
-          <img id="robloxAvatar" class="profile-avatar" src="" alt="avatar">
-          <div class="profile-info">
-            <div class="profile-name" id="robloxDisplayName"></div>
-            <div class="profile-username" id="robloxUserTag"></div>
-          </div>
-          <button class="unlink-btn" onclick="unlinkRoblox()">Unlink</button>
-        </div>
-      </div>
-
-      <!-- Owned Gamepasses -->
-      <div class="owned-passes" id="ownedPasses" style="display:none;">
-        <h3 class="owned-title">YOUR CUSTOMS</h3>
-        <div class="owned-grid" id="ownedGrid"></div>
-        <p class="no-passes" id="noPasses" style="display:none;">You don't have any customs from Trap Town yet.</p>
+      <!-- Purchase History -->
+      <div class="owned-passes">
+        <h3 class="owned-title">YOUR PURCHASES</h3>
+        <div class="owned-grid" id="purchaseGrid"></div>
+        <p class="no-passes" id="noPurchases" style="display:none;">You don't have any purchases yet.</p>
       </div>
 
     </div>
@@ -1474,19 +1457,6 @@
       window.location.reload();
     }
 
-    // ── Dashboard / Roblox Lookup ──
-    const GAME_PASSES = [
-      { id: 1709189399, name: 'Custom Name', icon: '', img: 'https://tr.rbxcdn.com/180DAY-2cd7f246a3a03278f469a272a979a003/150/150/Image/Png/noFilter' },
-      { id: 1710604454, name: 'Custom Avatar', icon: '', img: 'https://tr.rbxcdn.com/180DAY-98dd7b9d036c3b30cf22edde314a3302/150/150/Image/Png/noFilter' }
-    ];
-
-    // CORS proxy for Roblox APIs
-    function robloxFetch(url) {
-      return fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(url))
-        .then(r => r.json())
-        .then(d => JSON.parse(d.contents));
-    }
-
     // ── Team / Owners ──
     const TEAM_MEMBERS = [
       { discordId: '1357419387639955740', role: 'Owner', displayName: 'RM/E1', username: 'reaalrm', avatar: 'https://cdn.discordapp.com/avatars/1357419387639955740/18d1bb8b91d989ddc28ca82014648ec0.png?size=256' },
@@ -1527,12 +1497,7 @@
         store.style.display = 'block';
       } else if (section === 'dashboard') {
         dash.style.display = 'block';
-        const savedRoblox = localStorage.getItem('roblox_user');
-        if (savedRoblox) {
-          const user = JSON.parse(savedRoblox);
-          showRobloxProfile(user);
-          checkGamepasses(user.id);
-        }
+        loadDashboard();
       } else if (section === 'team') {
         team.style.display = 'block';
         loadTeam();
@@ -1544,112 +1509,63 @@
       }
     }
 
-    async function lookupRobloxUser() {
-      const input = document.getElementById('robloxUsername');
-      const error = document.getElementById('lookupError');
-      const btn = document.getElementById('lookupBtn');
-      const username = input.value.trim();
+    // ── Dashboard: load Discord profile + purchases from Firebase ──
+    const CUSTOM_ITEMS = [
+      { key: 'shirt', name: 'Custom Shirt', icon: '&#128085;', price: '£20' },
+      { key: 'goose', name: 'Custom Goose', icon: '&#129414;', price: '£15' },
+      { key: 'bag', name: 'Custom Bag', icon: '&#127890;', price: '£5' },
+      { key: 'pants', name: 'Custom Pants', icon: '&#128086;', price: 'Free' },
+      { key: 'chain', name: 'Custom Chain', icon: '&#9939;', price: '£10' },
+      { key: 'car', name: 'Custom Car', icon: '&#128663;', price: '£20' }
+    ];
 
-      error.style.display = 'none';
-      if (!username) {
-        error.textContent = 'Please enter a Roblox username.';
-        error.style.display = 'block';
-        return;
-      }
+    function loadDashboard() {
+      const savedUser = localStorage.getItem('discord_user');
+      if (!savedUser) return;
+      const user = JSON.parse(savedUser);
 
-      btn.disabled = true;
-      btn.textContent = 'Verifying...';
+      // Show Discord profile
+      const avatarURL = user.avatar
+        ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`
+        : `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator || '0') % 5}.png`;
+      document.getElementById('dashAvatar').src = avatarURL;
+      document.getElementById('dashDisplayName').textContent = user.global_name || user.username;
+      document.getElementById('dashUserTag').textContent = '@' + user.username;
 
-      try {
-        // Look up user by username via search
-        const data = await robloxFetch(`https://users.roblox.com/v1/users/search?keyword=${encodeURIComponent(username)}&limit=10`);
+      // Load purchases from Firebase
+      const grid = document.getElementById('purchaseGrid');
+      const noPurchases = document.getElementById('noPurchases');
+      grid.innerHTML = '<p style="text-align:center;color:#555;padding:16px;">Loading purchases...</p>';
 
-        if (!data.data || data.data.length === 0) {
-          error.textContent = 'User not found. Check the spelling and try again.';
-          error.style.display = 'block';
-          btn.disabled = false;
-          btn.textContent = 'Verify';
-          return;
-        }
+      db.ref('purchases/' + user.id).once('value').then(snapshot => {
+        const purchases = snapshot.val() || {};
+        grid.innerHTML = '';
+        let count = 0;
 
-        // Find exact match
-        const user = data.data.find(u => u.name.toLowerCase() === username.toLowerCase()) || data.data[0];
-
-        // Get avatar thumbnail
-        const avatarData = await robloxFetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${user.id}&size=150x150&format=Png&isCircular=true`);
-        user.avatarUrl = avatarData.data?.[0]?.imageUrl || '';
-
-        localStorage.setItem('roblox_user', JSON.stringify(user));
-        showRobloxProfile(user);
-        checkGamepasses(user.id);
-
-      } catch (e) {
-        error.textContent = 'Something went wrong. Please try again.';
-        error.style.display = 'block';
-      }
-
-      btn.disabled = false;
-      btn.textContent = 'Verify';
-    }
-
-    function showRobloxProfile(user) {
-      document.getElementById('robloxLookup').style.display = 'none';
-      document.getElementById('robloxProfile').style.display = 'block';
-      document.getElementById('robloxAvatar').src = user.avatarUrl || '';
-      document.getElementById('robloxDisplayName').textContent = user.displayName || user.name;
-      document.getElementById('robloxUserTag').textContent = '@' + user.name;
-    }
-
-    async function checkGamepasses(userId) {
-      const ownedGrid = document.getElementById('ownedGrid');
-      const ownedPasses = document.getElementById('ownedPasses');
-      const noPasses = document.getElementById('noPasses');
-
-      ownedGrid.innerHTML = '';
-      ownedPasses.style.display = 'block';
-
-      let ownedCount = 0;
-
-      for (const pass of GAME_PASSES) {
-        let isOwned = false;
-        try {
-          const data = await robloxFetch(`https://inventory.roblox.com/v1/users/${userId}/items/GamePass/${pass.id}`);
-          isOwned = data.data && data.data.length > 0;
-        } catch (e) {
-          isOwned = false;
-        }
-
-        if (isOwned) ownedCount++;
-
-        const item = document.createElement('div');
-        item.className = 'owned-item ' + (isOwned ? 'owned' : 'not-owned');
-        item.innerHTML = `
-          <div class="owned-item-icon">${pass.img ? `<img src="${pass.img}" alt="${pass.name}" style="width:40px;height:40px;border-radius:8px;">` : pass.icon}</div>
-          <div class="owned-item-info">
-            <div class="owned-item-name">${pass.name}</div>
-            <div class="owned-item-status ${isOwned ? 'status-owned' : 'status-not-owned'}">
-              ${isOwned ? 'Owned' : 'Not Owned'}
+        for (const item of CUSTOM_ITEMS) {
+          const purchased = purchases[item.key] || false;
+          if (purchased) count++;
+          const el = document.createElement('div');
+          el.className = 'owned-item ' + (purchased ? 'owned' : 'not-owned');
+          el.innerHTML = `
+            <div class="owned-item-icon">${item.icon}</div>
+            <div class="owned-item-info">
+              <div class="owned-item-name">${item.name}</div>
+              <div class="owned-item-status ${purchased ? 'status-owned' : 'status-not-owned'}">
+                ${purchased ? 'Purchased' : 'Not Purchased'}
+              </div>
             </div>
-          </div>
-        `;
-        ownedGrid.appendChild(item);
-      }
+          `;
+          grid.appendChild(el);
+        }
 
-      noPasses.style.display = ownedCount === 0 ? 'block' : 'none';
+        noPurchases.style.display = count === 0 ? 'block' : 'none';
+      }).catch(() => {
+        grid.innerHTML = '';
+        noPurchases.textContent = 'Failed to load purchases.';
+        noPurchases.style.display = 'block';
+      });
     }
-
-    function unlinkRoblox() {
-      localStorage.removeItem('roblox_user');
-      document.getElementById('robloxLookup').style.display = 'block';
-      document.getElementById('robloxProfile').style.display = 'none';
-      document.getElementById('ownedPasses').style.display = 'none';
-      document.getElementById('robloxUsername').value = '';
-    }
-
-    // Allow pressing Enter in the username input
-    document.getElementById('robloxUsername')?.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') lookupRobloxUser();
-    });
 
     // Init
     (async function init() {
