@@ -1212,6 +1212,7 @@
   <!-- Navigation -->
   <nav>
     <a href="#customs" onclick="showSection('store')">Customs</a>
+    <a href="#guns" onclick="showSection('guns')">Guns</a>
     <a href="#dashboard" onclick="showSection('dashboard')">Dashboard</a>
     <a href="#team" onclick="showSection('team')">Team</a>
     <a href="#turfs" onclick="showSection('turfs')">Turfs</a>
@@ -1337,6 +1338,86 @@
         </div>
         <div class="team-name">Loading...</div>
         <div class="team-tag">Admin</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guns for Gangs Section -->
+  <section id="guns" style="display:none;">
+    <div style="max-width:1200px;margin:0 auto;padding:48px 24px;">
+      <h2 class="section-title">GUNS FOR GANGS</h2>
+      <p class="section-subtitle">Arm your gang — all guns £5 via PayPal</p>
+
+      <div class="gamepass-grid">
+
+        <div class="gamepass-card">
+          <span class="badge badge-popular">Popular</span>
+          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
+          <div class="gamepass-name">AK</div>
+          <div class="gamepass-desc">The classic AK — reliable and deadly. A must-have for any gang.</div>
+          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
+        <div class="gamepass-card">
+          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
+          <div class="gamepass-name">Five Seven</div>
+          <div class="gamepass-desc">Compact and accurate pistol. Perfect sidearm for any situation.</div>
+          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
+        <div class="gamepass-card">
+          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
+          <div class="gamepass-name">Mossberg</div>
+          <div class="gamepass-desc">Devastating close-range shotgun. Clear out anyone in your path.</div>
+          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
+        <div class="gamepass-card">
+          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
+          <div class="gamepass-name">Pump</div>
+          <div class="gamepass-desc">Heavy-hitting pump shotgun. One shot is all you need up close.</div>
+          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
+        <div class="gamepass-card">
+          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
+          <div class="gamepass-name">M9</div>
+          <div class="gamepass-desc">Classic military sidearm. Reliable, fast, and gets the job done.</div>
+          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
+        <div class="gamepass-card">
+          <span class="badge badge-new">Rusty</span>
+          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
+          <div class="gamepass-name">Rusty Pump</div>
+          <div class="gamepass-desc">Beat-up but still hits hard. A rusty classic for the real ones.</div>
+          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
+        <div class="gamepass-card">
+          <span class="badge badge-new">Rusty</span>
+          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
+          <div class="gamepass-name">Rusty Five Seven</div>
+          <div class="gamepass-desc">Worn-down Five Seven with character. Still packs a punch.</div>
+          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
+        <div class="gamepass-card">
+          <span class="badge badge-new">Rusty</span>
+          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
+          <div class="gamepass-name">Rusty M9</div>
+          <div class="gamepass-desc">Battle-scarred M9. Looks rough but still fires clean.</div>
+          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1496,15 +1577,19 @@
       const store = document.querySelector('main');
       const dash = document.getElementById('dashboard');
       const team = document.getElementById('team');
+      const guns = document.getElementById('guns');
       const turfs = document.getElementById('turfs');
       const lb = document.getElementById('leaderboard');
       store.style.display = 'none';
       dash.style.display = 'none';
       team.style.display = 'none';
+      guns.style.display = 'none';
       turfs.style.display = 'none';
       lb.style.display = 'none';
       if (section === 'store') {
         store.style.display = 'block';
+      } else if (section === 'guns') {
+        guns.style.display = 'block';
       } else if (section === 'dashboard') {
         dash.style.display = 'block';
         loadDashboard();
