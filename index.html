@@ -1212,7 +1212,7 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="#gamepasses" onclick="showSection('store')">Gamepasses</a>
+    <a href="#customs" onclick="showSection('store')">Customs</a>
     <a href="#dashboard" onclick="showSection('dashboard')">Dashboard</a>
     <a href="#team" onclick="showSection('team')">Team</a>
     <a href="#turfs" onclick="showSection('turfs')">Turfs</a>
@@ -1220,31 +1220,59 @@
     <a href="https://www.roblox.com/games/132442651443504/Reflex-PvP-Comeback" target="_blank">Play Now</a>
   </nav>
 
-  <!-- Gamepasses Section -->
+  <!-- Customs Section -->
   <main>
-    <section id="gamepasses">
-      <h2 class="section-title">GAMEPASSES</h2>
-      <p class="section-subtitle">Power up your gameplay — click a pass to purchase on Roblox</p>
+    <section id="customs">
+      <h2 class="section-title">CUSTOMS</h2>
+      <p class="section-subtitle">Get your own custom items — pay via PayPal</p>
 
       <div class="gamepass-grid">
 
-        <!-- CUSTOM NAME GAMEPASS -->
+        <!-- CUSTOM SHIRTS -->
         <div class="gamepass-card">
           <span class="badge badge-popular">Popular</span>
-          <div class="gamepass-icon"><img src="https://tr.rbxcdn.com/180DAY-2cd7f246a3a03278f469a272a979a003/150/150/Image/Png/noFilter" alt="Custom Name" style="width:64px;height:64px;border-radius:12px;"></div>
-          <div class="gamepass-name">Custom Name</div>
-          <div class="gamepass-desc">Stand out from the crowd with your own custom display name in-game.</div>
-          <div class="gamepass-price"><span class="robux-icon"></span> Robux</div>
-          <a href="https://www.roblox.com/game-pass/1709189399/custom-name" class="buy-btn" target="_blank">Buy Now</a>
+          <div class="gamepass-icon" style="font-size:48px;">&#128085;</div>
+          <div class="gamepass-name">Custom Shirt</div>
+          <div class="gamepass-desc">Get a fully custom designed shirt made just for you. Comes with matching custom pants included!</div>
+          <div class="gamepass-price">&pound;20 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPTOWNTRAINERLTD/20GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
         </div>
 
-        <!-- CUSTOM AVATAR GAMEPASS -->
+        <!-- CUSTOM GOOSE -->
         <div class="gamepass-card">
-          <div class="gamepass-icon"><img src="https://tr.rbxcdn.com/180DAY-98dd7b9d036c3b30cf22edde314a3302/150/150/Image/Png/noFilter" alt="Custom Avatar" style="width:64px;height:64px;border-radius:12px;"></div>
-          <div class="gamepass-name">Custom Avatar</div>
-          <div class="gamepass-desc">Get instant access to a fully customizable avatar in-game.</div>
-          <div class="gamepass-price"><span class="robux-icon"></span> Robux</div>
-          <a href="https://www.roblox.com/game-pass/1710604454/custom-avatar" class="buy-btn" target="_blank">Buy Now</a>
+          <div class="gamepass-icon" style="font-size:48px;">&#129414;</div>
+          <div class="gamepass-name">Custom Goose</div>
+          <div class="gamepass-desc">Get your own custom designed goose with unique colours and style.</div>
+          <div class="gamepass-price">&pound;15 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPTOWNTRAINERLTD/15GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
+        <!-- CUSTOM BAG -->
+        <div class="gamepass-card">
+          <div class="gamepass-icon" style="font-size:48px;">&#127890;</div>
+          <div class="gamepass-name">Custom Bag</div>
+          <div class="gamepass-desc">Rock a one-of-a-kind custom bag to show off your style in-game.</div>
+          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPTOWNTRAINERLTD/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+        </div>
+
+        <!-- CUSTOM PANTS -->
+        <div class="gamepass-card">
+          <span class="badge badge-new">Free with Shirt</span>
+          <div class="gamepass-icon" style="font-size:48px;">&#128086;</div>
+          <div class="gamepass-name">Custom Pants</div>
+          <div class="gamepass-desc">Custom pants are included free when you purchase a custom shirt!</div>
+          <div class="gamepass-price">FREE <span style="font-size:14px;color:#5a5a5a;">with shirt</span></div>
+          <a href="https://www.paypal.me/TRAPTOWNTRAINERLTD/20GBP" class="buy-btn" target="_blank">Buy Shirt + Pants</a>
+        </div>
+
+        <!-- CUSTOM CARS -->
+        <div class="gamepass-card">
+          <div class="gamepass-icon" style="font-size:48px;">&#128663;</div>
+          <div class="gamepass-name">Custom Car</div>
+          <div class="gamepass-desc">Get a fully custom designed car with your own colours and decals.</div>
+          <div class="gamepass-price">&pound;20 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a href="https://www.paypal.me/TRAPTOWNTRAINERLTD/20GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
         </div>
 
       </div>
@@ -1255,7 +1283,7 @@
   <section id="dashboard" class="dashboard-section" style="display:none;">
     <div class="dash-container">
       <h2 class="section-title">DASHBOARD</h2>
-      <p class="section-subtitle">Enter your Roblox username to see your owned gamepasses</p>
+      <p class="section-subtitle">Enter your Roblox username to link your account</p>
 
       <!-- Roblox Username Lookup -->
       <div class="roblox-lookup" id="robloxLookup">
@@ -1285,9 +1313,9 @@
 
       <!-- Owned Gamepasses -->
       <div class="owned-passes" id="ownedPasses" style="display:none;">
-        <h3 class="owned-title">YOUR GAMEPASSES</h3>
+        <h3 class="owned-title">YOUR CUSTOMS</h3>
         <div class="owned-grid" id="ownedGrid"></div>
-        <p class="no-passes" id="noPasses" style="display:none;">You don't own any gamepasses from Trap Town yet.</p>
+        <p class="no-passes" id="noPasses" style="display:none;">You don't have any customs from Trap Town yet.</p>
       </div>
 
     </div>
