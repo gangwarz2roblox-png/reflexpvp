@@ -1151,6 +1151,149 @@
     .site-content.visible {
       display: block;
     }
+
+    /* ── Members Section ── */
+    .members-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .members-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .members-stat {
+      background: rgba(15, 10, 10, 0.9);
+      border: 1px solid #3d1a1a;
+      border-radius: 12px;
+      padding: 20px 32px;
+      text-align: center;
+    }
+
+    .members-stat-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 36px;
+      color: #ff0a0a;
+      font-weight: 700;
+    }
+
+    .members-stat-label {
+      font-size: 12px;
+      color: #5a5a5a;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 4px;
+    }
+
+    .members-search {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .members-search input {
+      width: 100%;
+      max-width: 400px;
+      padding: 12px 20px;
+      background: #111;
+      border: 1px solid #3d1a1a;
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .members-search input:focus {
+      border-color: #ff0a0a;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .member-card {
+      background: rgba(15, 10, 10, 0.9);
+      border: 1px solid #3d1a1a;
+      border-radius: 12px;
+      padding: 20px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s;
+    }
+
+    .member-card:hover {
+      border-color: #ff0a0a;
+      box-shadow: 0 0 15px rgba(255, 10, 10, 0.08);
+    }
+
+    .member-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #3d1a1a;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .member-info {
+      overflow: hidden;
+    }
+
+    .member-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 17px;
+      color: #fff;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .member-role {
+      font-size: 12px;
+      color: #ff0a0a;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .members-loading {
+      text-align: center;
+      color: #555;
+      padding: 40px;
+      font-size: 14px;
+    }
+
+    .members-load-more {
+      display: block;
+      margin: 24px auto 0;
+      padding: 12px 36px;
+      background: transparent;
+      border: 2px solid #ff0a0a;
+      color: #ff0a0a;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .members-load-more:hover {
+      background: #ff0a0a;
+      color: #0a0a0a;
+      box-shadow: 0 0 20px rgba(255, 10, 10, 0.3);
+    }
   </style>
 </head>
 <body>
@@ -1217,6 +1360,7 @@
     <a href="#team" onclick="showSection('team')">Team</a>
     <a href="#turfs" onclick="showSection('turfs')">Turfs</a>
     <a href="#leaderboard" onclick="showSection('leaderboard')">Leaderboard</a>
+    <a href="#members" onclick="showSection('members')">Members</a>
     <a href="https://www.roblox.com/games/86247019874717/TNB-Aim-Trainer" target="_blank">Play Now</a>
   </nav>
 
@@ -1481,6 +1625,25 @@
     </table>
   </section>
 
+  <!-- Members Section -->
+  <section id="members" class="members-section" style="display:none;">
+    <h2 class="section-title">GROUP MEMBERS</h2>
+    <p class="section-subtitle">Current members of Trap Town on Roblox</p>
+    <div class="members-stats">
+      <div class="members-stat">
+        <div class="members-stat-num" id="memberCount">--</div>
+        <div class="members-stat-label">Members</div>
+      </div>
+    </div>
+    <div class="members-search">
+      <input type="text" id="memberSearch" placeholder="Search members..." oninput="filterMembers()">
+    </div>
+    <div class="members-grid" id="membersGrid">
+      <div class="members-loading">Loading members...</div>
+    </div>
+    <button class="members-load-more" id="loadMoreBtn" style="display:none;" onclick="loadMoreMembers()">LOAD MORE</button>
+  </section>
+
   <!-- Footer -->
   <footer>
     <p>&copy; 2026 TRAP TOWN &mdash; Not affiliated with Roblox Corporation.</p>
@@ -1580,12 +1743,14 @@
       const guns = document.getElementById('guns');
       const turfs = document.getElementById('turfs');
       const lb = document.getElementById('leaderboard');
+      const mem = document.getElementById('members');
       store.style.display = 'none';
       dash.style.display = 'none';
       team.style.display = 'none';
       guns.style.display = 'none';
       turfs.style.display = 'none';
       lb.style.display = 'none';
+      mem.style.display = 'none';
       if (section === 'store') {
         store.style.display = 'block';
       } else if (section === 'guns') {
@@ -1601,6 +1766,9 @@
       } else if (section === 'leaderboard') {
         lb.style.display = 'block';
         loadLeaderboard();
+      } else if (section === 'members') {
+        mem.style.display = 'block';
+        loadMembers();
       }
     }
 
@@ -1852,6 +2020,108 @@
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
+
+    // ── Members: Roblox Group ──
+    const ROBLOX_GROUP_ID = '796792274';
+    let allMembers = [];
+    let membersLoaded = false;
+    let membersCursor = '';
+    let membersLoading = false;
+
+    async function loadMembers() {
+      if (membersLoaded) return;
+      membersLoaded = true;
+
+      const grid = document.getElementById('membersGrid');
+      grid.innerHTML = '<div class="members-loading">Loading members...</div>';
+
+      // Fetch group info for member count
+      try {
+        const groupRes = await fetch(`https://groups.roblox.com/v1/groups/${ROBLOX_GROUP_ID}`);
+        const groupData = await groupRes.json();
+        document.getElementById('memberCount').textContent = groupData.memberCount || '--';
+      } catch(e) {}
+
+      // Fetch first page of members
+      await fetchMembers();
+    }
+
+    async function fetchMembers() {
+      if (membersLoading) return;
+      membersLoading = true;
+
+      const grid = document.getElementById('membersGrid');
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+      try {
+        let url = `https://groups.roblox.com/v1/groups/${ROBLOX_GROUP_ID}/users?sortOrder=Asc&limit=50`;
+        if (membersCursor) url += `&cursor=${membersCursor}`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (allMembers.length === 0) grid.innerHTML = '';
+
+        const userIds = data.data.map(m => m.user.userId);
+        const avatars = await fetchAvatars(userIds);
+
+        for (const member of data.data) {
+          allMembers.push(member);
+          const card = createMemberCard(member, avatars[member.user.userId]);
+          grid.appendChild(card);
+        }
+
+        membersCursor = data.nextPageCursor || '';
+        loadMoreBtn.style.display = membersCursor ? 'block' : 'none';
+      } catch(e) {
+        if (allMembers.length === 0) {
+          grid.innerHTML = '<div class="members-loading">Failed to load members. Try again later.</div>';
+        }
+      }
+      membersLoading = false;
+    }
+
+    async function fetchAvatars(userIds) {
+      const avatars = {};
+      try {
+        const res = await fetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userIds.join(',')}&size=48x48&format=Png&isCircular=true`);
+        const data = await res.json();
+        for (const item of (data.data || [])) {
+          avatars[item.targetId] = item.imageUrl;
+        }
+      } catch(e) {}
+      return avatars;
+    }
+
+    function createMemberCard(member, avatarUrl) {
+      const card = document.createElement('div');
+      card.className = 'member-card';
+      card.setAttribute('data-name', member.user.username.toLowerCase());
+      const roleName = member.role?.name || 'Member';
+      card.innerHTML = `
+        <img class="member-avatar" src="${avatarUrl || 'https://tr.rbxcdn.com/53eb9b17fe1432a809c73571e25e6289/48/48/AvatarHeadshot/Png/noFilter'}" alt="" onerror="this.src='https://tr.rbxcdn.com/53eb9b17fe1432a809c73571e25e6289/48/48/AvatarHeadshot/Png/noFilter'">
+        <div class="member-info">
+          <div class="member-name">${member.user.displayName || member.user.username}</div>
+          <div class="member-role">${roleName}</div>
+        </div>
+      `;
+      card.style.cursor = 'pointer';
+      card.onclick = () => window.open('https://www.roblox.com/users/' + member.user.userId + '/profile', '_blank');
+      return card;
+    }
+
+    function filterMembers() {
+      const query = document.getElementById('memberSearch').value.toLowerCase();
+      const cards = document.querySelectorAll('.member-card');
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name');
+        card.style.display = name.includes(query) ? 'flex' : 'none';
+      });
+    }
+
+    function loadMoreMembers() {
+      fetchMembers();
+    }
 
     // Track visit when user logs in with Discord
     function trackVisit(user) {
