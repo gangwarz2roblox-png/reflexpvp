@@ -1615,16 +1615,16 @@
           <span class="badge badge-popular">Custom</span>
           <div class="gamepass-icon" style="font-size:48px;">&#128176;</div>
           <div class="gamepass-name">Custom Amount</div>
-          <div class="gamepass-desc">Pick how much in-game cash you want. £1 = 5K cash.</div>
+          <div class="gamepass-desc">Pick how much in-game cash you want. Slide to choose your amount.</div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-            <input type="range" id="cashSlider" min="5" max="100" value="15" step="5" oninput="updateCashAmount()" style="flex:1;accent-color:#ff0a0a;cursor:pointer;">
+            <input type="range" id="cashSlider" min="0" max="20" value="0" step="1" oninput="updateCashAmount()" style="flex:1;accent-color:#ff0a0a;cursor:pointer;">
           </div>
           <div style="display:flex;justify-content:space-between;font-size:11px;color:#555;margin-bottom:8px;">
-            <span>5K</span><span>500K</span>
+            <span>100K</span><span>100M</span>
           </div>
-          <div id="cashDisplay" style="font-family:'Rajdhani',sans-serif;font-size:28px;color:#fff;font-weight:700;margin-bottom:4px;">75K Cash</div>
-          <div class="gamepass-price" id="cashPrice">&pound;15 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a id="cashPayLink" href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/15GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
+          <div id="cashDisplay" style="font-family:'Rajdhani',sans-serif;font-size:28px;color:#fff;font-weight:700;margin-bottom:4px;">100K Cash</div>
+          <div class="gamepass-price" id="cashPrice">&pound;2 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
+          <a id="cashPayLink" href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/2GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
         </div>
 
       </div>
@@ -2193,14 +2193,35 @@
     }
 
     // ── Custom Cash Slider ──
+    const CASH_STEPS = [
+      { cash: '100K', price: 2 },
+      { cash: '250K', price: 4 },
+      { cash: '500K', price: 7 },
+      { cash: '750K', price: 10 },
+      { cash: '1M', price: 13 },
+      { cash: '2M', price: 20 },
+      { cash: '3M', price: 28 },
+      { cash: '5M', price: 40 },
+      { cash: '7.5M', price: 55 },
+      { cash: '10M', price: 70 },
+      { cash: '15M', price: 95 },
+      { cash: '20M', price: 120 },
+      { cash: '25M', price: 140 },
+      { cash: '30M', price: 160 },
+      { cash: '40M', price: 200 },
+      { cash: '50M', price: 240 },
+      { cash: '60M', price: 280 },
+      { cash: '70M', price: 320 },
+      { cash: '80M', price: 360 },
+      { cash: '90M', price: 400 },
+      { cash: '100M', price: 440 },
+    ];
     function updateCashAmount() {
       const slider = document.getElementById('cashSlider');
-      const price = parseInt(slider.value);
-      const cash = price * 5;
-      const cashText = cash >= 1000 ? (cash / 1000) + 'K' : cash;
-      document.getElementById('cashDisplay').textContent = cashText + ' Cash';
-      document.getElementById('cashPrice').innerHTML = '&pound;' + price + ' <span style="font-size:14px;color:#5a5a5a;">GBP</span>';
-      document.getElementById('cashPayLink').href = 'https://www.paypal.me/TRAPSTUDIOSLTDWORKER/' + price + 'GBP';
+      const step = CASH_STEPS[parseInt(slider.value)];
+      document.getElementById('cashDisplay').textContent = step.cash + ' Cash';
+      document.getElementById('cashPrice').innerHTML = '&pound;' + step.price + ' <span style="font-size:14px;color:#5a5a5a;">GBP</span>';
+      document.getElementById('cashPayLink').href = 'https://www.paypal.me/TRAPSTUDIOSLTDWORKER/' + step.price + 'GBP';
     }
 
     // Track visit when user logs in with Discord
