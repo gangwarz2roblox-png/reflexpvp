@@ -3,68 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TRAP TOWN - Store</title>
+  <title>LifestealDiamond - Store</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Inter:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap');
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background-color: #0a0a0a;
-      background-image: url('bg.png');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+      background-color: #060a0f;
+      background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(0, 180, 255, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(0, 255, 100, 0.03) 0%, transparent 60%);
       color: #e0e0e0;
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
     }
 
-    /* ── Top Banner ── */
+    /* ── Banner ── */
     .top-banner {
       width: 100%;
       text-align: center;
-      padding: 32px 16px 24px;
-      border-bottom: 2px solid #ff0a0a;
-      background: linear-gradient(180deg, rgba(26,13,13,0.85) 0%, rgba(10,10,10,0.85) 100%);
+      padding: 36px 16px 28px;
+      border-bottom: 2px solid #00b4ff;
+      background: linear-gradient(180deg, rgba(0,20,40,0.95) 0%, rgba(6,10,15,0.95) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 180, 255, 0.02) 2px,
+        rgba(0, 180, 255, 0.02) 4px
+      );
+      pointer-events: none;
     }
 
     .top-banner h1 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 64px;
-      color: #ff0a0a;
-      letter-spacing: 12px;
-      text-shadow: 0 0 20px rgba(255, 10, 10, 0.4), 0 0 60px rgba(255, 10, 10, 0.15);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 36px;
+      color: #00d4ff;
+      letter-spacing: 4px;
+      text-shadow: 0 0 20px rgba(0, 212, 255, 0.6), 0 0 60px rgba(0, 212, 255, 0.2);
+      line-height: 1.4;
     }
 
-    .top-banner p {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #5a5a5a;
-      letter-spacing: 4px;
+    .heart-icon { color: #ff4466; margin: 0 4px; }
+    .diamond-icon { color: #00d4ff; }
+
+    .top-banner .tagline {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #3a6070;
+      letter-spacing: 3px;
       text-transform: uppercase;
+    }
+
+    .server-ip {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 8px 20px;
+      background: rgba(0, 180, 255, 0.08);
+      border: 1px solid rgba(0, 180, 255, 0.3);
+      border-radius: 6px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      color: #00d4ff;
+      letter-spacing: 2px;
     }
 
     /* ── Nav ── */
     nav {
       display: flex;
       justify-content: center;
-      gap: 32px;
-      padding: 16px;
-      border-bottom: 1px solid #3d1a1a;
-      background: rgba(10, 10, 10, 0.8);
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px 16px;
+      border-bottom: 1px solid #0a2030;
+      background: rgba(6, 10, 15, 0.9);
     }
 
     nav a {
-      color: #df6f6f;
+      color: #4a9ab5;
       text-decoration: none;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 2px;
       text-transform: uppercase;
       padding: 8px 16px;
@@ -74,121 +102,139 @@
     }
 
     nav a:hover {
-      border-color: #ff0a0a;
-      background: rgba(255, 10, 10, 0.05);
-      color: #ff0a0a;
+      border-color: #00d4ff;
+      background: rgba(0, 212, 255, 0.06);
+      color: #00d4ff;
     }
 
-    /* ── Main ── */
-    main {
+    /* ── Sections ── */
+    .section-wrap {
       max-width: 1200px;
       margin: 0 auto;
       padding: 48px 24px;
     }
 
     .section-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 32px;
-      color: #ff0a0a;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 20px;
+      color: #00d4ff;
       text-align: center;
       margin-bottom: 8px;
-      letter-spacing: 4px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 16px rgba(0, 212, 255, 0.4);
     }
 
     .section-subtitle {
       text-align: center;
-      color: #5a5a5a;
-      font-size: 14px;
+      color: #3a6070;
+      font-size: 13px;
       margin-bottom: 40px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
-    /* ── Gamepass Grid ── */
-    .gamepass-grid {
+    /* ── Rank Cards ── */
+    .ranks-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 24px;
     }
 
-    .gamepass-card {
-      border: 1px solid #3d1a1a;
-      border-radius: 12px;
-      padding: 28px 24px;
-      background: #0f0f0f;
-      transition: all 0.3s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .rank-card {
+      border-radius: 14px;
+      padding: 28px 20px;
+      background: rgba(8, 14, 22, 0.95);
+      border: 1px solid #0a2030;
       text-align: center;
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .gamepass-card:hover {
-      border-color: #ff0a0a;
-      box-shadow: 0 0 24px rgba(255, 10, 10, 0.08);
-      transform: translateY(-4px);
+    .rank-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--rank-color, #00d4ff);
+      opacity: 0.8;
     }
 
-    .gamepass-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 12px;
-      border: 2px solid #3d1a1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      margin-bottom: 20px;
-      background: #111;
+    .rank-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--rank-color, #00d4ff);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.08);
     }
 
-    .gamepass-card:hover .gamepass-icon {
-      border-color: #ff0a0a;
+    .rank-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--rank-color, #00d4ff);
+      color: var(--rank-color, #00d4ff);
     }
 
-    .gamepass-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 22px;
-      color: #ffffff;
-      margin-bottom: 8px;
+    .rank-icon {
+      font-size: 48px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .rank-name {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 13px;
+      color: #fff;
+      margin-bottom: 12px;
       letter-spacing: 1px;
     }
 
-    .gamepass-desc {
-      font-size: 13px;
-      color: #777;
+    .rank-desc {
+      font-size: 12px;
+      color: #5a7a8a;
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    .rank-perks {
+      list-style: none;
+      text-align: left;
       margin-bottom: 20px;
-      line-height: 1.5;
-      flex-grow: 1;
     }
 
-    .gamepass-price {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 20px;
-      color: #ff0a0a;
+    .rank-perks li {
+      font-size: 12px;
+      color: #8ab0c0;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .rank-perks li::before {
+      content: '▶ ';
+      color: var(--rank-color, #00d4ff);
+      font-size: 10px;
+    }
+
+    .rank-price {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 16px;
+      color: var(--rank-color, #00d4ff);
       margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .robux-icon {
-      width: 18px;
-      height: 18px;
-      display: inline-block;
-      background: #ff0a0a;
-      border-radius: 50%;
-      position: relative;
     }
 
     .buy-btn {
-      display: inline-block;
-      padding: 12px 36px;
+      display: block;
+      width: 100%;
+      padding: 12px 0;
       background: transparent;
-      border: 2px solid #ff0a0a;
-      color: #ff0a0a;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 3px;
+      border: 2px solid var(--rank-color, #00d4ff);
+      color: var(--rank-color, #00d4ff);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       text-decoration: none;
       border-radius: 8px;
@@ -197,2086 +243,426 @@
     }
 
     .buy-btn:hover {
-      background: #ff0a0a;
-      color: #0a0a0a;
-      box-shadow: 0 0 20px rgba(255, 10, 10, 0.3);
+      background: var(--rank-color, #00d4ff);
+      color: #060a0f;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.25);
     }
 
-    /* ── Featured / Popular Badge ── */
-    .badge {
-      display: inline-block;
-      padding: 4px 12px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-radius: 20px;
-      margin-bottom: 16px;
-    }
-
-    .badge-popular {
-      background: rgba(255, 10, 10, 0.1);
-      color: #ff0a0a;
-      border: 1px solid #ff0a0a;
-    }
-
-    .badge-new {
-      background: rgba(255, 100, 100, 0.1);
-      color: #ff6464;
-      border: 1px solid #ff6464;
-    }
-
-    /* ── Turfs Section ── */
-    .turfs-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 24px;
-    }
-
-    .turfs-grid {
+    /* ── Kits Grid ── */
+    .kits-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
     }
 
-    .turf-card {
-      background: rgba(15, 10, 10, 0.9);
-      border: 1px solid #3d1a1a;
-      border-radius: 16px;
-      padding: 32px 24px;
+    .kit-card {
+      background: rgba(8, 14, 22, 0.95);
+      border: 1px solid #0a2030;
+      border-radius: 12px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
       transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
     }
 
-    .turf-card:hover {
-      border-color: #ff0a0a;
+    .kit-card:hover {
+      border-color: #00ff88;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.06);
       transform: translateY(-4px);
-      box-shadow: 0 0 20px rgba(255, 10, 10, 0.1);
     }
 
-    .turf-card.featured {
-      border-color: #ff0a0a;
-      box-shadow: 0 0 30px rgba(255, 10, 10, 0.15);
-    }
-
-    .turf-card.featured::before {
-      content: 'BEST VALUE';
-      position: absolute;
-      top: 12px;
-      right: -28px;
-      background: #ff0a0a;
-      color: #000;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 4px 32px;
-      transform: rotate(45deg);
+    .kit-icon { font-size: 44px; margin-bottom: 14px; }
+    .kit-name {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      color: #00ff88;
+      margin-bottom: 10px;
       letter-spacing: 1px;
     }
 
-    .turf-size {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 24px;
-      color: #ff0a0a;
-      font-weight: 700;
-      letter-spacing: 2px;
+    .kit-desc { font-size: 12px; color: #5a7a8a; margin-bottom: 14px; line-height: 1.6; flex-grow: 1; }
+    .kit-price { font-family: 'Press Start 2P', monospace; font-size: 14px; color: #00ff88; margin-bottom: 14px; }
+
+    .kit-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 0;
+      background: transparent;
+      border: 2px solid #00ff88;
+      color: #00ff88;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .kit-btn:hover {
+      background: #00ff88;
+      color: #060a0f;
+      box-shadow: 0 0 16px rgba(0, 255, 136, 0.3);
+    }
+
+    /* ── Cosmetics ── */
+    .cosmetics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .cosmetic-card {
+      background: rgba(8, 14, 22, 0.95);
+      border: 1px solid #0a2030;
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .cosmetic-card:hover {
+      border-color: #b060ff;
+      box-shadow: 0 0 20px rgba(176, 96, 255, 0.06);
+      transform: translateY(-4px);
+    }
+
+    .cosmetic-icon { font-size: 40px; margin-bottom: 12px; }
+
+    .cosmetic-name {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      color: #b060ff;
       margin-bottom: 8px;
     }
 
-    .turf-desc {
-      color: #7a7a7a;
-      font-size: 14px;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
+    .cosmetic-desc { font-size: 12px; color: #5a7a8a; margin-bottom: 12px; line-height: 1.6; }
+    .cosmetic-price { font-family: 'Press Start 2P', monospace; font-size: 13px; color: #b060ff; margin-bottom: 12px; }
 
-    .turf-price {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 42px;
-      color: #fff;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .turf-price span {
-      font-size: 18px;
-      color: #5a5a5a;
-    }
-
-    .turf-features {
-      text-align: left;
-      margin: 20px 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .turf-features li {
-      color: #b0b0b0;
-      font-size: 13px;
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .turf-features li::before {
-      content: '\2713';
-      color: #ff0a0a;
-      margin-right: 8px;
-      font-weight: 700;
-    }
-
-    .turf-buy-btn {
-      display: inline-block;
+    .cosmetic-btn {
+      display: block;
       width: 100%;
-      padding: 14px 0;
-      background: linear-gradient(135deg, #ff0a0a, #cc0a0a);
-      color: #000;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+      padding: 10px 0;
+      background: transparent;
+      border: 2px solid #b060ff;
+      color: #b060ff;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
       text-decoration: none;
-      transition: all 0.3s;
-      margin-top: 12px;
-    }
-
-    .turf-buy-btn:hover {
-      background: linear-gradient(135deg, #ff3333, #ff0a0a);
-      box-shadow: 0 0 20px rgba(255, 10, 10, 0.3);
-    }
-
-    /* ── Leaderboard ── */
-    .leaderboard-section {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 48px 24px;
-    }
-
-    .leaderboard-table {
-      width: 100%;
-      margin-top: 32px;
-      border-collapse: separate;
-      border-spacing: 0 8px;
-    }
-
-    .leaderboard-row {
-      background: rgba(15, 10, 10, 0.9);
-      border: 1px solid #3d1a1a;
+      border-radius: 8px;
       transition: all 0.3s;
     }
 
-    .leaderboard-row:hover {
-      border-color: #ff0a0a;
-      box-shadow: 0 0 15px rgba(255, 10, 10, 0.1);
+    .cosmetic-btn:hover {
+      background: #b060ff;
+      color: #060a0f;
+      box-shadow: 0 0 16px rgba(176, 96, 255, 0.3);
     }
 
-    .leaderboard-row td {
-      padding: 12px 16px;
-      vertical-align: middle;
-    }
-
-    .leaderboard-row td:first-child {
-      border-radius: 12px 0 0 12px;
-      width: 50px;
-      text-align: center;
-    }
-
-    .leaderboard-row td:last-child {
-      border-radius: 0 12px 12px 0;
-    }
-
-    .lb-rank {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 22px;
+    /* ── Featured badge ── */
+    .badge-limited {
+      display: inline-block;
+      padding: 3px 10px;
+      background: rgba(255, 60, 60, 0.12);
+      border: 1px solid #ff3c3c;
+      border-radius: 20px;
+      color: #ff3c3c;
+      font-size: 10px;
       font-weight: 700;
-      color: #5a5a5a;
-    }
-
-    .lb-rank-1 { color: #ffd700; }
-    .lb-rank-2 { color: #c0c0c0; }
-    .lb-rank-3 { color: #cd7f32; }
-
-    .lb-user {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .lb-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid #3d1a1a;
-    }
-
-    .lb-name {
-      font-weight: 600;
-      color: #e0e0e0;
-      font-size: 15px;
-    }
-
-    .lb-username {
-      color: #5a5a5a;
-      font-size: 12px;
-    }
-
-    .lb-visits {
-      text-align: right;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: #ff0a0a;
-    }
-
-    .lb-visits span {
-      font-size: 11px;
-      color: #5a5a5a;
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-    }
-
-    .lb-empty {
-      text-align: center;
-      color: #5a5a5a;
-      padding: 32px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
     /* ── Footer ── */
     footer {
       text-align: center;
       padding: 32px 16px;
-      border-top: 1px solid #3d1a1a;
-      margin-top: 64px;
-      color: #3a3a3a;
-      font-size: 13px;
-      background: rgba(10, 10, 10, 0.85);
-    }
-
-    footer a {
-      color: #ff0a0a;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 600px) {
-      .top-banner h1 {
-        font-size: 36px;
-        letter-spacing: 6px;
-      }
-
-      nav {
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .gamepass-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    /* ── Discord Login Overlay ── */
-    .discord-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #0a0a0a;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .discord-overlay.hidden {
-      display: none;
-    }
-
-    .discord-box {
-      background: #111;
-      border: 1px solid #3d1a1a;
-      border-radius: 16px;
-      padding: 48px 40px;
-      text-align: center;
-      max-width: 420px;
-      width: 90%;
-    }
-
-    .discord-box h2 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 36px;
-      color: #ff0a0a;
-      letter-spacing: 6px;
-      margin-bottom: 8px;
-      text-shadow: 0 0 20px rgba(255, 10, 10, 0.3);
-    }
-
-    .discord-box p {
-      color: #777;
-      font-size: 14px;
-      margin-bottom: 32px;
-      line-height: 1.6;
-    }
-
-    .discord-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 32px;
-      background: #5865F2;
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .discord-btn:hover {
-      background: #4752c4;
-      box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
-      transform: translateY(-2px);
-    }
-
-    .discord-btn svg {
-      width: 24px;
-      height: 24px;
-      fill: #fff;
-    }
-
-    .discord-divider {
-      width: 60px;
-      height: 2px;
-      background: #3d1a1a;
-      margin: 24px auto;
-    }
-
-    .discord-box .note {
-      color: #3a3a3a;
-      font-size: 11px;
-      margin-top: 24px;
-    }
-
-    /* ── Logged-in user bar ── */
-    .user-bar {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding: 8px 20px;
-      background: #0d0d0d;
-      border-bottom: 1px solid #3d1a1a;
-      gap: 10px;
-    }
-
-    .user-bar img {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 2px solid #ff0a0a;
-    }
-
-    .user-bar span {
-      color: #df6f6f;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .logout-btn {
-      color: #555;
+      border-top: 1px solid #0a2030;
+      color: #2a4050;
       font-size: 12px;
-      background: none;
-      border: 1px solid #333;
-      padding: 4px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-left: 8px;
-      transition: all 0.3s;
+      line-height: 2;
     }
 
-    .logout-btn:hover {
-      border-color: #ff3333;
-      color: #ff3333;
-    }
-
-    /* ── Dashboard ── */
-    .dashboard-section {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 48px 24px;
-    }
-
-    .lookup-box {
-      background: #0f0f0f;
-      border: 1px solid #3d1a1a;
-      border-radius: 12px;
-      padding: 40px 32px;
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .lookup-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-    }
-
-    .lookup-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 24px;
-      color: #fff;
-      margin-bottom: 8px;
-      letter-spacing: 2px;
-    }
-
-    .lookup-desc {
-      color: #777;
-      font-size: 13px;
-      margin-bottom: 24px;
-    }
-
-    .lookup-input-wrap {
-      display: flex;
-      gap: 8px;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .lookup-input {
-      flex: 1;
-      padding: 12px 16px;
-      background: #111;
-      border: 1px solid #3d1a1a;
-      border-radius: 8px;
-      color: #e0e0e0;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    .lookup-input:focus {
-      border-color: #ff0a0a;
-    }
-
-    .lookup-btn {
-      padding: 12px 24px;
-      background: #ff0a0a;
-      color: #0a0a0a;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .lookup-btn:hover {
-      box-shadow: 0 0 20px rgba(255, 10, 10, 0.3);
-    }
-
-    .lookup-btn:disabled {
-      background: #333;
-      color: #666;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    .lookup-error {
-      color: #ff3333;
-      font-size: 13px;
-      margin-top: 12px;
-    }
-
-    /* ── Profile Card ── */
-    .profile-card {
-      background: #0f0f0f;
-      border: 1px solid #ff0a0a;
-      border-radius: 12px;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    .profile-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 2px solid #ff0a0a;
-    }
-
-    .profile-info {
-      flex: 1;
-    }
-
-    .profile-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 22px;
-      color: #fff;
-      letter-spacing: 1px;
-    }
-
-    .profile-username {
-      color: #5a5a5a;
-      font-size: 13px;
-    }
-
-    .unlink-btn {
-      color: #555;
-      font-size: 12px;
-      background: none;
-      border: 1px solid #333;
-      padding: 6px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .unlink-btn:hover {
-      border-color: #ff3333;
-      color: #ff3333;
-    }
-
-    /* ── Owned Passes ── */
-    .owned-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 20px;
-      color: #ff0a0a;
-      letter-spacing: 3px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .owned-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .owned-item {
-      background: #0f0f0f;
-      border: 1px solid #3d1a1a;
-      border-radius: 10px;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .owned-item.owned {
-      border-color: #ff0a0a;
-    }
-
-    .owned-item.not-owned {
-      opacity: 0.4;
-    }
-
-    .owned-item-icon {
-      font-size: 28px;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #111;
-      border-radius: 8px;
-      border: 1px solid #3d1a1a;
-    }
-
-    .owned-item.owned .owned-item-icon {
-      border-color: #ff0a0a;
-    }
-
-    .owned-item-info {
-      flex: 1;
-    }
-
-    .owned-item-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 18px;
-      color: #fff;
-      letter-spacing: 1px;
-    }
-
-    .owned-item-status {
-      font-size: 12px;
-      margin-top: 2px;
-    }
-
-    .status-owned {
-      color: #ff0a0a;
-    }
-
-    .status-not-owned {
-      color: #555;
-    }
-
-    .no-passes {
-      text-align: center;
-      color: #555;
-      font-size: 14px;
-      padding: 24px;
-    }
-
-    /* ── Team Section ── */
-    .team-section {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 48px 24px;
-    }
-
-    .team-grid {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .team-card {
-      background: #0f0f0f;
-      border: 1px solid #3d1a1a;
-      border-radius: 16px;
-      padding: 32px 40px;
-      text-align: center;
-      min-width: 220px;
-      transition: all 0.3s;
-    }
-
-    .team-card:hover {
-      border-color: #ff0a0a;
-      box-shadow: 0 0 24px rgba(255, 10, 10, 0.08);
-      transform: translateY(-4px);
-    }
-
-    .team-avatar-wrap {
-      width: 96px;
-      height: 96px;
-      margin: 0 auto 16px;
-      position: relative;
-    }
-
-    .team-avatar-wrap img {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      border: 3px solid #ff0a0a;
-      object-fit: cover;
-    }
-
-    .team-avatar-placeholder {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      border: 3px solid #3d1a1a;
-      background: #111;
-    }
-
-    .team-status {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 3px solid #0f0f0f;
-      position: absolute;
-      bottom: 2px;
-      right: 2px;
-    }
-
-    .team-status.online { background: #a52323; }
-    .team-status.idle { background: #f0b232; }
-    .team-status.dnd { background: #f23f43; }
-    .team-status.offline { background: #80848e; }
-
-    .team-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 22px;
-      color: #fff;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-
-    .team-username {
-      color: #5a5a5a;
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
-
-    .team-tag {
-      display: inline-block;
-      padding: 4px 14px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-radius: 20px;
-      background: rgba(255, 10, 10, 0.1);
-      color: #ff0a0a;
-      border: 1px solid #ff0a0a;
-    }
-
-    /* ── Music Player ── */
-    .music-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #111;
-      border: 2px solid #3d1a1a;
-      color: #ff0a0a;
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 9998;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-    }
-
-    .music-btn:hover {
-      border-color: #ff0a0a;
-      box-shadow: 0 0 16px rgba(255, 10, 10, 0.2);
-    }
-
-    .music-btn.playing {
-      border-color: #ff0a0a;
-      animation: pulse-music 2s infinite;
-    }
-
-    @keyframes pulse-music {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 10, 10, 0.2); }
-      50% { box-shadow: 0 0 12px 4px rgba(255, 10, 10, 0.15); }
-    }
-
-    #ytPlayer {
-      position: fixed;
-      top: -9999px;
-      left: -9999px;
-      width: 1px;
-      height: 1px;
-      pointer-events: none;
-    }
-
-    /* ── Playlist Panel ── */
-    .playlist-panel {
-      position: fixed;
-      bottom: 76px;
-      right: 20px;
-      width: 300px;
-      background: #111;
-      border: 1px solid #3d1a1a;
-      border-radius: 12px;
-      z-index: 9998;
-      overflow: hidden;
-      display: none;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    }
-
-    .playlist-panel.open {
-      display: block;
-    }
-
-    .playlist-header {
-      padding: 14px 16px;
-      border-bottom: 1px solid #3d1a1a;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .playlist-header h4 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 16px;
-      color: #ff0a0a;
-      letter-spacing: 2px;
-      margin: 0;
-    }
-
-    .playlist-controls {
-      display: flex;
-      gap: 8px;
-    }
-
-    .pl-ctrl-btn {
-      background: none;
-      border: 1px solid #3d1a1a;
-      color: #df6f6f;
-      width: 30px;
-      height: 30px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-    }
-
-    .pl-ctrl-btn:hover {
-      border-color: #ff0a0a;
-      color: #ff0a0a;
-    }
-
-    .pl-ctrl-btn.active {
-      border-color: #ff0a0a;
-      background: rgba(255, 10, 10, 0.1);
-      color: #ff0a0a;
-    }
-
-    .playlist-list {
-      max-height: 240px;
-      overflow-y: auto;
-      padding: 8px 0;
-    }
-
-    .playlist-list::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .playlist-list::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .playlist-list::-webkit-scrollbar-thumb {
-      background: #3d1a1a;
-      border-radius: 2px;
-    }
-
-    .pl-track {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 16px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .pl-track:hover {
-      background: rgba(255, 10, 10, 0.03);
-    }
-
-    .pl-track.active {
-      background: rgba(255, 10, 10, 0.06);
-    }
-
-    .pl-track-num {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 14px;
-      color: #333;
-      width: 20px;
-      text-align: center;
-    }
-
-    .pl-track.active .pl-track-num {
-      color: #ff0a0a;
-    }
-
-    .pl-track-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .pl-track-name {
-      font-size: 13px;
-      color: #ccc;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .pl-track.active .pl-track-name {
-      color: #ff0a0a;
-    }
-
-    .pl-track-artist {
-      font-size: 11px;
-      color: #444;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    footer a { color: #00d4ff; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    .pl-now-playing {
-      padding: 12px 16px;
-      border-top: 1px solid #3d1a1a;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pl-now-label {
-      font-size: 10px;
-      color: #444;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .pl-now-title {
-      font-size: 12px;
-      color: #df6f6f;
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    @media (max-width: 600px) {
-      .playlist-panel {
-        right: 10px;
-        left: 10px;
-        width: auto;
-        bottom: 72px;
-      }
-    }
-
-    .site-content {
-      display: none;
-    }
-
-    .site-content.visible {
-      display: block;
-    }
-
-    /* ── Members Section ── */
-    .members-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 24px;
-    }
-
-    .members-stats {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-bottom: 32px;
-    }
-
-    .members-stat {
-      background: rgba(15, 10, 10, 0.9);
-      border: 1px solid #3d1a1a;
-      border-radius: 12px;
-      padding: 20px 32px;
-      text-align: center;
-    }
-
-    .members-stat-num {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 36px;
-      color: #ff0a0a;
-      font-weight: 700;
-    }
-
-    .members-stat-label {
-      font-size: 12px;
-      color: #5a5a5a;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-top: 4px;
-    }
-
-    .members-search {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-
-    .members-search input {
-      width: 100%;
-      max-width: 400px;
-      padding: 12px 20px;
-      background: #111;
-      border: 1px solid #3d1a1a;
-      border-radius: 8px;
-      color: #e0e0e0;
-      font-size: 14px;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    .members-search input:focus {
-      border-color: #ff0a0a;
-    }
-
-    .members-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
-    }
-
-    .member-card {
-      background: rgba(15, 10, 10, 0.9);
-      border: 1px solid #3d1a1a;
-      border-radius: 12px;
-      padding: 20px 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      transition: all 0.3s;
-    }
-
-    .member-card:hover {
-      border-color: #ff0a0a;
-      box-shadow: 0 0 15px rgba(255, 10, 10, 0.08);
-    }
-
-    .member-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 2px solid #3d1a1a;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .member-info {
-      overflow: hidden;
-    }
-
-    .member-name {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 17px;
-      color: #fff;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .member-role {
-      font-size: 12px;
-      color: #ff0a0a;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .members-loading {
-      text-align: center;
-      color: #555;
-      padding: 40px;
-      font-size: 14px;
-    }
-
-    .members-load-more {
-      display: block;
-      margin: 24px auto 0;
-      padding: 12px 36px;
-      background: transparent;
-      border: 2px solid #ff0a0a;
-      color: #ff0a0a;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .members-load-more:hover {
-      background: #ff0a0a;
-      color: #0a0a0a;
-      box-shadow: 0 0 20px rgba(255, 10, 10, 0.3);
-    }
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #060a0f; }
+    ::-webkit-scrollbar-thumb { background: #0a2030; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00d4ff; }
   </style>
 </head>
 <body>
 
-  <!-- Hidden YouTube Player -->
-  <div id="ytPlayer"></div>
-
-  <!-- Playlist Panel -->
-  <div class="playlist-panel" id="playlistPanel">
-    <div class="playlist-header">
-      <h4>PLAYLIST</h4>
-      <div class="playlist-controls">
-        <button class="pl-ctrl-btn" id="prevBtn" onclick="prevTrack()" title="Previous">&#9664;</button>
-        <button class="pl-ctrl-btn" id="playPauseBtn" onclick="toggleMusic()" title="Play/Pause">&#9654;</button>
-        <button class="pl-ctrl-btn" id="nextBtn" onclick="nextTrack()" title="Next">&#9654;</button>
-        <button class="pl-ctrl-btn" id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle">&#8645;</button>
-      </div>
-    </div>
-    <div class="playlist-list" id="playlistList"></div>
-    <div class="pl-now-playing">
-      <span class="pl-now-label">Now:</span>
-      <span class="pl-now-title" id="nowPlayingTitle">Nothing playing</span>
-    </div>
+  <!-- Banner -->
+  <div class="top-banner">
+    <h1><span class="heart-icon">❤</span> LifestealDiamond <span class="heart-icon">❤</span></h1>
+    <p class="tagline">Survive. Steal. Dominate.</p>
+    <div class="server-ip">play.lifesteal.diamond</div>
   </div>
 
-  <!-- Music Toggle Button -->
-  <button class="music-btn" id="musicBtn" onclick="togglePlaylist()" title="Music">&#9835;</button>
-
-  <!-- Discord Login Overlay -->
-  <div class="discord-overlay" id="discordOverlay">
-    <div class="discord-box">
-      <h2>TRAP TOWN</h2>
-      <div class="discord-divider"></div>
-      <p>Verify with Discord to access the store</p>
-      <a id="discordLoginBtn" class="discord-btn">
-        <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-        Login with Discord
-      </a>
-      <p class="note">We only use Discord to verify your identity</p>
-    </div>
-  </div>
-
-  <!-- Site Content (hidden until logged in) -->
-  <div class="site-content" id="siteContent">
-
-  <!-- User Bar -->
-  <div class="user-bar" id="userBar" style="display:none;">
-    <img id="userAvatar" src="" alt="avatar">
-    <span id="userName"></span>
-    <button class="logout-btn" onclick="logout()">Logout</button>
-  </div>
-
-  <!-- Top Banner -->
-  <header class="top-banner">
-    <h1>TRAP TOWN</h1>
-    <p>Official Game Store</p>
-  </header>
-
-  <!-- Navigation -->
+  <!-- Nav -->
   <nav>
-    <a href="#customs" onclick="showSection('store')">Customs</a>
-    <a href="#guns" onclick="showSection('guns')">Guns</a>
-    <a href="#extras" onclick="showSection('extras')">Extras</a>
-    <a href="#dashboard" onclick="showSection('dashboard')">Dashboard</a>
-    <a href="#team" onclick="showSection('team')">Team</a>
-    <a href="#turfs" onclick="showSection('turfs')">Turfs</a>
-    <a href="#leaderboard" onclick="showSection('leaderboard')">Leaderboard</a>
-    <a href="#members" onclick="showSection('members')">Members</a>
-    <a href="https://www.roblox.com/games/86247019874717/TNB-Aim-Trainer" target="_blank">Play Now</a>
+    <a href="#" onclick="showSection('ranks')">Ranks</a>
+    <a href="#" onclick="showSection('kits')">Kits</a>
+    <a href="#" onclick="showSection('cosmetics')">Cosmetics</a>
+    <a href="#" onclick="showSection('boosters')">Boosters</a>
   </nav>
 
-  <!-- Customs Section -->
-  <main>
-    <section id="customs">
-      <h2 class="section-title">CUSTOMS</h2>
-      <p class="section-subtitle">Get your own custom items — pay via PayPal</p>
+  <!-- ── RANKS ── -->
+  <div id="ranks-section" class="section-wrap">
+    <h2 class="section-title">❖ RANKS ❖</h2>
+    <p class="section-subtitle">Permanent ranks — pay once, keep forever</p>
 
-      <div class="gamepass-grid">
+    <div class="ranks-grid">
 
-        <!-- CUSTOM SHIRTS -->
-        <div class="gamepass-card">
-          <span class="badge badge-popular">Popular</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#128085;</div>
-          <div class="gamepass-name">Custom Shirt</div>
-          <div class="gamepass-desc">Get a fully custom designed shirt made just for you. Comes with matching custom pants included!</div>
-          <div class="gamepass-price">&pound;20 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/20GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <!-- CUSTOM GOOSE -->
-        <div class="gamepass-card">
-          <div class="gamepass-icon" style="font-size:48px;">&#129414;</div>
-          <div class="gamepass-name">Custom Goose</div>
-          <div class="gamepass-desc">Get your own custom designed goose with unique colours and style.</div>
-          <div class="gamepass-price">&pound;15 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/15GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <!-- CUSTOM BAG -->
-        <div class="gamepass-card">
-          <div class="gamepass-icon" style="font-size:48px;">&#127890;</div>
-          <div class="gamepass-name">Custom Bag</div>
-          <div class="gamepass-desc">Rock a one-of-a-kind custom bag to show off your style in-game.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <!-- CUSTOM PANTS -->
-        <div class="gamepass-card">
-          <span class="badge badge-new">Free with Shirt</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#128086;</div>
-          <div class="gamepass-name">Custom Pants</div>
-          <div class="gamepass-desc">Custom pants are included free when you purchase a custom shirt!</div>
-          <div class="gamepass-price">FREE <span style="font-size:14px;color:#5a5a5a;">with shirt</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/20GBP" class="buy-btn" target="_blank">Buy Shirt + Pants</a>
-        </div>
-
-        <!-- CUSTOM CHAIN -->
-        <div class="gamepass-card">
-          <div class="gamepass-icon" style="font-size:48px;">&#9939;</div>
-          <div class="gamepass-name">Custom Chain</div>
-          <div class="gamepass-desc">Drip out your character with a custom designed chain to flex on everyone.</div>
-          <div class="gamepass-price">&pound;10 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/10GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <!-- CUSTOM CARS -->
-        <div class="gamepass-card">
-          <div class="gamepass-icon" style="font-size:48px;">&#128663;</div>
-          <div class="gamepass-name">Custom Car</div>
-          <div class="gamepass-desc">Get a fully custom designed car with your own colours and decals.</div>
-          <div class="gamepass-price">&pound;20 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/20GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-      </div>
-    </section>
-  </main>
-
-  <!-- Dashboard Section -->
-  <section id="dashboard" class="dashboard-section" style="display:none;">
-    <div class="dash-container">
-      <h2 class="section-title">DASHBOARD</h2>
-      <p class="section-subtitle">View your purchases and account info</p>
-
-      <!-- Discord Profile Card -->
-      <div class="profile-card" id="dashProfile">
-        <img id="dashAvatar" class="profile-avatar" src="" alt="avatar">
-        <div class="profile-info">
-          <div class="profile-name" id="dashDisplayName">Loading...</div>
-          <div class="profile-username" id="dashUserTag"></div>
-        </div>
-      </div>
-
-      <!-- Purchase History -->
-      <div class="owned-passes">
-        <h3 class="owned-title">YOUR PURCHASES</h3>
-        <div class="owned-grid" id="purchaseGrid"></div>
-        <p class="no-passes" id="noPurchases" style="display:none;">You don't have any purchases yet.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Team Section -->
-  <section id="team" class="team-section" style="display:none;">
-    <h2 class="section-title">THE TEAM</h2>
-    <p class="section-subtitle">The people behind Trap Town</p>
-    <div class="team-grid" id="teamGrid">
-      <div class="team-card" id="team-1357419387639955740">
-        <div class="team-avatar-wrap">
-          <div class="team-avatar-placeholder"></div>
-        </div>
-        <div class="team-name">Loading...</div>
-        <div class="team-tag">Owner</div>
-      </div>
-      <div class="team-card" id="team-1428597075028869134">
-        <div class="team-avatar-wrap">
-          <div class="team-avatar-placeholder"></div>
-        </div>
-        <div class="team-name">Loading...</div>
-        <div class="team-tag">Owner</div>
-      </div>
-      <div class="team-card" id="team-1439071425389531247">
-        <div class="team-avatar-wrap">
-          <div class="team-avatar-placeholder"></div>
-        </div>
-        <div class="team-name">Loading...</div>
-        <div class="team-tag">Admin</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Guns for Gangs Section -->
-  <section id="guns" style="display:none;">
-    <div style="max-width:1200px;margin:0 auto;padding:48px 24px;">
-      <h2 class="section-title">GUNS FOR GANGS</h2>
-      <p class="section-subtitle">Arm your gang — all guns £5 via PayPal</p>
-
-      <div class="gamepass-grid">
-
-        <div class="gamepass-card">
-          <span class="badge badge-popular">Popular</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
-          <div class="gamepass-name">AK</div>
-          <div class="gamepass-desc">The classic AK — reliable and deadly. A must-have for any gang.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
-          <div class="gamepass-name">Five Seven</div>
-          <div class="gamepass-desc">Compact and accurate pistol. Perfect sidearm for any situation.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
-          <div class="gamepass-name">Mossberg</div>
-          <div class="gamepass-desc">Devastating close-range shotgun. Clear out anyone in your path.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
-          <div class="gamepass-name">Pump</div>
-          <div class="gamepass-desc">Heavy-hitting pump shotgun. One shot is all you need up close.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
-          <div class="gamepass-name">M9</div>
-          <div class="gamepass-desc">Classic military sidearm. Reliable, fast, and gets the job done.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <span class="badge badge-new">Rusty</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
-          <div class="gamepass-name">Rusty Pump</div>
-          <div class="gamepass-desc">Beat-up but still hits hard. A rusty classic for the real ones.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <span class="badge badge-new">Rusty</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
-          <div class="gamepass-name">Rusty Five Seven</div>
-          <div class="gamepass-desc">Worn-down Five Seven with character. Still packs a punch.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <span class="badge badge-new">Rusty</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#128299;</div>
-          <div class="gamepass-name">Rusty M9</div>
-          <div class="gamepass-desc">Battle-scarred M9. Looks rough but still fires clean.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Extras Section -->
-  <section id="extras" style="display:none;">
-    <div style="max-width:1200px;margin:0 auto;padding:48px 24px;">
-      <h2 class="section-title">EXTRAS</h2>
-      <p class="section-subtitle">Custom name, level & in-game money — pay via PayPal</p>
-
-      <div class="gamepass-grid">
-
-        <div class="gamepass-card">
-          <span class="badge badge-popular">Popular</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#9997;</div>
-          <div class="gamepass-name">Custom Name</div>
-          <div class="gamepass-desc">Get a unique custom display name in-game. Stand out from everyone else in the server.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <span class="badge badge-new">Boost</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#11088;</div>
-          <div class="gamepass-name">Custom Level</div>
-          <div class="gamepass-desc">Set your level to whatever you want. Flex on everyone with a custom level next to your name.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <span class="badge badge-popular">Popular</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#128176;</div>
-          <div class="gamepass-name">20K In-Game Cash</div>
-          <div class="gamepass-desc">Get 20,000 in-game cash added straight to your account. A solid starter stack.</div>
-          <div class="gamepass-price">&pound;5 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <span class="badge badge-new">Best Value</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#128176;</div>
-          <div class="gamepass-name">50K In-Game Cash</div>
-          <div class="gamepass-desc">Get 50,000 in-game cash added straight to your account. Stack up and dominate.</div>
-          <div class="gamepass-price">&pound;10 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/10GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-        <div class="gamepass-card">
-          <span class="badge badge-popular">Custom</span>
-          <div class="gamepass-icon" style="font-size:48px;">&#128176;</div>
-          <div class="gamepass-name">Custom Amount</div>
-          <div class="gamepass-desc">Pick how much in-game cash you want. Slide to choose your amount.</div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-            <input type="range" id="cashSlider" min="0" max="20" value="0" step="1" oninput="updateCashAmount()" style="flex:1;accent-color:#ff0a0a;cursor:pointer;">
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;color:#555;margin-bottom:8px;">
-            <span>100K</span><span>100M</span>
-          </div>
-          <div id="cashDisplay" style="font-family:'Rajdhani',sans-serif;font-size:28px;color:#fff;font-weight:700;margin-bottom:4px;">100K Cash</div>
-          <div class="gamepass-price" id="cashPrice">&pound;2 <span style="font-size:14px;color:#5a5a5a;">GBP</span></div>
-          <a id="cashPayLink" href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/2GBP" class="buy-btn" target="_blank">Buy with PayPal</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Turfs Section -->
-  <section id="turfs" class="turfs-section" style="display:none;">
-    <h2 class="section-title">TURFS / GANGS</h2>
-    <p class="section-subtitle">Claim your territory in Trap Town</p>
-    <div class="turfs-grid">
-
-      <div class="turf-card">
-        <div class="turf-size">SMALL TURF</div>
-        <div class="turf-price">&pound;5 <span>GBP</span></div>
-        <div class="turf-desc">Perfect for starting your gang and claiming a small piece of the map.</div>
-        <ul class="turf-features">
-          <li>Small territory zone</li>
-          <li>Basic gang perks</li>
-          <li>Gang name tag</li>
+      <!-- VIP -->
+      <div class="rank-card" style="--rank-color: #55ff55;">
+        <div class="rank-badge">VIP</div>
+        <span class="rank-icon">💚</span>
+        <div class="rank-name">VIP</div>
+        <div class="rank-desc">Entry level rank for loyal players.</div>
+        <ul class="rank-perks">
+          <li>Green name colour in chat</li>
+          <li>/kit vip (daily)</li>
+          <li>3 extra hearts on join</li>
+          <li>/nick command</li>
+          <li>Reserved server slot</li>
         </ul>
-        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="turf-buy-btn" target="_blank">Buy with PayPal - &pound;5</a>
+        <div class="rank-price">£5</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" target="_blank">Buy Now</a>
       </div>
 
-      <div class="turf-card featured">
-        <div class="turf-size">MEDIUM TURF</div>
-        <div class="turf-price">&pound;10 <span>GBP</span></div>
-        <div class="turf-desc">Expand your territory and dominate a larger area of the map.</div>
-        <ul class="turf-features">
-          <li>Medium territory zone</li>
-          <li>Enhanced gang perks</li>
-          <li>Gang name tag</li>
-          <li>Custom gang colour</li>
+      <!-- VIP+ -->
+      <div class="rank-card" style="--rank-color: #00ffaa;">
+        <div class="rank-badge">VIP+</div>
+        <span class="rank-icon">💎</span>
+        <div class="rank-name">VIP+</div>
+        <div class="rank-desc">Enhanced perks for dedicated players.</div>
+        <ul class="rank-perks">
+          <li>Aqua name colour in chat</li>
+          <li>/kit vip+ (daily)</li>
+          <li>5 extra hearts on join</li>
+          <li>/hat command</li>
+          <li>/fly in spawn</li>
+          <li>Access to /heal (1x per day)</li>
         </ul>
-        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/10GBP" class="turf-buy-btn" target="_blank">Buy with PayPal - &pound;10</a>
+        <div class="rank-price">£10</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/10GBP" class="buy-btn" target="_blank">Buy Now</a>
       </div>
 
-      <div class="turf-card">
-        <div class="turf-size">LARGE TURF</div>
-        <div class="turf-price">&pound;20 <span>GBP</span></div>
-        <div class="turf-desc">Maximum territory for the most powerful gangs on the server.</div>
-        <ul class="turf-features">
-          <li>Large territory zone</li>
-          <li>Premium gang perks</li>
-          <li>Gang name tag</li>
-          <li>Custom gang colour</li>
-          <li>Priority support</li>
+      <!-- MVP -->
+      <div class="rank-card" style="--rank-color: #00d4ff;">
+        <div class="rank-badge">MVP</div>
+        <span class="rank-icon">🔷</span>
+        <div class="rank-name">MVP</div>
+        <div class="rank-desc">Diamond tier. You're a real one.</div>
+        <ul class="rank-perks">
+          <li>Diamond blue name in chat</li>
+          <li>/kit mvp (daily)</li>
+          <li>8 extra hearts on join</li>
+          <li>Custom join message</li>
+          <li>/fly in spawn + warzone</li>
+          <li>/feed command</li>
+          <li>Access to exclusive MVP hub</li>
         </ul>
-        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/20GBP" class="turf-buy-btn" target="_blank">Buy with PayPal - &pound;20</a>
+        <div class="rank-price">£20</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/20GBP" class="buy-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <!-- LEGEND -->
+      <div class="rank-card" style="--rank-color: #ffd700;">
+        <span class="badge-limited">🔥 Best Seller</span>
+        <div class="rank-badge">LEGEND</div>
+        <span class="rank-icon">👑</span>
+        <div class="rank-name">LEGEND</div>
+        <div class="rank-desc">Top tier. Gold name. God mode perks.</div>
+        <ul class="rank-perks">
+          <li>Gold name in chat + tab list</li>
+          <li>/kit legend (daily)</li>
+          <li>10 extra hearts on join</li>
+          <li>Custom death message</li>
+          <li>Particle trail effect</li>
+          <li>/enchant command</li>
+          <li>Priority queue</li>
+          <li>Access to all lower rank kits</li>
+        </ul>
+        <div class="rank-price">£35</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/35GBP" class="buy-btn" target="_blank">Buy Now</a>
       </div>
 
     </div>
-  </section>
+  </div>
 
-  <!-- Leaderboard Section -->
-  <section id="leaderboard" class="leaderboard-section" style="display:none;">
-    <h2 class="section-title">LEADERBOARD</h2>
-    <p class="section-subtitle">Most active visitors</p>
-    <table class="leaderboard-table">
-      <tbody id="leaderboardBody">
-        <tr><td colspan="3" class="lb-empty">Loading leaderboard...</td></tr>
-      </tbody>
-    </table>
-  </section>
+  <!-- ── KITS ── -->
+  <div id="kits-section" class="section-wrap" style="display:none;">
+    <h2 class="section-title">⚔ KITS ⚔</h2>
+    <p class="section-subtitle">One-time purchasable kits — delivered in game</p>
 
-  <!-- Members Section -->
-  <section id="members" class="members-section" style="display:none;">
-    <h2 class="section-title">GROUP MEMBERS</h2>
-    <p class="section-subtitle">Current members of Trap Town on Roblox</p>
-    <div class="members-stats">
-      <div class="members-stat">
-        <div class="members-stat-num" id="memberCount">--</div>
-        <div class="members-stat-label">Members</div>
+    <div class="kits-grid">
+
+      <div class="kit-card">
+        <div class="kit-icon">🗡️</div>
+        <div class="kit-name">Starter Kit</div>
+        <div class="kit-desc">Iron armour, iron sword, 32 steak, basic supplies. Perfect for a fresh start.</div>
+        <div class="kit-price">£3</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/3GBP" class="kit-btn" target="_blank">Buy Now</a>
       </div>
+
+      <div class="kit-card">
+        <div class="kit-icon">💎</div>
+        <div class="kit-name">Diamond Kit</div>
+        <div class="kit-desc">Full diamond armour (Prot II), diamond sword (Sharp II), golden apples & more.</div>
+        <div class="kit-price">£8</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/8GBP" class="kit-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="kit-card">
+        <div class="kit-icon">⚡</div>
+        <div class="kit-name">God Kit</div>
+        <div class="kit-desc">Full netherite armour (Prot IV), Sharpness V sword, totem of undying, Notch apples.</div>
+        <div class="kit-price">£15</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/15GBP" class="kit-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="kit-card">
+        <span class="badge-limited">Limited</span>
+        <div class="kit-icon">❤️</div>
+        <div class="kit-name">Lifesteal Kit</div>
+        <div class="kit-desc">Includes 5 bonus hearts, custom enchanted sword with Lifesteal enchant, & heart canister.</div>
+        <div class="kit-price">£12</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/12GBP" class="kit-btn" target="_blank">Buy Now</a>
+      </div>
+
     </div>
-    <div class="members-search">
-      <input type="text" id="memberSearch" placeholder="Search members..." oninput="filterMembers()">
+  </div>
+
+  <!-- ── COSMETICS ── -->
+  <div id="cosmetics-section" class="section-wrap" style="display:none;">
+    <h2 class="section-title">✨ COSMETICS ✨</h2>
+    <p class="section-subtitle">Stand out from the crowd</p>
+
+    <div class="cosmetics-grid">
+
+      <div class="cosmetic-card">
+        <div class="cosmetic-icon">🎆</div>
+        <div class="cosmetic-name">Particle Trail</div>
+        <div class="cosmetic-desc">Leave a trail of particles wherever you walk. Multiple colours available.</div>
+        <div class="cosmetic-price">£5</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="cosmetic-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="cosmetic-card">
+        <div class="cosmetic-icon">💬</div>
+        <div class="cosmetic-name">Custom Tag</div>
+        <div class="cosmetic-desc">Your own custom prefix tag before your name in chat. You pick the text & colour.</div>
+        <div class="cosmetic-price">£5</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="cosmetic-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="cosmetic-card">
+        <div class="cosmetic-icon">💥</div>
+        <div class="cosmetic-name">Death Effect</div>
+        <div class="cosmetic-desc">Custom explosion/animation when you die or kill someone. Multiple styles available.</div>
+        <div class="cosmetic-price">£5</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="cosmetic-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="cosmetic-card">
+        <div class="cosmetic-icon">🎵</div>
+        <div class="cosmetic-name">Kill Sound</div>
+        <div class="cosmetic-desc">Custom sound plays to nearby players when you get a kill. Pick from our list.</div>
+        <div class="cosmetic-price">£3</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/3GBP" class="cosmetic-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="cosmetic-card">
+        <div class="cosmetic-icon">🏷️</div>
+        <div class="cosmetic-name">Custom Kill Msg</div>
+        <div class="cosmetic-desc">Your own custom kill message shown to the server when you eliminate someone.</div>
+        <div class="cosmetic-price">£4</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/4GBP" class="cosmetic-btn" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="cosmetic-card">
+        <span class="badge-limited">Rare</span>
+        <div class="cosmetic-icon">🌈</div>
+        <div class="cosmetic-name">Rainbow Name</div>
+        <div class="cosmetic-desc">Animated rainbow colour cycling on your name in chat and tab list.</div>
+        <div class="cosmetic-price">£8</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/8GBP" class="cosmetic-btn" target="_blank">Buy Now</a>
+      </div>
+
     </div>
-    <div class="members-grid" id="membersGrid">
-      <div class="members-loading">Loading members...</div>
+  </div>
+
+  <!-- ── BOOSTERS ── -->
+  <div id="boosters-section" class="section-wrap" style="display:none;">
+    <h2 class="section-title">🚀 BOOSTERS 🚀</h2>
+    <p class="section-subtitle">Temporary boosts to get ahead fast</p>
+
+    <div class="ranks-grid">
+
+      <div class="rank-card" style="--rank-color: #ff9900;">
+        <span class="rank-icon">💰</span>
+        <div class="rank-name">2x Money</div>
+        <div class="rank-desc">Double in-game money earnings for 24 hours.</div>
+        <ul class="rank-perks">
+          <li>2x money from kills</li>
+          <li>2x money from quests</li>
+          <li>Lasts 24 hours</li>
+        </ul>
+        <div class="rank-price" style="color:#ff9900;">£3</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/3GBP" class="buy-btn" style="border-color:#ff9900;color:#ff9900;" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="rank-card" style="--rank-color: #ff4466;">
+        <span class="rank-icon">❤️</span>
+        <div class="rank-name">Heart Boost</div>
+        <div class="rank-desc">+5 bonus hearts for 24 hours. Survive longer, steal more.</div>
+        <ul class="rank-perks">
+          <li>+5 max hearts temporarily</li>
+          <li>Stacks with rank hearts</li>
+          <li>Lasts 24 hours</li>
+        </ul>
+        <div class="rank-price" style="color:#ff4466;">£4</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/4GBP" class="buy-btn" style="border-color:#ff4466;color:#ff4466;" target="_blank">Buy Now</a>
+      </div>
+
+      <div class="rank-card" style="--rank-color: #aa44ff;">
+        <span class="rank-icon">⚡</span>
+        <div class="rank-name">XP Booster</div>
+        <div class="rank-desc">2x XP gain from all activities for 48 hours. Level up in no time.</div>
+        <ul class="rank-perks">
+          <li>2x XP from kills</li>
+          <li>2x XP from mining</li>
+          <li>2x XP from quests</li>
+          <li>Lasts 48 hours</li>
+        </ul>
+        <div class="rank-price" style="color:#aa44ff;">£5</div>
+        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" style="border-color:#aa44ff;color:#aa44ff;" target="_blank">Buy Now</a>
+      </div>
+
     </div>
-    <button class="members-load-more" id="loadMoreBtn" style="display:none;" onclick="loadMoreMembers()">LOAD MORE</button>
-  </section>
+  </div>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 TRAP TOWN &mdash; Not affiliated with Roblox Corporation.</p>
-    <p style="margin-top: 8px;">
-      <a href="https://www.roblox.com/" target="_blank">Roblox.com</a>
-    </p>
+    <p>❤ &copy; 2026 LifestealDiamond &mdash; Not affiliated with Mojang or Microsoft.</p>
+    <p style="margin-top:6px;">All purchases are final. After payment DM us on Discord with your IGN to receive your purchase.</p>
+    <p style="margin-top:8px;"><a href="https://minecraft.net" target="_blank">Minecraft.net</a></p>
   </footer>
 
-  </div><!-- end site-content -->
-
   <script>
-    const CLIENT_ID = '1470840282760085515';
-    const REDIRECT_URI = window.location.origin + window.location.pathname;
-    const DISCORD_AUTH_URL = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=identify`;
-
-    const overlay = document.getElementById('discordOverlay');
-    const siteContent = document.getElementById('siteContent');
-    const loginBtn = document.getElementById('discordLoginBtn');
-    const userBar = document.getElementById('userBar');
-    const userAvatar = document.getElementById('userAvatar');
-    const userName = document.getElementById('userName');
-
-    loginBtn.href = DISCORD_AUTH_URL;
-
-    // Check if returning from Discord OAuth
-    function getTokenFromHash() {
-      const hash = window.location.hash.substring(1);
-      const params = new URLSearchParams(hash);
-      return params.get('access_token');
-    }
-
-    // Fetch Discord user info
-    async function fetchUser(token) {
-      const res = await fetch('https://discord.com/api/users/@me', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      if (!res.ok) throw new Error('Failed to fetch user');
-      return res.json();
-    }
-
-    // Show the site
-    function showSite(user) {
-      overlay.classList.add('hidden');
-      siteContent.classList.add('visible');
-      if (user) {
-        const avatarURL = user.avatar
-          ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`
-          : `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator || '0') % 5}.png`;
-        userAvatar.src = avatarURL;
-        userName.textContent = user.global_name || user.username;
-        userBar.style.display = 'flex';
-        // Track visit in Firebase
-        if (typeof trackVisit === 'function') trackVisit(user);
-      }
-    }
-
-    // Logout
-    function logout() {
-      localStorage.removeItem('discord_token');
-      localStorage.removeItem('discord_user');
-      window.location.hash = '';
-      window.location.reload();
-    }
-
-    // ── Team / Owners ──
-    const TEAM_MEMBERS = [
-      { discordId: '1357419387639955740', role: 'Owner', displayName: 'RM/E1', username: 'reaalrm', avatar: 'https://cdn.discordapp.com/avatars/1357419387639955740/18d1bb8b91d989ddc28ca82014648ec0.png?size=256' },
-      { discordId: '1428597075028869134', role: 'Mod', displayName: 'Pb', username: 'pinballm', avatar: 'https://cdn.discordapp.com/embed/avatars/0.png' },
-      { discordId: '1439071425389531247', role: 'Admin', displayName: 'Reaal_RYDA', username: 'ryda0019', avatar: '' }
-    ];
-
-    let teamLoaded = false;
-
-    function loadTeam() {
-      if (teamLoaded) return;
-      teamLoaded = true;
-
-      for (const member of TEAM_MEMBERS) {
-        const card = document.getElementById(`team-${member.discordId}`);
-        if (member.avatar) {
-          card.querySelector('.team-avatar-wrap').innerHTML = `<img src="${member.avatar}" alt="avatar">`;
-        }
-        card.querySelector('.team-name').textContent = member.displayName;
-        card.querySelector('.team-tag').textContent = member.role;
-
-        const usernameEl = document.createElement('div');
-        usernameEl.className = 'team-username';
-        usernameEl.textContent = '@' + member.username;
-        card.querySelector('.team-name').after(usernameEl);
-      }
-    }
-
     function showSection(section) {
-      const store = document.querySelector('main');
-      const dash = document.getElementById('dashboard');
-      const team = document.getElementById('team');
-      const guns = document.getElementById('guns');
-      const turfs = document.getElementById('turfs');
-      const lb = document.getElementById('leaderboard');
-      const mem = document.getElementById('members');
-      const extras = document.getElementById('extras');
-      store.style.display = 'none';
-      dash.style.display = 'none';
-      team.style.display = 'none';
-      guns.style.display = 'none';
-      extras.style.display = 'none';
-      turfs.style.display = 'none';
-      lb.style.display = 'none';
-      mem.style.display = 'none';
-      if (section === 'store') {
-        store.style.display = 'block';
-      } else if (section === 'guns') {
-        guns.style.display = 'block';
-      } else if (section === 'extras') {
-        extras.style.display = 'block';
-      } else if (section === 'dashboard') {
-        dash.style.display = 'block';
-        loadDashboard();
-      } else if (section === 'team') {
-        team.style.display = 'block';
-        loadTeam();
-      } else if (section === 'turfs') {
-        turfs.style.display = 'block';
-      } else if (section === 'leaderboard') {
-        lb.style.display = 'block';
-        loadLeaderboard();
-      } else if (section === 'members') {
-        mem.style.display = 'block';
-        loadMembers();
-      }
-    }
-
-    // ── Dashboard: load Discord profile + purchases from Firebase ──
-    const CUSTOM_ITEMS = [
-      { key: 'shirt', name: 'Custom Shirt', icon: '&#128085;', price: '£20' },
-      { key: 'goose', name: 'Custom Goose', icon: '&#129414;', price: '£15' },
-      { key: 'bag', name: 'Custom Bag', icon: '&#127890;', price: '£5' },
-      { key: 'pants', name: 'Custom Pants', icon: '&#128086;', price: 'Free' },
-      { key: 'chain', name: 'Custom Chain', icon: '&#9939;', price: '£10' },
-      { key: 'car', name: 'Custom Car', icon: '&#128663;', price: '£20' }
-    ];
-
-    function loadDashboard() {
-      const savedUser = localStorage.getItem('discord_user');
-      if (!savedUser) return;
-      const user = JSON.parse(savedUser);
-
-      // Show Discord profile
-      const avatarURL = user.avatar
-        ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=128`
-        : `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator || '0') % 5}.png`;
-      document.getElementById('dashAvatar').src = avatarURL;
-      document.getElementById('dashDisplayName').textContent = user.global_name || user.username;
-      document.getElementById('dashUserTag').textContent = '@' + user.username;
-
-      // Load purchases from Firebase
-      const grid = document.getElementById('purchaseGrid');
-      const noPurchases = document.getElementById('noPurchases');
-      grid.innerHTML = '<p style="text-align:center;color:#555;padding:16px;">Loading purchases...</p>';
-
-      db.ref('purchases/' + user.id).once('value').then(snapshot => {
-        const purchases = snapshot.val() || {};
-        grid.innerHTML = '';
-        let count = 0;
-
-        for (const item of CUSTOM_ITEMS) {
-          const purchased = purchases[item.key] || false;
-          if (purchased) count++;
-          const el = document.createElement('div');
-          el.className = 'owned-item ' + (purchased ? 'owned' : 'not-owned');
-          el.innerHTML = `
-            <div class="owned-item-icon">${item.icon}</div>
-            <div class="owned-item-info">
-              <div class="owned-item-name">${item.name}</div>
-              <div class="owned-item-status ${purchased ? 'status-owned' : 'status-not-owned'}">
-                ${purchased ? 'Purchased' : 'Not Purchased'}
-              </div>
-            </div>
-          `;
-          grid.appendChild(el);
-        }
-
-        noPurchases.style.display = count === 0 ? 'block' : 'none';
-      }).catch(() => {
-        grid.innerHTML = '';
-        noPurchases.textContent = 'Failed to load purchases.';
-        noPurchases.style.display = 'block';
-      });
-    }
-
-    // Init
-    (async function init() {
-      // Check for token in URL hash (returning from Discord)
-      const hashToken = getTokenFromHash();
-      if (hashToken) {
-        try {
-          const user = await fetchUser(hashToken);
-          localStorage.setItem('discord_token', hashToken);
-          localStorage.setItem('discord_user', JSON.stringify(user));
-          window.location.hash = '';
-          showSite(user);
-          return;
-        } catch (e) {
-          localStorage.removeItem('discord_token');
-          localStorage.removeItem('discord_user');
-        }
-      }
-
-      // Check for saved session
-      const savedToken = localStorage.getItem('discord_token');
-      const savedUser = localStorage.getItem('discord_user');
-      if (savedToken && savedUser) {
-        try {
-          const user = await fetchUser(savedToken);
-          localStorage.setItem('discord_user', JSON.stringify(user));
-          showSite(user);
-          return;
-        } catch (e) {
-          localStorage.removeItem('discord_token');
-          localStorage.removeItem('discord_user');
-        }
-      }
-
-      // Not logged in — show overlay
-      overlay.classList.remove('hidden');
-    })();
-  </script>
-
-  <!-- YouTube IFrame API -->
-  <script>
-    // ── Playlist ──
-    const PLAYLIST = [
-      { id: '_isAv1xBX_0', title: 'Song 1', artist: 'Playlist' },
-      { id: 'ipM9SkIkwCY', title: 'Song 2', artist: 'Playlist' },
-      { id: 'idp20v_PTYo', title: 'Song 3', artist: 'Playlist' }
-    ];
-
-    let ytPlayer = null;
-    let musicPlaying = false;
-    let currentTrack = 0;
-    let shuffleOn = false;
-    const musicBtn = document.getElementById('musicBtn');
-    const playlistPanel = document.getElementById('playlistPanel');
-    const playlistList = document.getElementById('playlistList');
-    const nowPlayingTitle = document.getElementById('nowPlayingTitle');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-
-    // Build playlist UI
-    function renderPlaylist() {
-      playlistList.innerHTML = '';
-      PLAYLIST.forEach((track, i) => {
-        const el = document.createElement('div');
-        el.className = 'pl-track' + (i === currentTrack ? ' active' : '');
-        el.onclick = () => playTrack(i);
-        el.innerHTML = `
-          <div class="pl-track-num">${i === currentTrack && musicPlaying ? '&#9654;' : (i + 1)}</div>
-          <div class="pl-track-info">
-            <div class="pl-track-name">${track.title}</div>
-            <div class="pl-track-artist">${track.artist}</div>
-          </div>
-        `;
-        playlistList.appendChild(el);
-      });
-    }
-
-    function updateNowPlaying() {
-      const track = PLAYLIST[currentTrack];
-      nowPlayingTitle.textContent = track ? track.title + ' - ' + track.artist : 'Nothing playing';
-    }
-
-    // Toggle playlist panel
-    function togglePlaylist() {
-      playlistPanel.classList.toggle('open');
-    }
-
-    // Load YouTube IFrame API
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    document.head.appendChild(tag);
-
-    function onYouTubeIframeAPIReady() {
-      ytPlayer = new YT.Player('ytPlayer', {
-        videoId: PLAYLIST[0].id,
-        playerVars: { autoplay: 0 },
-        events: {
-          onReady: function(e) {
-            e.target.setVolume(50);
-            renderPlaylist();
-            updateNowPlaying();
-            // Try to fetch real titles from YouTube
-            fetchTrackTitles();
-          },
-          onStateChange: function(e) {
-            if (e.data === YT.PlayerState.ENDED) {
-              nextTrack();
-            }
-          }
-        }
-      });
-    }
-
-    function playTrack(index) {
-      if (!ytPlayer) return;
-      currentTrack = index;
-      ytPlayer.loadVideoById(PLAYLIST[currentTrack].id);
-      musicPlaying = true;
-      musicBtn.classList.add('playing');
-      playPauseBtn.innerHTML = '&#9646;&#9646;';
-      renderPlaylist();
-      updateNowPlaying();
-    }
-
-    function toggleMusic() {
-      if (!ytPlayer) return;
-      if (musicPlaying) {
-        ytPlayer.pauseVideo();
-        musicPlaying = false;
-        musicBtn.classList.remove('playing');
-        playPauseBtn.innerHTML = '&#9654;';
-      } else {
-        ytPlayer.playVideo();
-        musicPlaying = true;
-        musicBtn.classList.add('playing');
-        playPauseBtn.innerHTML = '&#9646;&#9646;';
-      }
-      renderPlaylist();
-    }
-
-    function nextTrack() {
-      if (shuffleOn) {
-        let next;
-        do { next = Math.floor(Math.random() * PLAYLIST.length); } while (next === currentTrack && PLAYLIST.length > 1);
-        playTrack(next);
-      } else {
-        playTrack((currentTrack + 1) % PLAYLIST.length);
-      }
-    }
-
-    function prevTrack() {
-      playTrack((currentTrack - 1 + PLAYLIST.length) % PLAYLIST.length);
-    }
-
-    function toggleShuffle() {
-      shuffleOn = !shuffleOn;
-      document.getElementById('shuffleBtn').classList.toggle('active', shuffleOn);
-    }
-
-    // Fetch real video titles from YouTube oEmbed
-    async function fetchTrackTitles() {
-      for (let i = 0; i < PLAYLIST.length; i++) {
-        try {
-          const res = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${PLAYLIST[i].id}`);
-          const data = await res.json();
-          if (data.title) {
-            const parts = data.title.split(' - ');
-            PLAYLIST[i].title = parts.length > 1 ? parts[1].trim() : data.title;
-            PLAYLIST[i].artist = parts.length > 1 ? parts[0].trim() : 'Unknown';
-          }
-        } catch (e) {}
-      }
-      renderPlaylist();
-      updateNowPlaying();
-    }
-  </script>
-
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCa844jPRTXBJj5xd6k6dxO9KMfF-AG9xI",
-      authDomain: "reflexpvp-605a4.firebaseapp.com",
-      databaseURL: "https://reflexpvp-605a4-default-rtdb.firebaseio.com",
-      projectId: "reflexpvp-605a4",
-      storageBucket: "reflexpvp-605a4.firebasestorage.app",
-      messagingSenderId: "1098833666715",
-      appId: "1:1098833666715:web:36e9cf32bf48bea35b1c3e"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    // ── Members: Roblox Group ──
-    const ROBLOX_GROUP_ID = '796792274';
-    let allMembers = [];
-    let membersLoaded = false;
-    let membersCursor = '';
-    let membersLoading = false;
-
-    async function loadMembers() {
-      if (membersLoaded) return;
-      membersLoaded = true;
-
-      const grid = document.getElementById('membersGrid');
-      grid.innerHTML = '<div class="members-loading">Loading members...</div>';
-
-      // Fetch group info for member count
-      try {
-        const groupRes = await fetch(`https://groups.roblox.com/v1/groups/${ROBLOX_GROUP_ID}`);
-        const groupData = await groupRes.json();
-        document.getElementById('memberCount').textContent = groupData.memberCount || '--';
-      } catch(e) {}
-
-      // Fetch first page of members
-      await fetchMembers();
-    }
-
-    async function fetchMembers() {
-      if (membersLoading) return;
-      membersLoading = true;
-
-      const grid = document.getElementById('membersGrid');
-      const loadMoreBtn = document.getElementById('loadMoreBtn');
-
-      try {
-        let url = `https://groups.roblox.com/v1/groups/${ROBLOX_GROUP_ID}/users?sortOrder=Asc&limit=50`;
-        if (membersCursor) url += `&cursor=${membersCursor}`;
-
-        const res = await fetch(url);
-        const data = await res.json();
-
-        if (allMembers.length === 0) grid.innerHTML = '';
-
-        const userIds = data.data.map(m => m.user.userId);
-        const avatars = await fetchAvatars(userIds);
-
-        for (const member of data.data) {
-          allMembers.push(member);
-          const card = createMemberCard(member, avatars[member.user.userId]);
-          grid.appendChild(card);
-        }
-
-        membersCursor = data.nextPageCursor || '';
-        loadMoreBtn.style.display = membersCursor ? 'block' : 'none';
-      } catch(e) {
-        if (allMembers.length === 0) {
-          grid.innerHTML = '<div class="members-loading">Failed to load members. Try again later.</div>';
-        }
-      }
-      membersLoading = false;
-    }
-
-    async function fetchAvatars(userIds) {
-      const avatars = {};
-      try {
-        const res = await fetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userIds.join(',')}&size=48x48&format=Png&isCircular=true`);
-        const data = await res.json();
-        for (const item of (data.data || [])) {
-          avatars[item.targetId] = item.imageUrl;
-        }
-      } catch(e) {}
-      return avatars;
-    }
-
-    function createMemberCard(member, avatarUrl) {
-      const card = document.createElement('div');
-      card.className = 'member-card';
-      card.setAttribute('data-name', member.user.username.toLowerCase());
-      const roleName = member.role?.name || 'Member';
-      card.innerHTML = `
-        <img class="member-avatar" src="${avatarUrl || 'https://tr.rbxcdn.com/53eb9b17fe1432a809c73571e25e6289/48/48/AvatarHeadshot/Png/noFilter'}" alt="" onerror="this.src='https://tr.rbxcdn.com/53eb9b17fe1432a809c73571e25e6289/48/48/AvatarHeadshot/Png/noFilter'">
-        <div class="member-info">
-          <div class="member-name">${member.user.displayName || member.user.username}</div>
-          <div class="member-role">${roleName}</div>
-        </div>
-      `;
-      card.style.cursor = 'pointer';
-      card.onclick = () => window.open('https://www.roblox.com/users/' + member.user.userId + '/profile', '_blank');
-      return card;
-    }
-
-    function filterMembers() {
-      const query = document.getElementById('memberSearch').value.toLowerCase();
-      const cards = document.querySelectorAll('.member-card');
-      cards.forEach(card => {
-        const name = card.getAttribute('data-name');
-        card.style.display = name.includes(query) ? 'flex' : 'none';
-      });
-    }
-
-    function loadMoreMembers() {
-      fetchMembers();
-    }
-
-    // ── Custom Cash Slider ──
-    const CASH_STEPS = [
-      { cash: '100K', price: 2 },
-      { cash: '250K', price: 4 },
-      { cash: '500K', price: 7 },
-      { cash: '750K', price: 10 },
-      { cash: '1M', price: 13 },
-      { cash: '2M', price: 20 },
-      { cash: '3M', price: 28 },
-      { cash: '5M', price: 40 },
-      { cash: '7.5M', price: 55 },
-      { cash: '10M', price: 70 },
-      { cash: '15M', price: 95 },
-      { cash: '20M', price: 120 },
-      { cash: '25M', price: 140 },
-      { cash: '30M', price: 160 },
-      { cash: '40M', price: 200 },
-      { cash: '50M', price: 240 },
-      { cash: '60M', price: 280 },
-      { cash: '70M', price: 320 },
-      { cash: '80M', price: 360 },
-      { cash: '90M', price: 400 },
-      { cash: '100M', price: 440 },
-    ];
-    function updateCashAmount() {
-      const slider = document.getElementById('cashSlider');
-      const step = CASH_STEPS[parseInt(slider.value)];
-      document.getElementById('cashDisplay').textContent = step.cash + ' Cash';
-      document.getElementById('cashPrice').innerHTML = '&pound;' + step.price + ' <span style="font-size:14px;color:#5a5a5a;">GBP</span>';
-      document.getElementById('cashPayLink').href = 'https://www.paypal.me/TRAPSTUDIOSLTDWORKER/' + step.price + 'GBP';
-    }
-
-    // Track visit when user logs in with Discord
-    function trackVisit(user) {
-      if (!user || !user.id) return;
-      const userRef = db.ref('visits/' + user.id);
-      userRef.once('value').then(snapshot => {
-        const data = snapshot.val();
-        const avatarURL = user.avatar
-          ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`
-          : `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator || '0') % 5}.png`;
-        userRef.set({
-          displayName: user.global_name || user.username,
-          username: user.username,
-          avatar: avatarURL,
-          visits: (data?.visits || 0) + 1,
-          lastVisit: Date.now()
-        });
-      }).catch(err => console.error('Track visit error:', err));
-    }
-
-    // Load leaderboard
-    function loadLeaderboard() {
-      const tbody = document.getElementById('leaderboardBody');
-      db.ref('visits').orderByChild('visits').limitToLast(20).once('value').then(snapshot => {
-        const entries = [];
-        snapshot.forEach(child => {
-          entries.push(child.val());
-        });
-        entries.sort((a, b) => b.visits - a.visits);
-
-        if (entries.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="3" class="lb-empty">No visitors yet. Be the first!</td></tr>';
-          return;
-        }
-
-        tbody.innerHTML = entries.map((entry, i) => `
-          <tr class="leaderboard-row">
-            <td><span class="lb-rank ${i < 3 ? 'lb-rank-' + (i+1) : ''}">#${i + 1}</span></td>
-            <td>
-              <div class="lb-user">
-                <img class="lb-avatar" src="${entry.avatar}" alt="avatar">
-                <div>
-                  <div class="lb-name">${entry.displayName}</div>
-                  <div class="lb-username">@${entry.username}</div>
-                </div>
-              </div>
-            </td>
-            <td class="lb-visits">${entry.visits} <span>visits</span></td>
-          </tr>
-        `).join('');
-      }).catch(err => {
-        console.error('Leaderboard error:', err);
-        tbody.innerHTML = '<tr><td colspan="3" class="lb-empty">Failed to load leaderboard.</td></tr>';
-      });
+      document.getElementById('ranks-section').style.display = 'none';
+      document.getElementById('kits-section').style.display = 'none';
+      document.getElementById('cosmetics-section').style.display = 'none';
+      document.getElementById('boosters-section').style.display = 'none';
+      document.getElementById(section + '-section').style.display = 'block';
     }
   </script>
 
