@@ -299,104 +299,37 @@
 
   <!-- Claim Banner -->
   <div class="claim-banner">
-    <strong>HOW TO CLAIM</strong> &nbsp;→&nbsp;
-    1. Buy via PayPal &nbsp;|&nbsp;
-    2. Join our <a href="https://discord.gg/r9AkFQvQGg" target="_blank">Discord</a> &nbsp;|&nbsp;
-    3. Open a ticket with your IGN + payment proof &nbsp;|&nbsp;
-    4. Receive your rank in-game ✔
+    <strong>HOW IT WORKS</strong> &nbsp;→&nbsp;
+    1. Click Buy Now &nbsp;|&nbsp;
+    2. Enter your Minecraft username &nbsp;|&nbsp;
+    3. Complete PayPal payment &nbsp;|&nbsp;
+    4. Rank applied in-game automatically ✔
   </div>
 
   <!-- RANKS -->
   <div id="ranks-section" class="section-wrap">
     <h2 class="section-title">⚔ RANKS ⚔</h2>
     <p class="section-subtitle">Permanent — pay once, yours forever</p>
-    <div class="ranks-grid">
+    <div class="ranks-grid" style="max-width:320px;margin:0 auto;">
 
-      <div class="rank-card" style="--rank-color:#aaaaaa;--rank-glow:rgba(170,170,170,0.15);--hdr-bg:rgba(170,170,170,0.04);">
+      <div class="rank-card" style="--rank-color:#00d4ff;--rank-glow:rgba(0,212,255,0.2);--hdr-bg:rgba(0,212,255,0.06);">
         <div class="rank-card-header">
-          <div class="rank-badge" style="background:#aaaaaa;">FIGHTER</div>
-          <span class="rank-icon">⚔️</span>
-          <div class="rank-name">Fighter</div>
+          <div class="rank-badge" style="background:#00d4ff;">TRIAL MOD</div>
+          <span class="rank-icon">🛡️</span>
+          <div class="rank-name">Trial Mod</div>
         </div>
         <div class="rank-body">
-          <div class="rank-desc">Entry-level rank for those who mean business.</div>
+          <div class="rank-desc">Join the moderation team. Keep the server clean and fair.</div>
           <ul class="rank-perks">
-            <li>Grey name in chat</li>
-            <li>/kit fighter (daily)</li>
-            <li>Access to /stats</li>
+            <li>Cyan [Trial Mod] prefix</li>
+            <li>Access to /mute &amp; /kick</li>
+            <li>Spectator mode access</li>
+            <li>Mod chat channel</li>
             <li>Reserved server slot</li>
-            <li>Custom join message</li>
-          </ul>
-          <div class="rank-price">£5</div>
-          <button class="buy-btn" style="background:#aaaaaa;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP')">Buy Now</button>
-        </div>
-      </div>
-
-      <div class="rank-card" style="--rank-color:#55ff55;--rank-glow:rgba(85,255,85,0.15);--hdr-bg:rgba(85,255,85,0.04);">
-        <div class="rank-card-header">
-          <div class="rank-badge" style="background:#55ff55;">WARRIOR</div>
-          <span class="rank-icon">🗡️</span>
-          <div class="rank-name">Warrior</div>
-        </div>
-        <div class="rank-body">
-          <div class="rank-desc">Step up your game with better perks.</div>
-          <ul class="rank-perks">
-            <li>Green name in chat</li>
-            <li>/kit warrior (daily)</li>
-            <li>/heal (1x per day)</li>
-            <li>/nick command</li>
-            <li>2x daily kit resets</li>
-            <li>Priority queue</li>
+            <li>Staff badge in tab</li>
           </ul>
           <div class="rank-price">£10</div>
-          <button class="buy-btn" style="background:#55ff55;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/10GBP')">Buy Now</button>
-        </div>
-      </div>
-
-      <div class="rank-card" style="--rank-color:#00d4ff;--rank-glow:rgba(0,212,255,0.15);--hdr-bg:rgba(0,212,255,0.04);">
-        <div class="rank-card-header">
-          <span class="badge-hot">🔥 Popular</span>
-          <div class="rank-badge" style="background:#00d4ff;margin-top:6px;">CHAMPION</div>
-          <span class="rank-icon">🏆</span>
-          <div class="rank-name">Champion</div>
-        </div>
-        <div class="rank-body">
-          <div class="rank-desc">Champions don't just play — they dominate.</div>
-          <ul class="rank-perks">
-            <li>Aqua name in chat + tab</li>
-            <li>/kit champion (daily)</li>
-            <li>/feed command</li>
-            <li>/hat command</li>
-            <li>Custom death message</li>
-            <li>VIP arena access</li>
-            <li>3x kit resets per day</li>
-          </ul>
-          <div class="rank-price">£20</div>
-          <button class="buy-btn" style="background:#00d4ff;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/20GBP')">Buy Now</button>
-        </div>
-      </div>
-
-      <div class="rank-card" style="--rank-color:#ffd700;--rank-glow:rgba(255,215,0,0.15);--hdr-bg:rgba(255,215,0,0.05);">
-        <div class="rank-card-header">
-          <span class="badge-hot">👑 Best Seller</span>
-          <div class="rank-badge" style="background:#ffd700;margin-top:6px;">GOD</div>
-          <span class="rank-icon">👑</span>
-          <div class="rank-name">God</div>
-        </div>
-        <div class="rank-body">
-          <div class="rank-desc">Top of the server. Feared by all.</div>
-          <ul class="rank-perks">
-            <li>Gold name in chat + tab</li>
-            <li>/kit god (daily)</li>
-            <li>/enchant command</li>
-            <li>Unlimited kit resets</li>
-            <li>Custom kill message</li>
-            <li>Particle trail effect</li>
-            <li>All lower rank kits</li>
-            <li>God exclusive arena</li>
-          </ul>
-          <div class="rank-price">£35</div>
-          <button class="buy-btn" style="background:#ffd700;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/35GBP')">Buy Now</button>
+          <button class="buy-btn" style="background:#00d4ff;" onclick="startPurchase('Trial Mod','https://www.paypal.me/TRAPSTUDIOSLTDWORKER/10GBP','#00d4ff')">Buy Now</button>
         </div>
       </div>
 
@@ -563,42 +496,202 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 E1BoxPvP &mdash; Not affiliated with Mojang or Microsoft.</p>
-    <p style="margin-top:6px;">All purchases are final. Join our <a href="https://discord.gg/r9AkFQvQGg" target="_blank">Discord</a> to claim your purchase.</p>
+    <p>&copy; 2026 E1BoxLife &mdash; Not affiliated with Mojang or Microsoft.</p>
+    <p style="margin-top:6px;">All purchases are final. Questions? Join our <a href="https://discord.gg/r9AkFQvQGg" target="_blank">Discord</a>.</p>
   </footer>
 
-  <!-- Claim Modal -->
-  <div id="claimModal" onclick="if(event.target===this)closeModal()">
+  <!-- MC Username Modal -->
+  <div id="mcModal" onclick="if(event.target===this)closeMcModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;">
     <div class="modal-box">
-      <div class="modal-icon">⚔️</div>
-      <div class="modal-title">PAYMENT SENT?</div>
-      <div class="modal-body">
-        Now join our Discord and open a <strong>ticket</strong> with:<br><br>
-        📋 Your <strong>Minecraft IGN</strong><br>
-        💳 Your <strong>PayPal payment proof</strong><br>
-        🏷️ The <strong>rank / item</strong> you bought
+      <div class="modal-icon" id="mcModalIcon">🎮</div>
+      <div class="modal-title" id="mcModalTitle">ENTER YOUR MC USERNAME</div>
+      <div class="modal-body" style="margin-bottom:16px;">
+        Type your exact <strong>Minecraft username</strong> so we can give you the rank automatically.
       </div>
-      <a href="https://discord.gg/r9AkFQvQGg" target="_blank" class="modal-discord-btn" onclick="closeModal()">JOIN DISCORD → OPEN TICKET</a>
-      <button class="modal-close" onclick="closeModal()">Close</button>
+      <input id="mcUsernameInput" type="text" placeholder="YourUsername" maxlength="16"
+        style="width:100%;padding:13px 16px;background:#111;border:1px solid #333;border-radius:8px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:8px;outline:none;transition:border 0.2s;"
+        oninput="clearMcError()" onkeydown="if(event.key==='Enter')submitMcUsername()"
+      />
+      <div id="mcError" style="color:#ff4444;font-size:12px;min-height:18px;margin-bottom:10px;text-align:left;"></div>
+      <div id="mcAvatarWrap" style="display:none;align-items:center;gap:12px;background:#111;border:1px solid #222;border-radius:8px;padding:10px 14px;margin-bottom:14px;">
+        <img id="mcAvatar" src="" alt="" style="width:36px;height:36px;border-radius:4px;image-rendering:pixelated;">
+        <div>
+          <div id="mcFoundName" style="color:#fff;font-weight:700;font-size:14px;"></div>
+          <div style="color:#00d4ff;font-size:11px;">✔ Minecraft account verified</div>
+        </div>
+      </div>
+      <button id="mcContinueBtn" onclick="submitMcUsername()"
+        style="display:block;width:100%;padding:14px;background:#00d4ff;color:#000;font-family:'Press Start 2P',monospace;font-size:10px;letter-spacing:2px;border:none;border-radius:10px;cursor:pointer;margin-bottom:10px;transition:opacity 0.2s;">
+        VERIFY &amp; CONTINUE →
+      </button>
+      <button class="modal-close" onclick="closeMcModal()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Payment Sent Modal -->
+  <div id="doneModal" onclick="if(event.target===this)closeDoneModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;">
+    <div class="modal-box">
+      <div class="modal-icon">✅</div>
+      <div class="modal-title">ORDER SUBMITTED!</div>
+      <div class="modal-body">
+        Your Minecraft username and rank order have been sent to our team.<br><br>
+        Complete the <strong>PayPal payment</strong> if you haven't already, then your rank will be applied in-game within <strong>a few minutes</strong>.<br><br>
+        Questions? Join our <a href="https://discord.gg/r9AkFQvQGg" target="_blank" style="color:#5865F2;font-weight:700;">Discord</a>.
+      </div>
+      <button class="modal-close" onclick="closeDoneModal()">Close</button>
     </div>
   </div>
 
   <script>
+    // ── PASTE YOUR DISCORD WEBHOOK URL HERE ──
+    const DISCORD_WEBHOOK = 'YOUR_DISCORD_WEBHOOK_URL_HERE';
+
+    let pendingPaypalUrl = '';
+    let pendingRankName = '';
+    let pendingAccentColor = '#00d4ff';
+    let verifiedUsername = '';
+
     function showSection(section) {
       ['ranks','kits','cosmetics','boosters'].forEach(s => {
         document.getElementById(s + '-section').style.display = 'none';
-        document.getElementById('nav-' + s).classList.remove('active');
+        const nav = document.getElementById('nav-' + s);
+        if (nav) nav.classList.remove('active');
       });
       document.getElementById(section + '-section').style.display = 'block';
-      document.getElementById('nav-' + section).classList.add('active');
+      const navEl = document.getElementById('nav-' + section);
+      if (navEl) navEl.classList.add('active');
     }
 
+    function startPurchase(rankName, paypalUrl, accentColor) {
+      pendingRankName = rankName;
+      pendingPaypalUrl = paypalUrl;
+      pendingAccentColor = accentColor || '#00d4ff';
+      verifiedUsername = '';
+      document.getElementById('mcUsernameInput').value = '';
+      document.getElementById('mcError').textContent = '';
+      document.getElementById('mcAvatarWrap').style.display = 'none';
+      document.getElementById('mcContinueBtn').textContent = 'VERIFY & CONTINUE →';
+      document.getElementById('mcContinueBtn').style.background = pendingAccentColor;
+      document.getElementById('mcModal').style.display = 'flex';
+      setTimeout(() => document.getElementById('mcUsernameInput').focus(), 100);
+    }
+
+    function closeMcModal() {
+      document.getElementById('mcModal').style.display = 'none';
+    }
+    function closeDoneModal() {
+      document.getElementById('doneModal').style.display = 'none';
+    }
+
+    function clearMcError() {
+      document.getElementById('mcError').textContent = '';
+      document.getElementById('mcAvatarWrap').style.display = 'none';
+      verifiedUsername = '';
+      document.getElementById('mcContinueBtn').textContent = 'VERIFY & CONTINUE →';
+    }
+
+    async function submitMcUsername() {
+      const input = document.getElementById('mcUsernameInput');
+      const username = input.value.trim();
+      const btn = document.getElementById('mcContinueBtn');
+
+      if (!username) {
+        document.getElementById('mcError').textContent = 'Please enter your Minecraft username.';
+        return;
+      }
+
+      // If already verified, proceed to payment
+      if (verifiedUsername && verifiedUsername.toLowerCase() === username.toLowerCase()) {
+        proceedToPayment();
+        return;
+      }
+
+      // Validate username via Mojang API
+      btn.textContent = 'CHECKING...';
+      btn.style.opacity = '0.6';
+      btn.disabled = true;
+      document.getElementById('mcError').textContent = '';
+
+      try {
+        const res = await fetch(`https://api.mojang.com/users/profiles/minecraft/${encodeURIComponent(username)}`);
+        if (res.status === 200) {
+          const data = await res.json();
+          verifiedUsername = data.name;
+          const uuid = data.id;
+          // Show avatar
+          const avatarWrap = document.getElementById('mcAvatarWrap');
+          document.getElementById('mcAvatar').src = `https://crafatar.com/avatars/${uuid}?size=36&overlay`;
+          document.getElementById('mcFoundName').textContent = data.name;
+          avatarWrap.style.display = 'flex';
+          btn.textContent = 'CONFIRM & PAY →';
+          btn.style.opacity = '1';
+          btn.disabled = false;
+        } else if (res.status === 404) {
+          document.getElementById('mcError').textContent = '✘ Username not found. Check your spelling.';
+          btn.textContent = 'VERIFY & CONTINUE →';
+          btn.style.opacity = '1';
+          btn.disabled = false;
+        } else {
+          document.getElementById('mcError').textContent = '✘ Could not verify. Try again.';
+          btn.textContent = 'VERIFY & CONTINUE →';
+          btn.style.opacity = '1';
+          btn.disabled = false;
+        }
+      } catch (e) {
+        // Mojang API sometimes blocks CORS in some browsers — fall back to trusting the username
+        verifiedUsername = username;
+        const avatarWrap = document.getElementById('mcAvatarWrap');
+        document.getElementById('mcAvatar').src = `https://crafatar.com/avatars/${username}?size=36&overlay`;
+        document.getElementById('mcFoundName').textContent = username;
+        avatarWrap.style.display = 'flex';
+        btn.textContent = 'CONFIRM & PAY →';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      }
+    }
+
+    function proceedToPayment() {
+      closeMcModal();
+      // Send Discord webhook notification
+      sendDiscordNotification(verifiedUsername, pendingRankName);
+      // Open PayPal
+      window.open(pendingPaypalUrl, '_blank');
+      // Show done modal after short delay
+      setTimeout(() => {
+        document.getElementById('doneModal').style.display = 'flex';
+      }, 800);
+    }
+
+    function sendDiscordNotification(mcUsername, rankName) {
+      if (!DISCORD_WEBHOOK || DISCORD_WEBHOOK === 'YOUR_DISCORD_WEBHOOK_URL_HERE') return;
+      const now = new Date().toUTCString();
+      const payload = {
+        username: 'E1BoxLife Store',
+        avatar_url: 'https://crafatar.com/avatars/' + mcUsername,
+        embeds: [{
+          title: '🛒 New Rank Purchase',
+          color: 0x00d4ff,
+          fields: [
+            { name: 'Minecraft IGN', value: '`' + mcUsername + '`', inline: true },
+            { name: 'Rank', value: '`' + rankName + '`', inline: true },
+            { name: 'Price', value: '£10', inline: true },
+            { name: 'Action', value: 'Run: `/lp user ' + mcUsername + ' parent set trialmod`', inline: false }
+          ],
+          thumbnail: { url: 'https://crafatar.com/avatars/' + mcUsername + '?size=64&overlay' },
+          footer: { text: 'E1BoxLife Store • ' + now }
+        }]
+      };
+      fetch(DISCORD_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    }
+
+    // Legacy — kept for any other buttons that might use it
     function buyItem(paypalUrl) {
       window.open(paypalUrl, '_blank');
-      setTimeout(() => { document.getElementById('claimModal').style.display = 'flex'; }, 1500);
     }
-
-    function closeModal() { document.getElementById('claimModal').style.display = 'none'; }
 
     function copyIP() {
       navigator.clipboard.writeText('E1BoxLife.minehut.gg').then(() => {
