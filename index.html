@@ -3,29 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LifestealDiamond - Store</title>
+  <title>E1BoxPvP - Store</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap');
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background-color: #060a0f;
+      background-color: #080808;
       background-image:
-        radial-gradient(ellipse at 20% 20%, rgba(0, 180, 255, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(0, 255, 100, 0.03) 0%, transparent 60%);
+        radial-gradient(ellipse at 50% 0%, rgba(255,100,0,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(255,50,0,0.04) 0%, transparent 50%);
       color: #e0e0e0;
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
     }
 
-    /* ── Banner ── */
     .top-banner {
       width: 100%;
       text-align: center;
-      padding: 36px 16px 28px;
-      border-bottom: 2px solid #00b4ff;
-      background: linear-gradient(180deg, rgba(0,20,40,0.95) 0%, rgba(6,10,15,0.95) 100%);
+      padding: 40px 16px 30px;
+      border-bottom: 2px solid #ff6a00;
+      background: linear-gradient(180deg, rgba(20,8,0,0.98) 0%, rgba(8,8,8,0.98) 100%);
       position: relative;
       overflow: hidden;
     }
@@ -34,491 +33,386 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 180, 255, 0.02) 2px,
-        rgba(0, 180, 255, 0.02) 4px
-      );
+      background: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,106,0,0.015) 40px, rgba(255,106,0,0.015) 41px);
       pointer-events: none;
+    }
+
+    .banner-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      background: rgba(255,106,0,0.12);
+      border: 1px solid rgba(255,106,0,0.4);
+      border-radius: 4px;
+      font-size: 11px;
+      color: #ff8833;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 16px;
     }
 
     .top-banner h1 {
       font-family: 'Press Start 2P', monospace;
-      font-size: 36px;
-      color: #00d4ff;
-      letter-spacing: 4px;
-      text-shadow: 0 0 20px rgba(0, 212, 255, 0.6), 0 0 60px rgba(0, 212, 255, 0.2);
-      line-height: 1.4;
+      font-size: 38px;
+      color: #ffffff;
+      letter-spacing: 3px;
+      text-shadow: 0 0 20px rgba(255,106,0,0.5), 0 0 60px rgba(255,60,0,0.2), 2px 2px 0px #ff3c00;
+      line-height: 1.3;
     }
 
-    .heart-icon { color: #ff4466; margin: 0 4px; }
-    .diamond-icon { color: #00d4ff; }
+    .top-banner h1 span { color: #ff6a00; }
 
     .top-banner .tagline {
-      margin-top: 12px;
-      font-size: 13px;
-      color: #3a6070;
-      letter-spacing: 3px;
+      margin-top: 14px;
+      font-size: 12px;
+      color: #5a4030;
+      letter-spacing: 4px;
       text-transform: uppercase;
+    }
+
+    .server-ip-wrap {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .server-ip {
       display: inline-block;
-      margin-top: 16px;
-      padding: 8px 20px;
-      background: rgba(0, 180, 255, 0.08);
-      border: 1px solid rgba(0, 180, 255, 0.3);
+      padding: 9px 22px;
+      background: rgba(255,106,0,0.08);
+      border: 1px solid rgba(255,106,0,0.35);
       border-radius: 6px;
       font-family: 'Press Start 2P', monospace;
-      font-size: 11px;
-      color: #00d4ff;
+      font-size: 12px;
+      color: #ff8833;
       letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    /* ── Nav ── */
+    .server-ip:hover { background: rgba(255,106,0,0.15); border-color: #ff6a00; color: #ffaa55; }
+    .copy-hint { font-size: 11px; color: #3a2a1a; letter-spacing: 1px; }
+
     nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 8px;
-      padding: 14px 16px;
-      border-bottom: 1px solid #0a2030;
-      background: rgba(6, 10, 15, 0.9);
+      gap: 6px;
+      padding: 12px 16px;
+      border-bottom: 1px solid #1a1000;
+      background: rgba(8,8,8,0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     nav a {
-      color: #4a9ab5;
+      color: #7a5535;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 13px;
+      font-weight: 700;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
       padding: 8px 16px;
       border: 1px solid transparent;
       border-radius: 6px;
-      transition: all 0.3s;
+      transition: all 0.25s;
     }
 
-    nav a:hover {
-      border-color: #00d4ff;
-      background: rgba(0, 212, 255, 0.06);
-      color: #00d4ff;
+    nav a:hover, nav a.active { border-color: #ff6a00; background: rgba(255,106,0,0.07); color: #ff8833; }
+
+    nav a.discord-btn { background: rgba(88,101,242,0.12); border-color: rgba(88,101,242,0.4); color: #7b8ef5; }
+    nav a.discord-btn:hover { background: rgba(88,101,242,0.2); border-color: #5865F2; color: #a0aaff; }
+
+    .claim-banner {
+      background: rgba(255,106,0,0.05);
+      border-bottom: 1px solid rgba(255,106,0,0.12);
+      padding: 12px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #5a3a1a;
     }
 
-    /* ── Sections ── */
-    .section-wrap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 24px;
-    }
+    .claim-banner strong { color: #ff8833; }
+    .claim-banner a { color: #5865F2; text-decoration: none; font-weight: 700; }
+
+    .section-wrap { max-width: 1200px; margin: 0 auto; padding: 52px 24px; }
 
     .section-title {
       font-family: 'Press Start 2P', monospace;
-      font-size: 20px;
-      color: #00d4ff;
+      font-size: 18px;
+      color: #ff6a00;
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       letter-spacing: 2px;
-      text-shadow: 0 0 16px rgba(0, 212, 255, 0.4);
+      text-shadow: 0 0 20px rgba(255,106,0,0.35);
     }
 
     .section-subtitle {
       text-align: center;
-      color: #3a6070;
-      font-size: 13px;
-      margin-bottom: 40px;
-      letter-spacing: 2px;
+      color: #3a2a10;
+      font-size: 12px;
+      margin-bottom: 44px;
+      letter-spacing: 3px;
       text-transform: uppercase;
     }
 
-    /* ── Rank Cards ── */
-    .ranks-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 24px;
-    }
+    .ranks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 20px; }
 
     .rank-card {
-      border-radius: 14px;
-      padding: 28px 20px;
-      background: rgba(8, 14, 22, 0.95);
-      border: 1px solid #0a2030;
+      border-radius: 12px;
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
       text-align: center;
-      transition: all 0.35s;
-      position: relative;
+      transition: all 0.3s;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
-    .rank-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--rank-color, #00d4ff);
-      opacity: 0.8;
+    .rank-card-header {
+      padding: 22px 20px 18px;
+      background: var(--hdr-bg, rgba(255,106,0,0.05));
+      border-bottom: 1px solid var(--rank-color, #ff6a00);
     }
 
-    .rank-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--rank-color, #00d4ff);
-      box-shadow: 0 0 30px rgba(0, 212, 255, 0.08);
-    }
+    .rank-card:hover { transform: translateY(-5px); border-color: var(--rank-color, #ff6a00); box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px var(--rank-glow, rgba(255,106,0,0.1)); }
 
     .rank-badge {
       display: inline-block;
-      padding: 6px 16px;
-      border-radius: 20px;
+      padding: 5px 14px;
+      border-radius: 4px;
       font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      margin-bottom: 16px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--rank-color, #00d4ff);
-      color: var(--rank-color, #00d4ff);
-    }
-
-    .rank-icon {
-      font-size: 48px;
-      margin-bottom: 14px;
-      display: block;
-    }
-
-    .rank-name {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 13px;
-      color: #fff;
+      font-size: 9px;
       margin-bottom: 12px;
+      background: var(--rank-color, #ff6a00);
+      color: #000;
       letter-spacing: 1px;
     }
 
-    .rank-desc {
-      font-size: 12px;
-      color: #5a7a8a;
-      margin-bottom: 18px;
-      line-height: 1.7;
-    }
+    .rank-icon { font-size: 44px; margin-bottom: 10px; display: block; }
+    .rank-name { font-family: 'Press Start 2P', monospace; font-size: 12px; color: #fff; letter-spacing: 1px; }
+    .rank-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+    .rank-desc { font-size: 12px; color: #4a4a4a; margin-bottom: 16px; line-height: 1.7; }
 
-    .rank-perks {
-      list-style: none;
-      text-align: left;
-      margin-bottom: 20px;
-    }
+    .rank-perks { list-style: none; text-align: left; margin-bottom: 20px; flex-grow: 1; }
+    .rank-perks li { font-size: 12px; color: #6a6a6a; padding: 5px 0; border-bottom: 1px solid #161616; display: flex; align-items: center; gap: 8px; }
+    .rank-perks li::before { content: '▸'; color: var(--rank-color, #ff6a00); flex-shrink: 0; }
 
-    .rank-perks li {
-      font-size: 12px;
-      color: #8ab0c0;
-      padding: 5px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .rank-perks li::before {
-      content: '▶ ';
-      color: var(--rank-color, #00d4ff);
-      font-size: 10px;
-    }
-
-    .rank-price {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 16px;
-      color: var(--rank-color, #00d4ff);
-      margin-bottom: 16px;
-    }
+    .rank-price { font-family: 'Press Start 2P', monospace; font-size: 18px; color: var(--rank-color, #ff6a00); margin-bottom: 14px; }
 
     .buy-btn {
-      display: block;
-      width: 100%;
-      padding: 12px 0;
-      background: transparent;
-      border: 2px solid var(--rank-color, #00d4ff);
-      color: var(--rank-color, #00d4ff);
-      font-family: 'Press Start 2P', monospace;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.3s;
-      cursor: pointer;
+      display: block; width: 100%; padding: 13px 0;
+      background: var(--rank-color, #ff6a00); border: none; color: #000;
+      font-family: 'Press Start 2P', monospace; font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; border-radius: 8px; transition: all 0.25s; cursor: pointer; font-weight: 900;
     }
+    .buy-btn:hover { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 4px 20px var(--rank-glow, rgba(255,106,0,0.3)); }
 
-    .buy-btn:hover {
-      background: var(--rank-color, #00d4ff);
-      color: #060a0f;
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.25);
-    }
-
-    /* ── Kits Grid ── */
-    .kits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 20px;
-    }
+    .kits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
 
     .kit-card {
-      background: rgba(8, 14, 22, 0.95);
-      border: 1px solid #0a2030;
-      border-radius: 12px;
-      padding: 24px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: all 0.3s;
+      background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 12px;
+      padding: 24px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: all 0.3s;
     }
-
-    .kit-card:hover {
-      border-color: #00ff88;
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.06);
-      transform: translateY(-4px);
-    }
-
+    .kit-card:hover { border-color: #ff6a00; box-shadow: 0 0 24px rgba(255,106,0,0.08); transform: translateY(-4px); }
     .kit-icon { font-size: 44px; margin-bottom: 14px; }
-    .kit-name {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 11px;
-      color: #00ff88;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
-    }
-
-    .kit-desc { font-size: 12px; color: #5a7a8a; margin-bottom: 14px; line-height: 1.6; flex-grow: 1; }
-    .kit-price { font-family: 'Press Start 2P', monospace; font-size: 14px; color: #00ff88; margin-bottom: 14px; }
-
+    .kit-name { font-family: 'Press Start 2P', monospace; font-size: 11px; color: #ff8833; margin-bottom: 10px; }
+    .kit-desc { font-size: 12px; color: #4a4a4a; margin-bottom: 14px; line-height: 1.6; flex-grow: 1; }
+    .kit-price { font-family: 'Press Start 2P', monospace; font-size: 15px; color: #ff6a00; margin-bottom: 14px; }
     .kit-btn {
-      display: block;
-      width: 100%;
-      padding: 10px 0;
-      background: transparent;
-      border: 2px solid #00ff88;
-      color: #00ff88;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.3s;
-      text-align: center;
+      display: block; width: 100%; padding: 11px 0; background: transparent;
+      border: 2px solid #ff6a00; color: #ff6a00; font-family: 'Press Start 2P', monospace;
+      font-size: 10px; border-radius: 8px; transition: all 0.25s; cursor: pointer;
     }
+    .kit-btn:hover { background: #ff6a00; color: #000; box-shadow: 0 4px 16px rgba(255,106,0,0.25); }
 
-    .kit-btn:hover {
-      background: #00ff88;
-      color: #060a0f;
-      box-shadow: 0 0 16px rgba(0, 255, 136, 0.3);
-    }
+    .cosmetics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
 
-    /* ── Cosmetics ── */
-    .cosmetics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 18px;
-    }
-
-    .cosmetic-card {
-      background: rgba(8, 14, 22, 0.95);
-      border: 1px solid #0a2030;
-      border-radius: 12px;
-      padding: 20px 16px;
-      text-align: center;
-      transition: all 0.3s;
-    }
-
-    .cosmetic-card:hover {
-      border-color: #b060ff;
-      box-shadow: 0 0 20px rgba(176, 96, 255, 0.06);
-      transform: translateY(-4px);
-    }
-
-    .cosmetic-icon { font-size: 40px; margin-bottom: 12px; }
-
-    .cosmetic-name {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      color: #b060ff;
-      margin-bottom: 8px;
-    }
-
-    .cosmetic-desc { font-size: 12px; color: #5a7a8a; margin-bottom: 12px; line-height: 1.6; }
-    .cosmetic-price { font-family: 'Press Start 2P', monospace; font-size: 13px; color: #b060ff; margin-bottom: 12px; }
-
+    .cosmetic-card { background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 10px; padding: 20px 16px; text-align: center; transition: all 0.3s; }
+    .cosmetic-card:hover { border-color: #aa44ff; box-shadow: 0 0 20px rgba(170,68,255,0.08); transform: translateY(-3px); }
+    .cosmetic-icon { font-size: 38px; margin-bottom: 12px; }
+    .cosmetic-name { font-family: 'Press Start 2P', monospace; font-size: 9px; color: #aa44ff; margin-bottom: 8px; }
+    .cosmetic-desc { font-size: 11px; color: #4a4a4a; margin-bottom: 12px; line-height: 1.6; }
+    .cosmetic-price { font-family: 'Press Start 2P', monospace; font-size: 12px; color: #aa44ff; margin-bottom: 12px; }
     .cosmetic-btn {
-      display: block;
-      width: 100%;
-      padding: 10px 0;
-      background: transparent;
-      border: 2px solid #b060ff;
-      color: #b060ff;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.3s;
+      display: block; width: 100%; padding: 10px 0; background: transparent;
+      border: 2px solid #aa44ff; color: #aa44ff; font-family: 'Press Start 2P', monospace;
+      font-size: 9px; border-radius: 8px; transition: all 0.25s; cursor: pointer;
+    }
+    .cosmetic-btn:hover { background: #aa44ff; color: #000; box-shadow: 0 4px 16px rgba(170,68,255,0.25); }
+
+    .badge-hot {
+      display: inline-block; padding: 3px 10px; background: rgba(255,60,0,0.12);
+      border: 1px solid #ff3c00; border-radius: 4px; color: #ff5522; font-size: 10px;
+      font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;
     }
 
-    .cosmetic-btn:hover {
-      background: #b060ff;
-      color: #060a0f;
-      box-shadow: 0 0 16px rgba(176, 96, 255, 0.3);
-    }
-
-    /* ── Featured badge ── */
-    .badge-limited {
-      display: inline-block;
-      padding: 3px 10px;
-      background: rgba(255, 60, 60, 0.12);
-      border: 1px solid #ff3c3c;
-      border-radius: 20px;
-      color: #ff3c3c;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 32px 16px;
-      border-top: 1px solid #0a2030;
-      color: #2a4050;
-      font-size: 12px;
-      line-height: 2;
-    }
-
-    footer a { color: #00d4ff; text-decoration: none; }
+    footer { text-align: center; padding: 32px 16px; border-top: 1px solid #111; font-size: 12px; line-height: 2.2; }
+    footer p { color: #1a1a1a; }
+    footer a { color: #ff6a00; text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #060a0f; }
-    ::-webkit-scrollbar-thumb { background: #0a2030; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #00d4ff; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #080808; }
+    ::-webkit-scrollbar-thumb { background: #1a1000; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #ff6a00; }
+
+    #claimModal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 9999; align-items: center; justify-content: center; }
+    .modal-box { background: #0d0d0d; border: 1px solid #ff6a00; border-radius: 14px; padding: 36px 30px; max-width: 420px; width: 90%; text-align: center; box-shadow: 0 0 60px rgba(255,106,0,0.15); }
+    .modal-icon { font-size: 48px; margin-bottom: 16px; }
+    .modal-title { font-family: 'Press Start 2P', monospace; font-size: 12px; color: #ff6a00; margin-bottom: 14px; }
+    .modal-body { color: #5a5a5a; font-size: 13px; line-height: 1.9; margin-bottom: 24px; }
+    .modal-body strong { color: #ccc; }
+    .modal-discord-btn { display: block; padding: 14px; background: #5865F2; color: #fff; font-family: 'Press Start 2P', monospace; font-size: 10px; text-decoration: none; border-radius: 10px; margin-bottom: 12px; letter-spacing: 1px; border: none; cursor: pointer; width: 100%; transition: all 0.2s; }
+    .modal-discord-btn:hover { opacity: 0.85; }
+    .modal-close { background: transparent; border: 1px solid #222; color: #444; font-size: 12px; padding: 10px 20px; border-radius: 8px; cursor: pointer; width: 100%; }
+    .modal-close:hover { border-color: #333; color: #666; }
   </style>
 </head>
 <body>
 
   <!-- Banner -->
   <div class="top-banner">
-    <h1><span class="heart-icon">❤</span> LifestealDiamond <span class="heart-icon">❤</span></h1>
-    <p class="tagline">Survive. Steal. Dominate.</p>
-    <div class="server-ip">E1BoxPvP.minehut.gg</div>
+    <div class="banner-tag">⚔ 1v1 Box PvP Server</div>
+    <h1>E1<span>Box</span>PvP</h1>
+    <p class="tagline">Box. Fight. Dominate.</p>
+    <div class="server-ip-wrap">
+      <div class="server-ip" onclick="copyIP()">E1BoxPvP.minehut.gg</div>
+      <span class="copy-hint" id="copyHint">click to copy</span>
+    </div>
   </div>
 
   <!-- Nav -->
   <nav>
-    <a href="#" onclick="showSection('ranks')">Ranks</a>
-    <a href="#" onclick="showSection('kits')">Kits</a>
-    <a href="#" onclick="showSection('cosmetics')">Cosmetics</a>
-    <a href="#" onclick="showSection('boosters')">Boosters</a>
-    <a href="https://discord.gg/r9AkFQvQGg" target="_blank" style="background:rgba(88,101,242,0.15);border-color:#5865F2;color:#5865F2;">
-      <svg style="width:14px;height:14px;vertical-align:middle;margin-right:6px;fill:#5865F2;" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.032.054a19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+    <a href="#" onclick="showSection('ranks')" id="nav-ranks" class="active">Ranks</a>
+    <a href="#" onclick="showSection('kits')" id="nav-kits">Kits</a>
+    <a href="#" onclick="showSection('cosmetics')" id="nav-cosmetics">Cosmetics</a>
+    <a href="#" onclick="showSection('boosters')" id="nav-boosters">Boosters</a>
+    <a href="https://discord.gg/r9AkFQvQGg" target="_blank" class="discord-btn">
+      <svg style="width:12px;height:12px;vertical-align:middle;margin-right:5px;fill:currentColor;" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.032.054a19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
       Discord
     </a>
   </nav>
 
-  <!-- How to Claim Banner -->
-  <div style="background:rgba(88,101,242,0.08);border-top:1px solid rgba(88,101,242,0.2);border-bottom:1px solid rgba(88,101,242,0.2);padding:14px 24px;text-align:center;">
-    <span style="color:#5865F2;font-weight:700;font-size:13px;letter-spacing:1px;">HOW TO CLAIM YOUR RANK</span>
-    <span style="color:#6a7a9a;font-size:13px;margin:0 12px;">→</span>
-    <span style="color:#8a9ab5;font-size:13px;">1. Buy via PayPal &nbsp;|&nbsp; 2. Join our <a href="https://discord.gg/r9AkFQvQGg" target="_blank" style="color:#5865F2;text-decoration:none;font-weight:700;">Discord</a> &nbsp;|&nbsp; 3. Open a ticket with your IGN + payment proof &nbsp;|&nbsp; 4. Get ranked in-game ✔</span>
+  <!-- Claim Banner -->
+  <div class="claim-banner">
+    <strong>HOW TO CLAIM</strong> &nbsp;→&nbsp;
+    1. Buy via PayPal &nbsp;|&nbsp;
+    2. Join our <a href="https://discord.gg/r9AkFQvQGg" target="_blank">Discord</a> &nbsp;|&nbsp;
+    3. Open a ticket with your IGN + payment proof &nbsp;|&nbsp;
+    4. Receive your rank in-game ✔
   </div>
 
-  <!-- ── RANKS ── -->
+  <!-- RANKS -->
   <div id="ranks-section" class="section-wrap">
-    <h2 class="section-title">❖ RANKS ❖</h2>
-    <p class="section-subtitle">Permanent ranks — pay once, keep forever</p>
-
+    <h2 class="section-title">⚔ RANKS ⚔</h2>
+    <p class="section-subtitle">Permanent — pay once, yours forever</p>
     <div class="ranks-grid">
 
-      <!-- VIP -->
-      <div class="rank-card" style="--rank-color: #55ff55;">
-        <div class="rank-badge">VIP</div>
-        <span class="rank-icon">💚</span>
-        <div class="rank-name">VIP</div>
-        <div class="rank-desc">Entry level rank for loyal players.</div>
-        <ul class="rank-perks">
-          <li>Green name colour in chat</li>
-          <li>/kit vip (daily)</li>
-          <li>3 extra hearts on join</li>
-          <li>/nick command</li>
-          <li>Reserved server slot</li>
-        </ul>
-        <div class="rank-price">£5</div>
-        <button class="buy-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP')">Buy Now</button>
+      <div class="rank-card" style="--rank-color:#aaaaaa;--rank-glow:rgba(170,170,170,0.15);--hdr-bg:rgba(170,170,170,0.04);">
+        <div class="rank-card-header">
+          <div class="rank-badge" style="background:#aaaaaa;">FIGHTER</div>
+          <span class="rank-icon">⚔️</span>
+          <div class="rank-name">Fighter</div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-desc">Entry-level rank for those who mean business.</div>
+          <ul class="rank-perks">
+            <li>Grey name in chat</li>
+            <li>/kit fighter (daily)</li>
+            <li>Access to /stats</li>
+            <li>Reserved server slot</li>
+            <li>Custom join message</li>
+          </ul>
+          <div class="rank-price">£5</div>
+          <button class="buy-btn" style="background:#aaaaaa;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP')">Buy Now</button>
+        </div>
       </div>
 
-      <!-- VIP+ -->
-      <div class="rank-card" style="--rank-color: #00ffaa;">
-        <div class="rank-badge">VIP+</div>
-        <span class="rank-icon">💎</span>
-        <div class="rank-name">VIP+</div>
-        <div class="rank-desc">Enhanced perks for dedicated players.</div>
-        <ul class="rank-perks">
-          <li>Aqua name colour in chat</li>
-          <li>/kit vip+ (daily)</li>
-          <li>5 extra hearts on join</li>
-          <li>/hat command</li>
-          <li>/fly in spawn</li>
-          <li>Access to /heal (1x per day)</li>
-        </ul>
-        <div class="rank-price">£10</div>
-        <button class="buy-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/10GBP')">Buy Now</button>
+      <div class="rank-card" style="--rank-color:#55ff55;--rank-glow:rgba(85,255,85,0.15);--hdr-bg:rgba(85,255,85,0.04);">
+        <div class="rank-card-header">
+          <div class="rank-badge" style="background:#55ff55;">WARRIOR</div>
+          <span class="rank-icon">🗡️</span>
+          <div class="rank-name">Warrior</div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-desc">Step up your game with better perks.</div>
+          <ul class="rank-perks">
+            <li>Green name in chat</li>
+            <li>/kit warrior (daily)</li>
+            <li>/heal (1x per day)</li>
+            <li>/nick command</li>
+            <li>2x daily kit resets</li>
+            <li>Priority queue</li>
+          </ul>
+          <div class="rank-price">£10</div>
+          <button class="buy-btn" style="background:#55ff55;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/10GBP')">Buy Now</button>
+        </div>
       </div>
 
-      <!-- MVP -->
-      <div class="rank-card" style="--rank-color: #00d4ff;">
-        <div class="rank-badge">MVP</div>
-        <span class="rank-icon">🔷</span>
-        <div class="rank-name">MVP</div>
-        <div class="rank-desc">Diamond tier. You're a real one.</div>
-        <ul class="rank-perks">
-          <li>Diamond blue name in chat</li>
-          <li>/kit mvp (daily)</li>
-          <li>8 extra hearts on join</li>
-          <li>Custom join message</li>
-          <li>/fly in spawn + warzone</li>
-          <li>/feed command</li>
-          <li>Access to exclusive MVP hub</li>
-        </ul>
-        <div class="rank-price">£20</div>
-        <button class="buy-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/20GBP')">Buy Now</button>
+      <div class="rank-card" style="--rank-color:#00d4ff;--rank-glow:rgba(0,212,255,0.15);--hdr-bg:rgba(0,212,255,0.04);">
+        <div class="rank-card-header">
+          <span class="badge-hot">🔥 Popular</span>
+          <div class="rank-badge" style="background:#00d4ff;margin-top:6px;">CHAMPION</div>
+          <span class="rank-icon">🏆</span>
+          <div class="rank-name">Champion</div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-desc">Champions don't just play — they dominate.</div>
+          <ul class="rank-perks">
+            <li>Aqua name in chat + tab</li>
+            <li>/kit champion (daily)</li>
+            <li>/feed command</li>
+            <li>/hat command</li>
+            <li>Custom death message</li>
+            <li>VIP arena access</li>
+            <li>3x kit resets per day</li>
+          </ul>
+          <div class="rank-price">£20</div>
+          <button class="buy-btn" style="background:#00d4ff;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/20GBP')">Buy Now</button>
+        </div>
       </div>
 
-      <!-- LEGEND -->
-      <div class="rank-card" style="--rank-color: #ffd700;">
-        <span class="badge-limited">🔥 Best Seller</span>
-        <div class="rank-badge">LEGEND</div>
-        <span class="rank-icon">👑</span>
-        <div class="rank-name">LEGEND</div>
-        <div class="rank-desc">Top tier. Gold name. God mode perks.</div>
-        <ul class="rank-perks">
-          <li>Gold name in chat + tab list</li>
-          <li>/kit legend (daily)</li>
-          <li>10 extra hearts on join</li>
-          <li>Custom death message</li>
-          <li>Particle trail effect</li>
-          <li>/enchant command</li>
-          <li>Priority queue</li>
-          <li>Access to all lower rank kits</li>
-        </ul>
-        <div class="rank-price">£35</div>
-        <button class="buy-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/35GBP')">Buy Now</button>
+      <div class="rank-card" style="--rank-color:#ffd700;--rank-glow:rgba(255,215,0,0.15);--hdr-bg:rgba(255,215,0,0.05);">
+        <div class="rank-card-header">
+          <span class="badge-hot">👑 Best Seller</span>
+          <div class="rank-badge" style="background:#ffd700;margin-top:6px;">GOD</div>
+          <span class="rank-icon">👑</span>
+          <div class="rank-name">God</div>
+        </div>
+        <div class="rank-body">
+          <div class="rank-desc">Top of the server. Feared by all.</div>
+          <ul class="rank-perks">
+            <li>Gold name in chat + tab</li>
+            <li>/kit god (daily)</li>
+            <li>/enchant command</li>
+            <li>Unlimited kit resets</li>
+            <li>Custom kill message</li>
+            <li>Particle trail effect</li>
+            <li>All lower rank kits</li>
+            <li>God exclusive arena</li>
+          </ul>
+          <div class="rank-price">£35</div>
+          <button class="buy-btn" style="background:#ffd700;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/35GBP')">Buy Now</button>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <!-- ── KITS ── -->
+  <!-- KITS -->
   <div id="kits-section" class="section-wrap" style="display:none;">
-    <h2 class="section-title">⚔ KITS ⚔</h2>
-    <p class="section-subtitle">One-time purchasable kits — delivered in game</p>
-
+    <h2 class="section-title">📦 KITS 📦</h2>
+    <p class="section-subtitle">One-time kits — delivered in game</p>
     <div class="kits-grid">
 
       <div class="kit-card">
-        <div class="kit-icon">🗡️</div>
-        <div class="kit-name">Starter Kit</div>
-        <div class="kit-desc">Iron armour, iron sword, 32 steak, basic supplies. Perfect for a fresh start.</div>
+        <div class="kit-icon">🪖</div>
+        <div class="kit-name">Iron Kit</div>
+        <div class="kit-desc">Full iron armour, iron sword (Sharp I), 16 golden apples, 32 steak.</div>
         <div class="kit-price">£3</div>
         <button class="kit-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/3GBP')">Buy Now</button>
       </div>
@@ -526,58 +420,57 @@
       <div class="kit-card">
         <div class="kit-icon">💎</div>
         <div class="kit-name">Diamond Kit</div>
-        <div class="kit-desc">Full diamond armour (Prot II), diamond sword (Sharp II), golden apples & more.</div>
+        <div class="kit-desc">Full diamond armour (Prot II), diamond sword (Sharp II), 32 golden apples, pearls.</div>
         <div class="kit-price">£8</div>
         <button class="kit-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/8GBP')">Buy Now</button>
       </div>
 
       <div class="kit-card">
-        <div class="kit-icon">⚡</div>
-        <div class="kit-name">God Kit</div>
-        <div class="kit-desc">Full netherite armour (Prot IV), Sharpness V sword, totem of undying, Notch apples.</div>
+        <div class="kit-icon">🖤</div>
+        <div class="kit-name">Netherite Kit</div>
+        <div class="kit-desc">Full netherite armour (Prot III), netherite sword (Sharp IV), Notch apples, totems.</div>
         <div class="kit-price">£15</div>
         <button class="kit-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/15GBP')">Buy Now</button>
       </div>
 
       <div class="kit-card">
-        <span class="badge-limited">Limited</span>
-        <div class="kit-icon">❤️</div>
-        <div class="kit-name">Lifesteal Kit</div>
-        <div class="kit-desc">Includes 5 bonus hearts, custom enchanted sword with Lifesteal enchant, & heart canister.</div>
-        <div class="kit-price">£12</div>
-        <button class="kit-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/12GBP')">Buy Now</button>
+        <span class="badge-hot">⚡ Most Powerful</span>
+        <div class="kit-icon">💀</div>
+        <div class="kit-name">God Kit</div>
+        <div class="kit-desc">Max enchanted netherite, Sharp V sword, Fire Aspect II, full supplies. Unstoppable.</div>
+        <div class="kit-price">£25</div>
+        <button class="kit-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/25GBP')">Buy Now</button>
       </div>
 
     </div>
   </div>
 
-  <!-- ── COSMETICS ── -->
+  <!-- COSMETICS -->
   <div id="cosmetics-section" class="section-wrap" style="display:none;">
     <h2 class="section-title">✨ COSMETICS ✨</h2>
-    <p class="section-subtitle">Stand out from the crowd</p>
-
+    <p class="section-subtitle">Stand out in every fight</p>
     <div class="cosmetics-grid">
 
       <div class="cosmetic-card">
         <div class="cosmetic-icon">🎆</div>
         <div class="cosmetic-name">Particle Trail</div>
-        <div class="cosmetic-desc">Leave a trail of particles wherever you walk. Multiple colours available.</div>
-        <div class="cosmetic-price">£5</div>
-        <button class="cosmetic-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP')">Buy Now</button>
-      </div>
-
-      <div class="cosmetic-card">
-        <div class="cosmetic-icon">💬</div>
-        <div class="cosmetic-name">Custom Tag</div>
-        <div class="cosmetic-desc">Your own custom prefix tag before your name in chat. You pick the text & colour.</div>
+        <div class="cosmetic-desc">Leave particles behind as you walk. Multiple colour options.</div>
         <div class="cosmetic-price">£5</div>
         <button class="cosmetic-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP')">Buy Now</button>
       </div>
 
       <div class="cosmetic-card">
         <div class="cosmetic-icon">💥</div>
-        <div class="cosmetic-name">Death Effect</div>
-        <div class="cosmetic-desc">Custom explosion/animation when you die or kill someone. Multiple styles available.</div>
+        <div class="cosmetic-name">Kill Effect</div>
+        <div class="cosmetic-desc">Custom explosion effect on every kill. Flames, lightning & more.</div>
+        <div class="cosmetic-price">£5</div>
+        <button class="cosmetic-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP')">Buy Now</button>
+      </div>
+
+      <div class="cosmetic-card">
+        <div class="cosmetic-icon">💬</div>
+        <div class="cosmetic-name">Chat Prefix</div>
+        <div class="cosmetic-desc">Custom prefix in chat. You pick the text and colour.</div>
         <div class="cosmetic-price">£5</div>
         <button class="cosmetic-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP')">Buy Now</button>
       </div>
@@ -585,24 +478,24 @@
       <div class="cosmetic-card">
         <div class="cosmetic-icon">🎵</div>
         <div class="cosmetic-name">Kill Sound</div>
-        <div class="cosmetic-desc">Custom sound plays to nearby players when you get a kill. Pick from our list.</div>
+        <div class="cosmetic-desc">Custom sound on every kill heard by nearby players.</div>
         <div class="cosmetic-price">£3</div>
         <button class="cosmetic-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/3GBP')">Buy Now</button>
       </div>
 
       <div class="cosmetic-card">
         <div class="cosmetic-icon">🏷️</div>
-        <div class="cosmetic-name">Custom Kill Msg</div>
-        <div class="cosmetic-desc">Your own custom kill message shown to the server when you eliminate someone.</div>
+        <div class="cosmetic-name">Kill Message</div>
+        <div class="cosmetic-desc">Your own kill message shown server-wide after every fight.</div>
         <div class="cosmetic-price">£4</div>
         <button class="cosmetic-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/4GBP')">Buy Now</button>
       </div>
 
       <div class="cosmetic-card">
-        <span class="badge-limited">Rare</span>
+        <span class="badge-hot">Rare</span>
         <div class="cosmetic-icon">🌈</div>
         <div class="cosmetic-name">Rainbow Name</div>
-        <div class="cosmetic-desc">Animated rainbow colour cycling on your name in chat and tab list.</div>
+        <div class="cosmetic-desc">Animated rainbow colour on your name in chat and tab list.</div>
         <div class="cosmetic-price">£8</div>
         <button class="cosmetic-btn" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/8GBP')">Buy Now</button>
       </div>
@@ -610,51 +503,59 @@
     </div>
   </div>
 
-  <!-- ── BOOSTERS ── -->
+  <!-- BOOSTERS -->
   <div id="boosters-section" class="section-wrap" style="display:none;">
     <h2 class="section-title">🚀 BOOSTERS 🚀</h2>
-    <p class="section-subtitle">Temporary boosts to get ahead fast</p>
-
+    <p class="section-subtitle">Temporary advantages to get ahead</p>
     <div class="ranks-grid">
 
-      <div class="rank-card" style="--rank-color: #ff9900;">
-        <span class="rank-icon">💰</span>
-        <div class="rank-name">2x Money</div>
-        <div class="rank-desc">Double in-game money earnings for 24 hours.</div>
-        <ul class="rank-perks">
-          <li>2x money from kills</li>
-          <li>2x money from quests</li>
-          <li>Lasts 24 hours</li>
-        </ul>
-        <div class="rank-price" style="color:#ff9900;">£3</div>
-        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/3GBP" class="buy-btn" style="border-color:#ff9900;color:#ff9900;" target="_blank">Buy Now</a>
+      <div class="rank-card" style="--rank-color:#ff9900;--rank-glow:rgba(255,153,0,0.15);--hdr-bg:rgba(255,153,0,0.05);">
+        <div class="rank-card-header">
+          <span class="rank-icon">💰</span>
+          <div class="rank-name" style="color:#ff9900;">2x Coins</div>
+        </div>
+        <div class="rank-body">
+          <ul class="rank-perks">
+            <li>2x coins from kills</li>
+            <li>2x coins from wins</li>
+            <li>Lasts 24 hours</li>
+          </ul>
+          <div class="rank-price" style="color:#ff9900;">£3</div>
+          <button class="buy-btn" style="background:#ff9900;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/3GBP')">Buy Now</button>
+        </div>
       </div>
 
-      <div class="rank-card" style="--rank-color: #ff4466;">
-        <span class="rank-icon">❤️</span>
-        <div class="rank-name">Heart Boost</div>
-        <div class="rank-desc">+5 bonus hearts for 24 hours. Survive longer, steal more.</div>
-        <ul class="rank-perks">
-          <li>+5 max hearts temporarily</li>
-          <li>Stacks with rank hearts</li>
-          <li>Lasts 24 hours</li>
-        </ul>
-        <div class="rank-price" style="color:#ff4466;">£4</div>
-        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/4GBP" class="buy-btn" style="border-color:#ff4466;color:#ff4466;" target="_blank">Buy Now</a>
+      <div class="rank-card" style="--rank-color:#00ff88;--rank-glow:rgba(0,255,136,0.15);--hdr-bg:rgba(0,255,136,0.04);">
+        <div class="rank-card-header">
+          <span class="rank-icon">⚡</span>
+          <div class="rank-name" style="color:#00ff88;">XP Boost</div>
+        </div>
+        <div class="rank-body">
+          <ul class="rank-perks">
+            <li>2x XP from kills</li>
+            <li>2x XP from wins</li>
+            <li>2x XP from challenges</li>
+            <li>Lasts 48 hours</li>
+          </ul>
+          <div class="rank-price" style="color:#00ff88;">£5</div>
+          <button class="buy-btn" style="background:#00ff88;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP')">Buy Now</button>
+        </div>
       </div>
 
-      <div class="rank-card" style="--rank-color: #aa44ff;">
-        <span class="rank-icon">⚡</span>
-        <div class="rank-name">XP Booster</div>
-        <div class="rank-desc">2x XP gain from all activities for 48 hours. Level up in no time.</div>
-        <ul class="rank-perks">
-          <li>2x XP from kills</li>
-          <li>2x XP from mining</li>
-          <li>2x XP from quests</li>
-          <li>Lasts 48 hours</li>
-        </ul>
-        <div class="rank-price" style="color:#aa44ff;">£5</div>
-        <a href="https://www.paypal.me/TRAPSTUDIOSLTDWORKER/5GBP" class="buy-btn" style="border-color:#aa44ff;color:#aa44ff;" target="_blank">Buy Now</a>
+      <div class="rank-card" style="--rank-color:#ff4466;--rank-glow:rgba(255,68,102,0.15);--hdr-bg:rgba(255,68,102,0.04);">
+        <div class="rank-card-header">
+          <span class="rank-icon">🎯</span>
+          <div class="rank-name" style="color:#ff4466;">Streak Boost</div>
+        </div>
+        <div class="rank-body">
+          <ul class="rank-perks">
+            <li>3x rewards on win streaks</li>
+            <li>Streak protection (1 use)</li>
+            <li>Lasts 24 hours</li>
+          </ul>
+          <div class="rank-price" style="color:#ff4466;">£4</div>
+          <button class="buy-btn" style="background:#ff4466;" onclick="buyItem('https://www.paypal.me/TRAPSTUDIOSLTDWORKER/4GBP')">Buy Now</button>
+        </div>
       </div>
 
     </div>
@@ -662,53 +563,51 @@
 
   <!-- Footer -->
   <footer>
-    <p>❤ &copy; 2026 LifestealDiamond &mdash; Not affiliated with Mojang or Microsoft.</p>
-    <p style="margin-top:6px;">All purchases are final. After payment DM us on Discord with your IGN to receive your purchase.</p>
-    <p style="margin-top:8px;"><a href="https://minecraft.net" target="_blank">Minecraft.net</a></p>
+    <p>&copy; 2026 E1BoxPvP &mdash; Not affiliated with Mojang or Microsoft.</p>
+    <p style="margin-top:6px;">All purchases are final. Join our <a href="https://discord.gg/r9AkFQvQGg" target="_blank">Discord</a> to claim your purchase.</p>
   </footer>
 
   <!-- Claim Modal -->
-  <div id="claimModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:#0d1520;border:1px solid #5865F2;border-radius:16px;padding:36px 32px;max-width:420px;width:90%;text-align:center;position:relative;">
-      <div style="font-size:48px;margin-bottom:16px;">✅</div>
-      <div style="font-family:'Press Start 2P',monospace;font-size:13px;color:#00d4ff;margin-bottom:12px;">PAYMENT SENT?</div>
-      <p style="color:#8a9ab5;font-size:13px;line-height:1.8;margin-bottom:24px;">
-        Now join our Discord server and open a <strong style="color:#fff;">ticket</strong> with:<br><br>
-        📋 Your <strong style="color:#fff;">Minecraft IGN</strong><br>
-        💳 Your <strong style="color:#fff;">PayPal payment proof</strong><br>
-        🏷️ The <strong style="color:#fff;">rank/item</strong> you purchased
-      </p>
-      <a href="https://discord.gg/r9AkFQvQGg" target="_blank" onclick="closeModal()" style="display:block;padding:14px;background:#5865F2;color:#fff;font-family:'Press Start 2P',monospace;font-size:11px;text-decoration:none;border-radius:10px;margin-bottom:12px;letter-spacing:1px;">
-        JOIN DISCORD → OPEN TICKET
-      </a>
-      <button onclick="closeModal()" style="background:transparent;border:1px solid #2a3a50;color:#4a6a8a;font-size:12px;padding:10px 20px;border-radius:8px;cursor:pointer;width:100%;">Close</button>
+  <div id="claimModal" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box">
+      <div class="modal-icon">⚔️</div>
+      <div class="modal-title">PAYMENT SENT?</div>
+      <div class="modal-body">
+        Now join our Discord and open a <strong>ticket</strong> with:<br><br>
+        📋 Your <strong>Minecraft IGN</strong><br>
+        💳 Your <strong>PayPal payment proof</strong><br>
+        🏷️ The <strong>rank / item</strong> you bought
+      </div>
+      <a href="https://discord.gg/r9AkFQvQGg" target="_blank" class="modal-discord-btn" onclick="closeModal()">JOIN DISCORD → OPEN TICKET</a>
+      <button class="modal-close" onclick="closeModal()">Close</button>
     </div>
   </div>
 
   <script>
     function showSection(section) {
-      document.getElementById('ranks-section').style.display = 'none';
-      document.getElementById('kits-section').style.display = 'none';
-      document.getElementById('cosmetics-section').style.display = 'none';
-      document.getElementById('boosters-section').style.display = 'none';
+      ['ranks','kits','cosmetics','boosters'].forEach(s => {
+        document.getElementById(s + '-section').style.display = 'none';
+        document.getElementById('nav-' + s).classList.remove('active');
+      });
       document.getElementById(section + '-section').style.display = 'block';
+      document.getElementById('nav-' + section).classList.add('active');
     }
 
     function buyItem(paypalUrl) {
       window.open(paypalUrl, '_blank');
-      setTimeout(() => {
-        document.getElementById('claimModal').style.display = 'flex';
-      }, 1500);
+      setTimeout(() => { document.getElementById('claimModal').style.display = 'flex'; }, 1500);
     }
 
-    function closeModal() {
-      document.getElementById('claimModal').style.display = 'none';
-    }
+    function closeModal() { document.getElementById('claimModal').style.display = 'none'; }
 
-    // Close modal on backdrop click
-    document.getElementById('claimModal').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
+    function copyIP() {
+      navigator.clipboard.writeText('E1BoxPvP.minehut.gg').then(() => {
+        const hint = document.getElementById('copyHint');
+        hint.textContent = '✔ copied!';
+        hint.style.color = '#ff8833';
+        setTimeout(() => { hint.textContent = 'click to copy'; hint.style.color = ''; }, 2000);
+      });
+    }
   </script>
 
 </body>
