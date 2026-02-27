@@ -277,6 +277,8 @@
     }
     .mbtn-red { background: #e50000; color: #fff; }
     .mbtn-red:hover { background: #c80000; }
+    .mbtn-revolut { background: #191c1f; border: 1px solid rgba(255,255,255,0.12); color: #fff; display:flex;align-items:center;justify-content:center;gap:8px; }
+    .mbtn-revolut:hover { background: #2a2d30; border-color: rgba(255,255,255,0.25); }
     .mbtn-dark { background: rgba(30,10,10,0.98); border: 1px solid rgba(255,255,255,0.1); color: #fff; }
     .mbtn-dark:hover { background: rgba(60,20,20,0.98); }
 
@@ -323,7 +325,8 @@
   <p class="home-support">
     We support:&nbsp;
     <span class="pp">&#x24C5; PayPal</span>
-    &nbsp;<span class="cd">&#x1F4B3;</span> Card
+    &nbsp;•&nbsp; 🔄 Revolut
+    &nbsp;•&nbsp; <span class="cd">&#x1F4B3;</span> Card
   </p>
   <p class="home-link-label">To access the shop, link your roblox username:</p>
 
@@ -551,7 +554,9 @@
     <div class="mbox-muted">Ordering as:</div>
     <div style="font-weight:700;font-size:16px" id="m-user"></div>
     <div class="mdiv"></div>
-    <button class="mbtn mbtn-red" onclick="finaliseOrder()">✓ Confirm &amp; Pay</button>
+    <div class="mbox-muted" style="font-size:11px;letter-spacing:1px;text-transform:uppercase">Choose payment method</div>
+    <button class="mbtn mbtn-red" onclick="finaliseOrder('paypal')">🅿 PayPal</button>
+    <button class="mbtn mbtn-revolut" onclick="finaliseOrder('revolut')"><span style="font-size:16px">🔄</span> Revolut / Bank</button>
     <button class="mbtn mbtn-dark" onclick="closeModal()">Cancel</button>
   </div>
 </div>
@@ -678,18 +683,24 @@ function startOrder(name, cat, url) {
   document.getElementById('orderModal').classList.add('show');
 }
 function closeModal() { document.getElementById('orderModal').classList.remove('show'); }
-async function finaliseOrder() {
+const REVOLUT_AMOUNTS = { 25:'25', 30:'30', 40:'40', 50:'50' };
+async function finaliseOrder(method) {
   closeModal();
-  await sendWebhook(user, pItem, pCat);
+  await sendWebhook(user, pItem, pCat, method);
   const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
   orders.unshift({ u:user, i:pItem, c:pCat, t:Date.now() });
   localStorage.setItem('tab_orders', JSON.stringify(orders.slice(0,50)));
-  window.open(pUrl, '_blank');
+  if (method === 'revolut') {
+    const amt = pUrl.split('/').pop();
+    window.open('https://revolut.me/t_gallagher79/' + amt, '_blank');
+  } else {
+    window.open(pUrl, '_blank');
+  }
   document.getElementById('m-done').textContent = pItem + ' ordered for ' + user + '. Complete payment in the new tab — we\'ll deliver within 24h!';
   document.getElementById('doneModal').classList.add('show');
   confetti();
 }
-async function sendWebhook(roblox, item, cat) {
+async function sendWebhook(roblox, item, cat, method) {
   try {
     await fetch('https://discord.com/api/webhooks/1475222123910922333/TPaJEh4uoOlSuAKiTtIo_wYyou4XEdmL1chQj2NB4RpP5DwpCjj5tIgtA2dHj_O3fFG4', {
       method:'POST', headers:{'Content-Type':'application/json'},
@@ -698,6 +709,7 @@ async function sendWebhook(roblox, item, cat) {
           {name:'Roblox Username',value:roblox||'?',inline:true},
           {name:'Item',value:item,inline:true},
           {name:'Category',value:cat,inline:true},
+          {name:'Payment',value:(method==='revolut'?'Revolut / Bank Transfer':'PayPal'),inline:true},
           {name:'Action',value:'Deliver in-game item to: '+roblox}
         ], timestamp:new Date().toISOString() }] })
     });
