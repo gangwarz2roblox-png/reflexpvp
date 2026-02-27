@@ -18,42 +18,35 @@
 
     #bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
     #confetti-canvas { position: fixed; inset: 0; z-index: 9999; pointer-events: none; display: none; }
-
-    /* all content above canvas */
     .page { position: relative; z-index: 1; }
 
     /* ─── TOPBAR ─── */
     #topbar {
       display: none;
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(18,18,18,0.95);
+      background: rgba(12,5,5,0.96);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      height: 52px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      height: 50px;
       align-items: center; justify-content: center; gap: 12px;
-      padding: 0 20px;
     }
-    .tb-inner {
-      display: flex; align-items: center; gap: 12px;
-    }
-    .tb-discord {
-      width: 24px; height: 24px;
-      background: #5865f2; border-radius: 50%;
+    .tb-dot {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #e50000;
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 900; color: #fff;
+      font-size: 11px; font-weight: 900; color: #fff;
     }
     .tb-name { font-size: 14px; font-weight: 600; }
     .tb-avatar {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: #e50000;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: #2a1010;
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800; color: #fff; overflow: hidden;
+      font-size: 11px; font-weight: 800; color: #fff; overflow: hidden;
     }
     .tb-coins {
       display: flex; align-items: center; gap: 5px;
       font-size: 14px; font-weight: 700; color: #ffd700;
     }
-    .tb-coins svg { width: 18px; height: 18px; }
 
     /* ─── VIEWS ─── */
     .view {
@@ -64,258 +57,236 @@
       text-align: center;
     }
     .view.hidden { display: none; }
-    #view-shop, #view-faq { justify-content: flex-start; padding-top: 72px; }
+    #view-shop, #view-faq { justify-content: flex-start; padding-top: 68px; }
 
     /* ─── LOGIN ─── */
     .login-brand {
       display: flex; align-items: center; gap: 10px;
-      justify-content: center;
-      margin-bottom: 32px;
+      justify-content: center; margin-bottom: 30px;
     }
     .login-icon {
-      width: 40px; height: 40px; border-radius: 50%;
+      width: 38px; height: 38px; border-radius: 50%;
       background: #e50000;
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 900; color: #fff;
+      font-size: 17px; font-weight: 900; color: #fff;
     }
-    .login-brand-text {
-      font-size: 26px; font-weight: 800; letter-spacing: 0.5px;
-    }
+    .login-brand-text { font-size: 24px; font-weight: 800; }
 
-    /* the single login button style (matching SW) */
-    .login-btn {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 280px;
-      padding: 16px 24px;
-      background: rgba(40,40,40,0.9);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50px;
-      color: #fff; font-family: inherit;
-      font-size: 14px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      cursor: pointer; transition: background 0.18s, border-color 0.18s;
-    }
-    .login-btn:hover { background: rgba(60,60,60,0.9); border-color: rgba(255,255,255,0.2); }
-
-    .login-sub {
-      margin-top: 14px;
-      font-size: 12px; color: rgba(255,255,255,0.3);
-      max-width: 280px;
-    }
-
-    /* username row on login */
     .login-input-row {
-      display: flex; gap: 8px; width: 280px; margin-bottom: 0;
+      display: flex; gap: 8px; width: 290px; margin-bottom: 10px;
     }
     .login-input-row input {
-      flex: 1; padding: 14px 18px;
-      background: rgba(40,40,40,0.9);
+      flex: 1; padding: 13px 16px;
+      background: rgba(30,12,12,0.95);
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50px; color: #fff;
+      border-radius: 10px; color: #fff;
       font-family: inherit; font-size: 14px; outline: none;
     }
-    .login-input-row input::placeholder { color: rgba(255,255,255,0.25); }
-    .login-input-row input:focus { border-color: rgba(229,0,0,0.4); }
+    .login-input-row input::placeholder { color: rgba(255,255,255,0.22); }
+    .login-input-row input:focus { border-color: rgba(229,0,0,0.45); }
     .login-input-row button {
-      padding: 14px 18px;
-      background: rgba(40,40,40,0.9);
+      padding: 13px 18px;
+      background: rgba(50,18,18,0.95);
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50px; color: #fff;
+      border-radius: 10px; color: #fff;
       font-family: inherit; font-size: 13px; font-weight: 700;
-      letter-spacing: 1px; cursor: pointer; transition: background 0.18s;
+      letter-spacing: 1px; cursor: pointer; transition: background 0.15s;
       white-space: nowrap;
     }
-    .login-input-row button:hover { background: rgba(229,0,0,0.15); border-color: rgba(229,0,0,0.4); }
+    .login-input-row button:hover { background: rgba(229,0,0,0.2); border-color: rgba(229,0,0,0.4); }
+    .login-sub { font-size: 12px; color: rgba(255,255,255,0.25); max-width: 260px; }
 
     /* ─── HOME ─── */
-    .home-welcome {
-      font-size: 26px; font-weight: 800;
-      margin-bottom: 20px;
-    }
-    .home-welcome span { color: #e50000; }
+    .home-welcome { font-size: 28px; font-weight: 800; margin-bottom: 22px; }
 
     .home-avatar {
-      width: 88px; height: 88px; border-radius: 50%;
-      background: #e50000;
+      width: 105px; height: 105px; border-radius: 50%;
+      background: #2a1010;
       display: flex; align-items: center; justify-content: center;
-      font-size: 36px; font-weight: 900; color: #fff;
-      margin-bottom: 18px; overflow: hidden;
+      font-size: 42px; font-weight: 900; color: #fff;
+      margin-bottom: 22px; overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.08);
     }
 
     .home-support {
-      font-size: 14px; color: rgba(255,255,255,0.55);
-      display: flex; align-items: center; gap: 6px;
-      justify-content: center; margin-bottom: 6px;
+      font-size: 15px; color: rgba(255,255,255,0.7);
+      display: flex; align-items: center; gap: 8px;
+      justify-content: center; margin-bottom: 8px;
     }
+    .home-support .pp { color: #009cde; font-weight: 800; font-size: 16px; }
+    .home-support .cd { font-size: 16px; }
 
     .home-link-label {
-      font-size: 13px; color: rgba(255,255,255,0.4);
-      margin-bottom: 12px;
+      font-size: 13px; color: rgba(255,255,255,0.45);
+      margin-bottom: 14px;
     }
 
     .home-input-row {
-      display: flex; gap: 8px; width: 280px; margin-bottom: 20px;
+      display: flex; gap: 8px; width: 290px; margin-bottom: 22px;
     }
     .home-input-row input {
-      flex: 1; padding: 13px 18px;
-      background: rgba(40,40,40,0.9);
+      flex: 1; padding: 13px 16px;
+      background: rgba(30,12,12,0.95);
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50px; color: #fff;
+      border-radius: 10px; color: #fff;
       font-family: inherit; font-size: 14px; outline: none;
     }
-    .home-input-row input::placeholder { color: rgba(255,255,255,0.25); }
+    .home-input-row input::placeholder { color: rgba(255,255,255,0.22); }
     .home-input-row input:focus { border-color: rgba(229,0,0,0.4); }
     .home-input-row button {
       padding: 13px 16px;
-      background: rgba(40,40,40,0.9);
+      background: rgba(50,18,18,0.95);
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50px; color: #fff;
-      font-family: inherit; font-size: 12px; font-weight: 700;
-      letter-spacing: 1px; cursor: pointer; transition: background 0.18s;
+      border-radius: 10px; color: #fff;
+      font-family: inherit; font-size: 13px; font-weight: 700;
+      letter-spacing: 1px; cursor: pointer; transition: background 0.15s;
       white-space: nowrap;
     }
-    .home-input-row button:hover { background: rgba(229,0,0,0.15); border-color: rgba(229,0,0,0.4); }
+    .home-input-row button:hover { background: rgba(229,0,0,0.2); border-color: rgba(229,0,0,0.4); }
 
-    /* stacked home buttons */
+    /* ─── HOME BUTTONS (exact SW style) ─── */
     .home-btns {
-      display: flex; flex-direction: column; gap: 10px; width: 280px;
+      display: flex; flex-direction: column; gap: 10px; width: 240px;
     }
     .hbtn {
       display: flex; align-items: center; justify-content: center; gap: 10px;
       padding: 15px 20px;
-      background: rgba(35,35,35,0.95);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 50px;
+      background: rgba(30,10,10,0.98);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
       color: #fff; font-family: inherit;
       font-size: 13px; font-weight: 700;
       letter-spacing: 1.5px; text-transform: uppercase;
-      cursor: pointer; transition: background 0.18s, border-color 0.18s;
+      cursor: pointer; transition: background 0.15s, border-color 0.15s;
       text-decoration: none; width: 100%;
     }
-    .hbtn:hover { background: rgba(55,55,55,0.95); border-color: rgba(255,255,255,0.18); }
-    .hbtn.discord { color: #8a97f5; border-color: rgba(88,101,242,0.2); background: rgba(88,101,242,0.06); }
-    .hbtn.discord:hover { background: rgba(88,101,242,0.14); border-color: rgba(88,101,242,0.4); }
+    .hbtn:hover { background: rgba(229,0,0,0.1); border-color: rgba(229,0,0,0.3); }
+    .hbtn .icon { font-size: 15px; }
+    .hbtn.discord-btn { border-color: rgba(88,101,242,0.2); }
+    .hbtn.discord-btn:hover { background: rgba(88,101,242,0.12); border-color: rgba(88,101,242,0.4); }
 
     /* ─── SHOP ─── */
     .shop-inner { width: 100%; max-width: 960px; margin: 0 auto; padding: 0 16px 40px; }
-    .section-head {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
-    }
+    .section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
     .back-btn {
       padding: 9px 16px;
-      background: rgba(35,35,35,0.95);
+      background: rgba(30,10,10,0.98);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 50px; color: #fff;
+      border-radius: 10px; color: #fff;
       font-family: inherit; font-size: 12px; font-weight: 700;
-      letter-spacing: 1px; cursor: pointer; transition: background 0.18s;
+      letter-spacing: 1px; cursor: pointer; transition: background 0.15s;
     }
-    .back-btn:hover { background: rgba(55,55,55,0.95); }
+    .back-btn:hover { background: rgba(229,0,0,0.12); }
 
-    .tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
     .tab {
-      padding: 10px 20px; border-radius: 50px;
-      background: rgba(35,35,35,0.95);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.45);
+      padding: 10px 20px; border-radius: 10px;
+      background: rgba(30,10,10,0.98);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.4);
       font-family: inherit; font-size: 12px; font-weight: 700;
       letter-spacing: 1px; text-transform: uppercase;
-      cursor: pointer; transition: all 0.18s;
+      cursor: pointer; transition: all 0.15s;
     }
     .tab.active, .tab:hover {
-      background: rgba(229,0,0,0.1);
-      border-color: rgba(229,0,0,0.35);
-      color: #ff5555;
+      background: rgba(229,0,0,0.1); border-color: rgba(229,0,0,0.35); color: #ff5555;
     }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
     .grid.hidden { display: none; }
-
     .icard {
-      background: rgba(20,20,20,0.95);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 14px; padding: 20px;
+      background: rgba(18,6,6,0.98); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 20px;
       display: flex; flex-direction: column; gap: 10px;
-      transition: border-color 0.18s;
+      transition: border-color 0.15s;
     }
     .icard:hover { border-color: rgba(229,0,0,0.3); }
-    .icard-icon { font-size: 36px; text-align: center; }
+    .icard-icon { font-size: 34px; text-align: center; }
     .icard-name { font-size: 15px; font-weight: 700; }
-    .icard-desc { font-size: 12px; color: rgba(255,255,255,0.32); line-height: 1.5; }
+    .icard-desc { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.5; }
     .icard-price { font-size: 22px; font-weight: 800; color: #e50000; }
-    .opt-lbl { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; }
+    .opt-lbl { font-size: 10px; color: rgba(255,255,255,0.28); letter-spacing: 1px; text-transform: uppercase; }
     .opts { display: flex; gap: 5px; flex-wrap: wrap; }
     .opt {
-      padding: 4px 11px; border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: transparent; color: rgba(255,255,255,0.45);
-      font-family: inherit; font-size: 11px;
-      cursor: pointer; transition: all 0.15s;
+      padding: 4px 11px; border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent; color: rgba(255,255,255,0.4);
+      font-family: inherit; font-size: 11px; cursor: pointer; transition: all 0.13s;
     }
-    .opt.on { background: rgba(229,0,0,0.12); border-color: rgba(229,0,0,0.5); color: #ff5555; }
+    .opt.on { background: rgba(229,0,0,0.12); border-color: rgba(229,0,0,0.45); color: #ff5555; }
     .ibuy {
       margin-top: 4px; padding: 11px;
-      border-radius: 50px;
-      background: rgba(35,35,35,0.95);
-      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      background: rgba(30,10,10,0.98); border: 1px solid rgba(255,255,255,0.08);
       color: #fff; font-family: inherit;
       font-size: 12px; font-weight: 700;
       letter-spacing: 1px; text-transform: uppercase;
-      cursor: pointer; transition: all 0.18s;
+      cursor: pointer; transition: all 0.15s;
     }
     .ibuy:hover { background: rgba(229,0,0,0.12); border-color: rgba(229,0,0,0.4); color: #ff5555; }
 
+    /* ─── PROFILE ─── */
+    #view-profile { justify-content: flex-start; padding-top: 68px; }
+    .profile-inner { width: 100%; max-width: 500px; margin: 0 auto; padding: 0 16px 40px; }
+    .order-row {
+      background: rgba(18,6,6,0.98); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 14px 18px; margin-bottom: 8px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px;
+    }
+    .order-row .oitem { font-weight: 700; }
+    .order-row .otime { color: rgba(255,255,255,0.3); font-size: 11px; }
+
     /* ─── FAQ ─── */
-    .faq-inner { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 16px 40px; }
+    #view-faq { justify-content: flex-start; padding-top: 68px; }
+    .faq-inner { width: 100%; max-width: 580px; margin: 0 auto; padding: 0 16px 40px; }
     .faq-item {
-      background: rgba(20,20,20,0.95);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 12px; margin-bottom: 10px; overflow: hidden;
+      background: rgba(18,6,6,0.98); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; margin-bottom: 8px; overflow: hidden;
     }
     .faq-q {
       padding: 15px 18px; font-size: 14px; font-weight: 600;
       cursor: pointer; display: flex; justify-content: space-between; align-items: center;
     }
     .faq-q:hover { color: #ff5555; }
-    .faq-chevron { transition: transform 0.2s; }
-    .faq-item.open .faq-chevron { transform: rotate(45deg); }
-    .faq-a { display: none; padding: 0 18px 15px; font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.65; }
+    .faq-ch { transition: transform 0.2s; }
+    .faq-item.open .faq-ch { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 18px 15px; font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.65; }
     .faq-item.open .faq-a { display: block; }
 
     /* ─── MODALS ─── */
     .overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.88); z-index: 500;
+      background: rgba(0,0,0,0.9); z-index: 500;
       align-items: center; justify-content: center; padding: 16px;
     }
     .overlay.show { display: flex; }
     .mbox {
-      background: #111; border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 18px; padding: 30px;
-      width: 100%; max-width: 340px;
+      background: #100505; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 28px;
+      width: 100%; max-width: 320px;
       display: flex; flex-direction: column; gap: 12px; text-align: center;
     }
     .mbox-title { font-size: 18px; font-weight: 800; }
-    .mbox-muted { font-size: 13px; color: rgba(255,255,255,0.4); }
-    .mdivider { height: 1px; background: rgba(255,255,255,0.07); }
+    .mbox-muted { font-size: 13px; color: rgba(255,255,255,0.38); }
+    .mdiv { height: 1px; background: rgba(255,255,255,0.07); }
     .mbtn {
-      padding: 14px; border-radius: 50px; border: none;
+      padding: 14px; border-radius: 10px; border: none;
       font-family: inherit; font-size: 13px; font-weight: 700;
       letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
     }
     .mbtn-red { background: #e50000; color: #fff; }
     .mbtn-red:hover { background: #c80000; }
-    .mbtn-dark { background: rgba(40,40,40,0.9); border: 1px solid rgba(255,255,255,0.1); color: #fff; }
-    .mbtn-dark:hover { background: rgba(60,60,60,0.9); }
+    .mbtn-dark { background: rgba(30,10,10,0.98); border: 1px solid rgba(255,255,255,0.1); color: #fff; }
+    .mbtn-dark:hover { background: rgba(60,20,20,0.98); }
 
     /* ─── FOOTER ─── */
     footer {
       position: relative; z-index: 1; text-align: center;
-      padding: 18px 16px; font-size: 12px;
-      color: rgba(255,255,255,0.2);
+      padding: 16px; font-size: 12px; color: rgba(255,255,255,0.18);
     }
-    footer a { color: rgba(255,255,255,0.25); text-decoration: none; margin: 0 6px; }
-    footer a:hover { color: rgba(255,255,255,0.5); }
-    footer .dot { margin: 0 4px; }
+    footer a { color: rgba(255,255,255,0.22); text-decoration: none; margin: 0 6px; }
+    footer a:hover { color: rgba(255,255,255,0.45); }
   </style>
 </head>
 <body>
@@ -323,52 +294,61 @@
 <canvas id="bg"></canvas>
 <canvas id="confetti-canvas"></canvas>
 
-<!-- ─── TOPBAR ─── -->
+<!-- TOPBAR -->
 <div id="topbar" class="page">
-  <div class="tb-inner">
-    <div class="tb-discord">T</div>
-    <span class="tb-name" id="tb-name"></span>
-    <div class="tb-avatar" id="tb-avatar"></div>
-    <div class="tb-coins">
-      <svg viewBox="0 0 24 24" fill="#ffd700"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" fill="#000" font-size="10" font-weight="bold">£</text></svg>
-      <span id="tb-coins">0</span>
-    </div>
-  </div>
+  <div class="tb-dot">T</div>
+  <span class="tb-name" id="tb-name"></span>
+  <div class="tb-avatar" id="tb-avatar"></div>
+  <div class="tb-coins">🪙 <span id="tb-coins">0</span></div>
 </div>
 
-<!-- ═══════════════ LOGIN ═══════════════ -->
+<!-- ══════════ LOGIN ══════════ -->
 <div class="view page" id="view-login">
   <div class="login-brand">
     <div class="login-icon">T</div>
     <span class="login-brand-text">TAB</span>
   </div>
-
-  <div class="login-input-row" style="margin-bottom:10px">
+  <div class="login-input-row">
     <input type="text" id="login-input" placeholder="Roblox Username" autocomplete="off">
     <button onclick="doLogin()">START</button>
   </div>
   <p class="login-sub">We only receive your public information. (username, etc)</p>
 </div>
 
-<!-- ═══════════════ HOME ═══════════════ -->
-<div class="view hidden page" id="view-home" style="padding-top:72px">
+<!-- ══════════ HOME ══════════ -->
+<div class="view hidden page" id="view-home" style="padding-top:70px">
   <h1 class="home-welcome">Welcome, <span id="home-uname"></span>!</h1>
   <div class="home-avatar" id="home-avatar"></div>
-  <p class="home-support">We support: 💳 PayPal &nbsp;💳 Card</p>
+
+  <p class="home-support">
+    We support:&nbsp;
+    <span class="pp">&#x24C5; PayPal</span>
+    &nbsp;<span class="cd">&#x1F4B3;</span> Card
+  </p>
   <p class="home-link-label">To access the shop, link your roblox username:</p>
+
   <div class="home-input-row">
     <input type="text" id="relink-input" placeholder="Roblox Username" autocomplete="off">
     <button onclick="doRelink()">🔗 LINK</button>
   </div>
+
   <div class="home-btns">
-    <button class="hbtn" onclick="showView('shop')">🛒 SHOP</button>
-    <button class="hbtn" onclick="showView('faq')">❓ FAQ</button>
-    <a class="hbtn discord" href="https://discord.gg/trapandbrum" target="_blank">💬 DISCORD</a>
-    <button class="hbtn" onclick="doLogout()">↩ LOGOUT</button>
+    <button class="hbtn" onclick="showView('shop')">
+      <span class="icon">🛒</span> SHOP
+    </button>
+    <button class="hbtn" onclick="showView('profile')">
+      <span class="icon">👤</span> PROFILE
+    </button>
+    <button class="hbtn" onclick="showView('faq')">
+      <span class="icon">❓</span> FAQ
+    </button>
+    <button class="hbtn" onclick="doLogout()">
+      <span class="icon">↩</span> LOGOUT
+    </button>
   </div>
 </div>
 
-<!-- ═══════════════ SHOP ═══════════════ -->
+<!-- ══════════ SHOP ══════════ -->
 <div class="view hidden page" id="view-shop">
   <div class="shop-inner">
     <div class="section-head">
@@ -410,53 +390,34 @@
     <!-- Hats -->
     <div class="grid hidden" id="cat-hats">
       <div class="icard">
-        <div class="icard-icon">🧢</div>
-        <div class="icard-name">TNB Classic Cap</div>
+        <div class="icard-icon">🧢</div><div class="icard-name">TNB Classic Cap</div>
         <div class="icard-desc">Trap And Brum classic snapback</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="h1">
-          <span class="opt on" onclick="pick(this,'h1')">Black</span>
-          <span class="opt" onclick="pick(this,'h1')">White</span>
-          <span class="opt" onclick="pick(this,'h1')">Red</span>
-        </div>
+        <div class="opts" id="h1"><span class="opt on" onclick="pick(this,'h1')">Black</span><span class="opt" onclick="pick(this,'h1')">White</span><span class="opt" onclick="pick(this,'h1')">Red</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('TNB Classic Cap','hats','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
       <div class="icard">
-        <div class="icard-icon">🧢</div>
-        <div class="icard-name">Brum Fitted</div>
+        <div class="icard-icon">🧢</div><div class="icard-name">Brum Fitted</div>
         <div class="icard-desc">Fitted cap with embroidered Trap Town logo</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="h2">
-          <span class="opt on" onclick="pick(this,'h2')">Black</span>
-          <span class="opt" onclick="pick(this,'h2')">Navy</span>
-        </div>
+        <div class="opts" id="h2"><span class="opt on" onclick="pick(this,'h2')">Black</span><span class="opt" onclick="pick(this,'h2')">Navy</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('Brum Fitted','hats','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
       <div class="icard">
-        <div class="icard-icon">🧢</div>
-        <div class="icard-name">Street Bucket</div>
+        <div class="icard-icon">🧢</div><div class="icard-name">Street Bucket</div>
         <div class="icard-desc">Bucket hat — summer drip in Trap Town</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="h3">
-          <span class="opt on" onclick="pick(this,'h3')">Khaki</span>
-          <span class="opt" onclick="pick(this,'h3')">Black</span>
-          <span class="opt" onclick="pick(this,'h3')">White</span>
-        </div>
+        <div class="opts" id="h3"><span class="opt on" onclick="pick(this,'h3')">Khaki</span><span class="opt" onclick="pick(this,'h3')">Black</span><span class="opt" onclick="pick(this,'h3')">White</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('Street Bucket','hats','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
       <div class="icard">
-        <div class="icard-icon">🧢</div>
-        <div class="icard-name">TAB Beanie</div>
+        <div class="icard-icon">🧢</div><div class="icard-name">TAB Beanie</div>
         <div class="icard-desc">Winter beanie with Trap And Brum logo</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="h4">
-          <span class="opt on" onclick="pick(this,'h4')">Black</span>
-          <span class="opt" onclick="pick(this,'h4')">Grey</span>
-          <span class="opt" onclick="pick(this,'h4')">Red</span>
-        </div>
+        <div class="opts" id="h4"><span class="opt on" onclick="pick(this,'h4')">Black</span><span class="opt" onclick="pick(this,'h4')">Grey</span><span class="opt" onclick="pick(this,'h4')">Red</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('TAB Beanie','hats','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
@@ -465,51 +426,34 @@
     <!-- Shirts -->
     <div class="grid hidden" id="cat-shirts">
       <div class="icard">
-        <div class="icard-icon">👕</div>
-        <div class="icard-name">TAB Classic Tee</div>
+        <div class="icard-icon">👕</div><div class="icard-name">TAB Classic Tee</div>
         <div class="icard-desc">Classic Trap And Brum graphic tee</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="s1">
-          <span class="opt on" onclick="pick(this,'s1')">Black</span>
-          <span class="opt" onclick="pick(this,'s1')">White</span>
-          <span class="opt" onclick="pick(this,'s1')">Red</span>
-        </div>
+        <div class="opts" id="s1"><span class="opt on" onclick="pick(this,'s1')">Black</span><span class="opt" onclick="pick(this,'s1')">White</span><span class="opt" onclick="pick(this,'s1')">Red</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('TAB Classic Tee','shirts','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
       <div class="icard">
-        <div class="icard-icon">👕</div>
-        <div class="icard-name">Trap Town Jersey</div>
+        <div class="icard-icon">👕</div><div class="icard-name">Trap Town Jersey</div>
         <div class="icard-desc">Basketball-style Trap Town jersey</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="s2">
-          <span class="opt on" onclick="pick(this,'s2')">Black/Red</span>
-          <span class="opt" onclick="pick(this,'s2')">White/Red</span>
-        </div>
+        <div class="opts" id="s2"><span class="opt on" onclick="pick(this,'s2')">Black/Red</span><span class="opt" onclick="pick(this,'s2')">White/Red</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('Trap Town Jersey','shirts','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
       <div class="icard">
-        <div class="icard-icon">👕</div>
-        <div class="icard-name">Brum Hoodie</div>
+        <div class="icard-icon">👕</div><div class="icard-name">Brum Hoodie</div>
         <div class="icard-desc">Pullover hoodie with Brum city graphic</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="s3">
-          <span class="opt on" onclick="pick(this,'s3')">Black</span>
-          <span class="opt" onclick="pick(this,'s3')">Grey</span>
-        </div>
+        <div class="opts" id="s3"><span class="opt on" onclick="pick(this,'s3')">Black</span><span class="opt" onclick="pick(this,'s3')">Grey</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('Brum Hoodie','shirts','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
       <div class="icard">
-        <div class="icard-icon">👕</div>
-        <div class="icard-name">TAB Tracksuit Top</div>
+        <div class="icard-icon">👕</div><div class="icard-name">TAB Tracksuit Top</div>
         <div class="icard-desc">Zip-up tracksuit top, full TAB branding</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="s4">
-          <span class="opt on" onclick="pick(this,'s4')">Black</span>
-          <span class="opt" onclick="pick(this,'s4')">Red</span>
-        </div>
+        <div class="opts" id="s4"><span class="opt on" onclick="pick(this,'s4')">Black</span><span class="opt" onclick="pick(this,'s4')">Red</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('TAB Tracksuit Top','shirts','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
@@ -518,52 +462,34 @@
     <!-- Pants -->
     <div class="grid hidden" id="cat-pants">
       <div class="icard">
-        <div class="icard-icon">👖</div>
-        <div class="icard-name">TAB Track Pants</div>
+        <div class="icard-icon">👖</div><div class="icard-name">TAB Track Pants</div>
         <div class="icard-desc">Slim-fit track pants with TAB stripe</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="p1">
-          <span class="opt on" onclick="pick(this,'p1')">Black</span>
-          <span class="opt" onclick="pick(this,'p1')">Navy</span>
-        </div>
+        <div class="opts" id="p1"><span class="opt on" onclick="pick(this,'p1')">Black</span><span class="opt" onclick="pick(this,'p1')">Navy</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('TAB Track Pants','pants','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
       <div class="icard">
-        <div class="icard-icon">👖</div>
-        <div class="icard-name">Trap Denim</div>
-        <div class="icard-desc">Ripped skinny jeans with embroidered TAB logo</div>
+        <div class="icard-icon">👖</div><div class="icard-name">Trap Denim</div>
+        <div class="icard-desc">Ripped skinny jeans with TAB logo</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="p2">
-          <span class="opt on" onclick="pick(this,'p2')">Indigo</span>
-          <span class="opt" onclick="pick(this,'p2')">Black</span>
-        </div>
+        <div class="opts" id="p2"><span class="opt on" onclick="pick(this,'p2')">Indigo</span><span class="opt" onclick="pick(this,'p2')">Black</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('Trap Denim','pants','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
       <div class="icard">
-        <div class="icard-icon">👖</div>
-        <div class="icard-name">Brum Cargo</div>
+        <div class="icard-icon">👖</div><div class="icard-name">Brum Cargo</div>
         <div class="icard-desc">Cargo trousers with side pockets and TAB patch</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="p3">
-          <span class="opt on" onclick="pick(this,'p3')">Khaki</span>
-          <span class="opt" onclick="pick(this,'p3')">Black</span>
-          <span class="opt" onclick="pick(this,'p3')">Olive</span>
-        </div>
+        <div class="opts" id="p3"><span class="opt on" onclick="pick(this,'p3')">Khaki</span><span class="opt" onclick="pick(this,'p3')">Black</span><span class="opt" onclick="pick(this,'p3')">Olive</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('Brum Cargo','pants','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
       <div class="icard">
-        <div class="icard-icon">👖</div>
-        <div class="icard-name">Street Joggers</div>
+        <div class="icard-icon">👖</div><div class="icard-name">Street Joggers</div>
         <div class="icard-desc">Comfortable joggers — everyday wear in Trap Town</div>
         <div class="opt-lbl">Colour</div>
-        <div class="opts" id="p4">
-          <span class="opt on" onclick="pick(this,'p4')">Grey</span>
-          <span class="opt" onclick="pick(this,'p4')">Black</span>
-          <span class="opt" onclick="pick(this,'p4')">Red</span>
-        </div>
+        <div class="opts" id="p4"><span class="opt on" onclick="pick(this,'p4')">Grey</span><span class="opt" onclick="pick(this,'p4')">Black</span><span class="opt" onclick="pick(this,'p4')">Red</span></div>
         <div class="icard-price">£25</div>
         <button class="ibuy" onclick="startOrder('Street Joggers','pants','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
       </div>
@@ -571,7 +497,18 @@
   </div>
 </div>
 
-<!-- ═══════════════ FAQ ═══════════════ -->
+<!-- ══════════ PROFILE ══════════ -->
+<div class="view hidden page" id="view-profile">
+  <div class="profile-inner">
+    <div class="section-head">
+      <button class="back-btn" onclick="showView('home')">← Back</button>
+      <h2 style="font-size:20px;font-weight:800">Profile</h2>
+    </div>
+    <div id="profile-orders" style="color:rgba(255,255,255,0.35);font-size:13px;text-align:center;padding:30px 0">No orders yet.</div>
+  </div>
+</div>
+
+<!-- ══════════ FAQ ══════════ -->
 <div class="view hidden page" id="view-faq">
   <div class="faq-inner">
     <div class="section-head">
@@ -579,27 +516,27 @@
       <h2 style="font-size:20px;font-weight:800">FAQ</h2>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How does delivery work? <span class="faq-chevron">+</span></div>
+      <div class="faq-q" onclick="tf(this)">How does delivery work? <span class="faq-ch">+</span></div>
       <div class="faq-a">After payment, enter your Roblox username. We get a notification and manually deliver your item in-game — usually within 24 hours.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept? <span class="faq-chevron">+</span></div>
+      <div class="faq-q" onclick="tf(this)">What payment methods do you accept? <span class="faq-ch">+</span></div>
       <div class="faq-a">We accept PayPal and Card. All transactions are processed securely through PayPal.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How long does delivery take? <span class="faq-chevron">+</span></div>
+      <div class="faq-q" onclick="tf(this)">How long does delivery take? <span class="faq-ch">+</span></div>
       <div class="faq-a">Most orders are delivered within 1–24 hours. Join our Discord to track your order or message support.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can I get a refund? <span class="faq-chevron">+</span></div>
+      <div class="faq-q" onclick="tf(this)">Can I get a refund? <span class="faq-ch">+</span></div>
       <div class="faq-a">Due to the nature of in-game items, we do not offer refunds once delivered. Contact us on Discord before purchasing if unsure.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What game are these items for? <span class="faq-chevron">+</span></div>
+      <div class="faq-q" onclick="tf(this)">What game are these items for? <span class="faq-ch">+</span></div>
       <div class="faq-a">All items are for Trap Town on Roblox. Make sure you have the game and a Roblox account to receive your items.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How do I contact support? <span class="faq-chevron">+</span></div>
+      <div class="faq-q" onclick="tf(this)">How do I contact support? <span class="faq-ch">+</span></div>
       <div class="faq-a">Join our Discord server and open a support ticket. We respond within a few hours.</div>
     </div>
   </div>
@@ -610,10 +547,10 @@
   <div class="mbox">
     <div class="mbox-title">Confirm Order</div>
     <div class="mbox-muted" id="m-item"></div>
-    <div class="mdivider"></div>
+    <div class="mdiv"></div>
     <div class="mbox-muted">Ordering as:</div>
     <div style="font-weight:700;font-size:16px" id="m-user"></div>
-    <div class="mdivider"></div>
+    <div class="mdiv"></div>
     <button class="mbtn mbtn-red" onclick="finaliseOrder()">✓ Confirm &amp; Pay</button>
     <button class="mbtn mbtn-dark" onclick="closeModal()">Cancel</button>
   </div>
@@ -622,7 +559,7 @@
 <!-- DONE MODAL -->
 <div class="overlay" id="doneModal">
   <div class="mbox">
-    <div style="font-size:42px">🎉</div>
+    <div style="font-size:40px">🎉</div>
     <div class="mbox-title">Order Placed!</div>
     <div class="mbox-muted" id="m-done"></div>
     <button class="mbtn mbtn-red" onclick="document.getElementById('doneModal').classList.remove('show')">Done</button>
@@ -630,74 +567,48 @@
 </div>
 
 <footer class="page">
-  <a href="#">Terms</a><span class="dot">•</span>
-  &copy; 2026 TAB. All rights reserved.
-  <span class="dot">•</span><a href="#">Privacy</a>
-  <span style="margin-left:8px;cursor:pointer;opacity:0.4" onclick="toggleSound()">🔈</span>
+  <a href="#">Terms</a> &nbsp;•&nbsp; &copy; 2026 TAB. All rights reserved. &nbsp;•&nbsp; <a href="#">Privacy</a>
 </footer>
 
 <script>
-// ══════════════════════════════════════════
-// CONSTELLATION BG (exact SW style)
-// ══════════════════════════════════════════
+// ── Constellation bg ──
 (function () {
-  const c = document.getElementById('bg');
-  const x = c.getContext('2d');
+  const c = document.getElementById('bg'), x = c.getContext('2d');
   let W, H, pts;
-
   function resize() { W = c.width = innerWidth; H = c.height = innerHeight; }
-
   function spawn() {
     pts = [];
-    const n = Math.max(40, Math.floor(W * H / 11000));
-    for (let i = 0; i < n; i++) {
-      pts.push({
-        x: Math.random() * W, y: Math.random() * H,
-        vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
-        r: Math.random() * 1.3 + .4
-      });
-    }
+    const n = Math.max(38, Math.floor(W * H / 11000));
+    for (let i = 0; i < n; i++)
+      pts.push({ x: Math.random()*W, y: Math.random()*H, vx:(Math.random()-.5)*.28, vy:(Math.random()-.5)*.28, r:Math.random()*1.2+.4 });
   }
-
   function draw() {
-    x.clearRect(0, 0, W, H);
-    const D = 140;
+    x.clearRect(0,0,W,H);
+    const D=135;
     for (const p of pts) {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > W) p.vx *= -1;
-      if (p.y < 0 || p.y > H) p.vy *= -1;
-      x.beginPath(); x.arc(p.x, p.y, p.r, 0, 6.28);
-      x.fillStyle = 'rgba(255,255,255,.5)'; x.fill();
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+      x.beginPath(); x.arc(p.x,p.y,p.r,0,6.28);
+      x.fillStyle='rgba(255,255,255,.45)'; x.fill();
     }
-    for (let i = 0; i < pts.length; i++) {
-      for (let j = i + 1; j < pts.length; j++) {
-        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        if (d < D) {
-          x.beginPath(); x.moveTo(pts[i].x, pts[i].y); x.lineTo(pts[j].x, pts[j].y);
-          x.strokeStyle = `rgba(255,255,255,${(1 - d / D) * .18})`;
-          x.lineWidth = .5; x.stroke();
-        }
-      }
+    for (let i=0;i<pts.length;i++) for (let j=i+1;j<pts.length;j++) {
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<D){ x.beginPath(); x.moveTo(pts[i].x,pts[i].y); x.lineTo(pts[j].x,pts[j].y);
+        x.strokeStyle=`rgba(255,255,255,${(1-d/D)*.16})`; x.lineWidth=.5; x.stroke(); }
     }
     requestAnimationFrame(draw);
   }
-
   resize(); spawn(); draw();
-  addEventListener('resize', () => { resize(); spawn(); });
+  addEventListener('resize',()=>{ resize(); spawn(); });
 })();
 
-// ══════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════
+// ── State ──
 let user = localStorage.getItem('tab_user') || null;
-let pItem = null, pCat = null, pUrl = null;
-
+let pItem=null, pCat=null, pUrl=null;
 if (user) loadHome();
 
-// ══════════════════════════════════════════
-// AUTH
-// ══════════════════════════════════════════
+// ── Auth ──
 function doLogin() {
   const v = document.getElementById('login-input').value.trim();
   if (!v) return;
@@ -714,7 +625,7 @@ function doLogout() {
   showView('login');
 }
 function loadHome() {
-  const init = (user || '?')[0].toUpperCase();
+  const init = (user||'?')[0].toUpperCase();
   document.getElementById('topbar').style.display = 'flex';
   document.getElementById('tb-name').textContent = user;
   document.getElementById('tb-avatar').textContent = init;
@@ -724,33 +635,42 @@ function loadHome() {
   showView('home');
 }
 
-// ══════════════════════════════════════════
-// NAVIGATION
-// ══════════════════════════════════════════
+// ── Nav ──
 function showView(v) {
-  ['login','home','shop','faq'].forEach(id =>
-    document.getElementById('view-' + id).classList.add('hidden'));
-  document.getElementById('view-' + v).classList.remove('hidden');
+  ['login','home','shop','profile','faq'].forEach(id =>
+    document.getElementById('view-'+id).classList.add('hidden'));
+  document.getElementById('view-'+v).classList.remove('hidden');
+  if (v === 'profile') loadProfile();
 }
 function switchCat(cat, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
   document.querySelectorAll('.grid').forEach(g => g.classList.add('hidden'));
-  document.getElementById('cat-' + cat).classList.remove('hidden');
+  document.getElementById('cat-'+cat).classList.remove('hidden');
 }
 function pick(el, gid) {
-  document.querySelectorAll('#' + gid + ' .opt').forEach(o => o.classList.remove('on'));
+  document.querySelectorAll('#'+gid+' .opt').forEach(o => o.classList.remove('on'));
   el.classList.add('on');
 }
-function toggleFaq(el) {
+function tf(el) {
   const item = el.parentElement;
   item.classList.toggle('open');
-  el.querySelector('.faq-chevron').textContent = item.classList.contains('open') ? '−' : '+';
+  el.querySelector('.faq-ch').textContent = item.classList.contains('open') ? '−' : '+';
 }
 
-// ══════════════════════════════════════════
-// ORDER
-// ══════════════════════════════════════════
+// ── Profile ──
+function loadProfile() {
+  const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
+  const el = document.getElementById('profile-orders');
+  if (!orders.length) { el.innerHTML = '<p style="color:rgba(255,255,255,0.3);font-size:13px;padding:30px 0">No orders yet.</p>'; return; }
+  el.innerHTML = orders.map(o => {
+    const d = new Date(o.t);
+    const time = d.toLocaleDateString('en-GB') + ' ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    return `<div class="order-row"><div><div class="oitem">${o.i}</div><div class="otime">${time}</div></div><div style="font-size:11px;color:rgba(255,255,255,0.3);text-transform:uppercase">${o.c}</div></div>`;
+  }).join('');
+}
+
+// ── Order ──
 function startOrder(name, cat, url) {
   pItem = name; pCat = cat; pUrl = url;
   document.getElementById('m-item').textContent = name;
@@ -762,63 +682,47 @@ async function finaliseOrder() {
   closeModal();
   await sendWebhook(user, pItem, pCat);
   const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
-  orders.unshift({ u: user, i: pItem, c: pCat, t: Date.now() });
-  localStorage.setItem('tab_orders', JSON.stringify(orders.slice(0, 50)));
+  orders.unshift({ u:user, i:pItem, c:pCat, t:Date.now() });
+  localStorage.setItem('tab_orders', JSON.stringify(orders.slice(0,50)));
   window.open(pUrl, '_blank');
-  document.getElementById('m-done').textContent =
-    pItem + ' ordered for ' + user + '. Complete payment in the new tab — we\'ll deliver within 24h!';
+  document.getElementById('m-done').textContent = pItem + ' ordered for ' + user + '. Complete payment in the new tab — we\'ll deliver within 24h!';
   document.getElementById('doneModal').classList.add('show');
   confetti();
 }
 async function sendWebhook(roblox, item, cat) {
   try {
     await fetch('https://discord.com/api/webhooks/1475222123910922333/TPaJEh4uoOlSuAKiTtIo_wYyou4XEdmL1chQj2NB4RpP5DwpCjj5tIgtA2dHj_O3fFG4', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username: 'Trap And Brum Store',
-        embeds: [{ title: 'New Order', color: 0xe50000, fields: [
-          { name: 'Roblox Username', value: roblox || '?', inline: true },
-          { name: 'Item', value: item, inline: true },
-          { name: 'Category', value: cat, inline: true },
-          { name: 'Action', value: 'Deliver in-game item to: ' + roblox }
-        ], timestamp: new Date().toISOString() }]
-      })
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ username:'Trap And Brum Store', embeds:[{ title:'New Order', color:0xe50000,
+        fields:[
+          {name:'Roblox Username',value:roblox||'?',inline:true},
+          {name:'Item',value:item,inline:true},
+          {name:'Category',value:cat,inline:true},
+          {name:'Action',value:'Deliver in-game item to: '+roblox}
+        ], timestamp:new Date().toISOString() }] })
     });
-  } catch (e) { console.warn('webhook err', e); }
+  } catch(e) { console.warn('webhook',e); }
 }
 
-// ══════════════════════════════════════════
-// CONFETTI
-// ══════════════════════════════════════════
+// ── Confetti ──
 function confetti() {
-  const c = document.getElementById('confetti-canvas');
-  const x = c.getContext('2d');
-  c.style.display = 'block';
-  c.width = innerWidth; c.height = innerHeight;
-  const ps = Array.from({ length: 100 }, () => ({
-    x: Math.random() * c.width, y: -10,
-    vx: (Math.random() - .5) * 4, vy: Math.random() * 4 + 2,
-    r: Math.random() * 6 + 3, rot: Math.random() * 360, vr: (Math.random() - .5) * 8,
-    col: ['#e50000','#fff','#ff5555','#cc0000'][Math.floor(Math.random() * 4)]
+  const c = document.getElementById('confetti-canvas'), x = c.getContext('2d');
+  c.style.display='block'; c.width=innerWidth; c.height=innerHeight;
+  const ps = Array.from({length:100},()=>({
+    x:Math.random()*c.width, y:-10, vx:(Math.random()-.5)*4, vy:Math.random()*4+2,
+    r:Math.random()*6+3, rot:Math.random()*360, vr:(Math.random()-.5)*8,
+    col:['#e50000','#fff','#ff5555','#cc0000'][Math.floor(Math.random()*4)]
   }));
-  let f = 0;
-  (function anim() {
-    x.clearRect(0, 0, c.width, c.height);
-    for (const p of ps) {
-      p.x += p.vx; p.y += p.vy; p.rot += p.vr;
-      x.save(); x.translate(p.x, p.y); x.rotate(p.rot * Math.PI / 180);
-      x.fillStyle = p.col; x.fillRect(-p.r, -p.r / 2, p.r * 2, p.r); x.restore();
-    }
-    if (++f < 160) requestAnimationFrame(anim);
-    else { c.style.display = 'none'; }
+  let f=0;
+  (function a(){ x.clearRect(0,0,c.width,c.height);
+    for(const p of ps){ p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;
+      x.save();x.translate(p.x,p.y);x.rotate(p.rot*Math.PI/180);
+      x.fillStyle=p.col;x.fillRect(-p.r,-p.r/2,p.r*2,p.r);x.restore(); }
+    if(++f<160) requestAnimationFrame(a); else c.style.display='none';
   })();
 }
 
-// ══════════════════════════════════════════
-// MISC
-// ══════════════════════════════════════════
-function toggleSound() {} // placeholder
-document.getElementById('login-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+document.getElementById('login-input').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
 </script>
 </body>
 </html>
