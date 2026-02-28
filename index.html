@@ -94,7 +94,16 @@
       white-space: nowrap;
     }
     .login-input-row button:hover { background: rgba(229,0,0,0.2); border-color: rgba(229,0,0,0.4); }
-    .login-sub { font-size: 12px; color: rgba(255,255,255,0.25); max-width: 260px; }
+    .login-sub { font-size: 12px; color: rgba(255,255,255,0.25); max-width: 260px; margin-top: 10px; }
+    .discord-login-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 280px; padding: 15px 20px;
+      background: #5865f2; border: none; border-radius: 10px;
+      color: #fff; font-family: inherit; font-size: 14px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .discord-login-btn:hover { background: #4752c4; }
 
     /* ─── HOME ─── */
     .home-welcome { font-size: 28px; font-weight: 800; margin-bottom: 22px; }
@@ -310,10 +319,10 @@
     <div class="login-icon">T</div>
     <span class="login-brand-text">TAB</span>
   </div>
-  <div class="login-input-row">
-    <input type="text" id="login-input" placeholder="Roblox Username" autocomplete="off">
-    <button onclick="doLogin()">START</button>
-  </div>
+  <button class="discord-login-btn" onclick="discordLogin()">
+    <svg width="20" height="20" viewBox="0 0 71 55" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60.1 4.9A58.6 58.6 0 0 0 45.5.4a.2.2 0 0 0-.2.1 40.8 40.8 0 0 0-1.8 3.7 54.1 54.1 0 0 0-16.3 0A37.6 37.6 0 0 0 25.3.5a.2.2 0 0 0-.2-.1A58.4 58.4 0 0 0 10.5 4.9a.2.2 0 0 0-.1.1C1.5 18.1-.9 31 .3 43.7a.2.2 0 0 0 .1.2 58.9 58.9 0 0 0 17.7 9 .2.2 0 0 0 .2-.1 42 42 0 0 0 3.6-5.9.2.2 0 0 0-.1-.3 38.8 38.8 0 0 1-5.5-2.6.2.2 0 0 1 0-.4l1.1-.8a.2.2 0 0 1 .2 0c11.5 5.3 23.9 5.3 35.3 0a.2.2 0 0 1 .2 0l1.1.8a.2.2 0 0 1 0 .4 36.1 36.1 0 0 1-5.5 2.6.2.2 0 0 0-.1.3 47.1 47.1 0 0 0 3.6 5.9.2.2 0 0 0 .2.1 58.7 58.7 0 0 0 17.8-9 .2.2 0 0 0 .1-.2c1.5-15-2.5-28-10.4-39.7a.2.2 0 0 0-.1-.1ZM23.7 35.8c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2c3.6 0 6.5 3.3 6.4 7.2 0 4-2.8 7.2-6.4 7.2Zm23.7 0c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2c3.6 0 6.5 3.3 6.4 7.2 0 4-2.8 7.2-6.4 7.2Z" fill="currentColor"/></svg>
+    LOGIN WITH DISCORD
+  </button>
   <p class="login-sub">We only receive your public information. (username, etc)</p>
 </div>
 
@@ -507,21 +516,41 @@ function doLogin() {
 function doRelink() {
   const v = document.getElementById('relink-input').value.trim();
   if (!v) return;
-  user = v; localStorage.setItem('tab_user', v); loadHome();
+  localStorage.setItem('tab_roblox', v);
+  loadHome();
 }
 function doLogout() {
-  localStorage.removeItem('tab_user'); user = null;
+  localStorage.removeItem('tab_user');
+  localStorage.removeItem('tab_discord');
+  localStorage.removeItem('tab_roblox');
+  user = null;
   document.getElementById('topbar').style.display = 'none';
   showView('login');
 }
 function loadHome() {
   const init = (user||'?')[0].toUpperCase();
+  const discord = JSON.parse(localStorage.getItem('tab_discord') || 'null');
+  const avatarUrl = discord ? discord.avatar : null;
+
   document.getElementById('topbar').style.display = 'flex';
   document.getElementById('tb-name').textContent = user;
-  document.getElementById('tb-avatar').textContent = init;
+
+  const tbAv = document.getElementById('tb-avatar');
+  if (avatarUrl) {
+    tbAv.innerHTML = `<img src="${avatarUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  } else {
+    tbAv.textContent = init;
+  }
+
   document.getElementById('home-uname').textContent = user;
-  document.getElementById('home-avatar').textContent = init;
-  document.getElementById('relink-input').value = user;
+  const homeAv = document.getElementById('home-avatar');
+  if (avatarUrl) {
+    homeAv.innerHTML = `<img src="${avatarUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  } else {
+    homeAv.textContent = init;
+  }
+
+  document.getElementById('relink-input').value = localStorage.getItem('tab_roblox') || '';
   showView('home');
 }
 
@@ -563,15 +592,17 @@ function loadProfile() {
 // ── Order ──
 function startOrder(name, cat, url) {
   pItem = name; pCat = cat; pUrl = url;
+  const roblox = localStorage.getItem('tab_roblox') || 'Not linked';
   document.getElementById('m-item').textContent = name;
-  document.getElementById('m-user').textContent = user || 'Not linked';
+  document.getElementById('m-user').textContent = user + (roblox !== 'Not linked' ? ' (Roblox: ' + roblox + ')' : '');
   document.getElementById('orderModal').classList.add('show');
 }
 function closeModal() { document.getElementById('orderModal').classList.remove('show'); }
 const REVOLUT_AMOUNTS = { 25:'25', 30:'30', 40:'40', 50:'50' };
 async function finaliseOrder(method) {
   closeModal();
-  await sendWebhook(user, pItem, pCat, method);
+  const roblox = localStorage.getItem('tab_roblox') || 'Not linked';
+  await sendWebhook(user, roblox, pItem, pCat, method);
   const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
   orders.unshift({ u:user, i:pItem, c:pCat, t:Date.now() });
   localStorage.setItem('tab_orders', JSON.stringify(orders.slice(0,50)));
@@ -585,17 +616,18 @@ async function finaliseOrder(method) {
   document.getElementById('doneModal').classList.add('show');
   confetti();
 }
-async function sendWebhook(roblox, item, cat, method) {
+async function sendWebhook(discordUser, roblox, item, cat, method) {
   try {
     await fetch('https://discord.com/api/webhooks/1475222123910922333/TPaJEh4uoOlSuAKiTtIo_wYyou4XEdmL1chQj2NB4RpP5DwpCjj5tIgtA2dHj_O3fFG4', {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({ username:'Trap And Brum Store', embeds:[{ title:'New Order', color:0xe50000,
         fields:[
+          {name:'Discord',value:discordUser||'?',inline:true},
           {name:'Roblox Username',value:roblox||'?',inline:true},
           {name:'Item',value:item,inline:true},
           {name:'Category',value:cat,inline:true},
           {name:'Payment',value:(method==='revolut'?'Revolut / Bank Transfer':'PayPal'),inline:true},
-          {name:'Action',value:'Deliver in-game item to: '+roblox}
+          {name:'Action',value:'Deliver in-game item to Roblox user: '+roblox}
         ], timestamp:new Date().toISOString() }] })
     });
   } catch(e) { console.warn('webhook',e); }
@@ -619,7 +651,37 @@ function confetti() {
   })();
 }
 
-document.getElementById('login-input').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+// ── Discord OAuth ──
+const DISCORD_CLIENT_ID = '1470840282760085515';
+const DISCORD_REDIRECT = encodeURIComponent('https://gangwarz2roblox-png.github.io/reflexpvp/');
+
+function discordLogin() {
+  window.location.href = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${DISCORD_REDIRECT}&response_type=token&scope=identify`;
+}
+
+async function checkDiscordCallback() {
+  const hash = new URLSearchParams(window.location.hash.slice(1));
+  const token = hash.get('access_token');
+  if (!token) return false;
+  // Clean URL
+  history.replaceState(null, null, window.location.pathname);
+  try {
+    const res = await fetch('https://discord.com/api/users/@me', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const d = await res.json();
+    const avatarUrl = d.avatar
+      ? `https://cdn.discordapp.com/avatars/${d.id}/${d.avatar}.png?size=128`
+      : `https://cdn.discordapp.com/embed/avatars/${(parseInt(d.id) >> 22) % 6}.png`;
+    user = d.username;
+    localStorage.setItem('tab_user', d.username);
+    localStorage.setItem('tab_discord', JSON.stringify({ username: d.username, avatar: avatarUrl, id: d.id }));
+    loadHome();
+    return true;
+  } catch(e) { console.warn('Discord fetch failed', e); return false; }
+}
+
+checkDiscordCallback();
 </script>
 </body>
 </html>
