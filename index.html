@@ -455,6 +455,18 @@
   </div>
 </div>
 
+<!-- PAY CONFIRM MODAL -->
+<div class="overlay" id="payModal">
+  <div class="mbox">
+    <div style="font-size:36px">💳</div>
+    <div class="mbox-title">Complete Payment</div>
+    <div class="mbox-muted">Pay for <strong id="pay-item-name"></strong> in the tab that just opened, then come back and click below.</div>
+    <div class="mdiv"></div>
+    <button class="mbtn mbtn-red" onclick="confirmPaid()">✅ I've Paid</button>
+    <button class="mbtn mbtn-dark" onclick="document.getElementById('payModal').classList.remove('show')">Cancel</button>
+  </div>
+</div>
+
 <!-- DONE MODAL -->
 <div class="overlay" id="doneModal">
   <div class="mbox">
@@ -598,21 +610,32 @@ function startOrder(name, cat, url) {
   document.getElementById('orderModal').classList.add('show');
 }
 function closeModal() { document.getElementById('orderModal').classList.remove('show'); }
-const REVOLUT_AMOUNTS = { 25:'25', 30:'30', 40:'40', 50:'50' };
-async function finaliseOrder(method) {
+
+let pendingMethod = null;
+
+function finaliseOrder(method) {
+  pendingMethod = method;
   closeModal();
-  const roblox = localStorage.getItem('tab_roblox') || 'Not linked';
-  await sendWebhook(user, roblox, pItem, pCat, method);
-  const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
-  orders.unshift({ u:user, i:pItem, c:pCat, t:Date.now() });
-  localStorage.setItem('tab_orders', JSON.stringify(orders.slice(0,50)));
+  // Open payment in new tab FIRST
   if (method === 'revolut') {
     const amt = pUrl.split('/').pop();
     window.open('https://revolut.me/t_gallagher79/' + amt, '_blank');
   } else {
     window.open(pUrl, '_blank');
   }
-  document.getElementById('m-done').textContent = pItem + ' ordered for ' + user + '. Complete payment in the new tab — we\'ll deliver within 24h!';
+  // Show "confirm payment" step
+  document.getElementById('pay-item-name').textContent = pItem;
+  document.getElementById('payModal').classList.add('show');
+}
+
+async function confirmPaid() {
+  document.getElementById('payModal').classList.remove('show');
+  const roblox = localStorage.getItem('tab_roblox') || 'Not linked';
+  await sendWebhook(user, roblox, pItem, pCat, pendingMethod);
+  const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
+  orders.unshift({ u:user, i:pItem, c:pCat, t:Date.now() });
+  localStorage.setItem('tab_orders', JSON.stringify(orders.slice(0,50)));
+  document.getElementById('m-done').textContent = pItem + ' ordered for ' + user + '. We\'ll deliver to your Roblox account within 24h!';
   document.getElementById('doneModal').classList.add('show');
   confetti();
 }
