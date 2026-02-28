@@ -202,7 +202,18 @@
     .icard-icon { font-size: 34px; text-align: center; }
     .icard-name { font-size: 15px; font-weight: 700; }
     .icard-desc { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.5; }
-    .icard-price { font-size: 22px; font-weight: 800; color: #e50000; }
+    .icard-price {
+      font-size: 22px; font-weight: 800; color: #ffd700;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .icard-balance { font-size: 11px; color: rgba(255,255,255,0.28); margin-top: -4px; }
+    .ibuy-disabled {
+      margin-top: 4px; padding: 11px; border-radius: 10px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.2); font-family: inherit;
+      font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      cursor: not-allowed;
+    }
     .ibuy {
       margin-top: 4px; padding: 11px;
       border-radius: 10px;
@@ -422,27 +433,30 @@
       <h2 style="font-size:20px;font-weight:800">Shop</h2>
     </div>
 
+    <div style="font-size:12px;color:rgba(255,215,0,0.55);margin-bottom:14px;letter-spacing:1px">
+      🪙 YOUR BALANCE: <strong id="shop-balance" style="color:#ffd700">0</strong> CREDITS
+    </div>
     <div class="grid">
       <div class="icard">
         <div class="icard-icon">✏️</div>
         <div class="icard-name">Custom Name</div>
         <div class="icard-desc">Get a custom name set on your account in Trap Town. Tell us what you want after purchase.</div>
-        <div class="icard-price">£10</div>
-        <button class="ibuy" onclick="startOrder('Custom Name','service','https://paypal.me/TRAPSTUDIOSLTDWORKER/10')">Buy Now</button>
+        <div class="icard-price">🪙 10</div>
+        <button class="ibuy" onclick="buyWithCredits('Custom Name', 10)">Buy Now</button>
       </div>
       <div class="icard">
         <div class="icard-icon">⬆️</div>
         <div class="icard-name">Custom Level</div>
         <div class="icard-desc">Get a custom level set on your account in Trap Town.</div>
-        <div class="icard-price">£20</div>
-        <button class="ibuy" onclick="startOrder('Custom Level','service','https://paypal.me/TRAPSTUDIOSLTDWORKER/20')">Buy Now</button>
+        <div class="icard-price">🪙 20</div>
+        <button class="ibuy" onclick="buyWithCredits('Custom Level', 20)">Buy Now</button>
       </div>
       <div class="icard">
         <div class="icard-icon">🖼️</div>
         <div class="icard-name">Custom Avatar</div>
         <div class="icard-desc">Get a custom avatar applied to your profile in Trap Town.</div>
-        <div class="icard-price">£30</div>
-        <button class="ibuy" onclick="startOrder('Custom Avatar','service','https://paypal.me/TRAPSTUDIOSLTDWORKER/30')">Buy Now</button>
+        <div class="icard-price">🪙 30</div>
+        <button class="ibuy" onclick="buyWithCredits('Custom Avatar', 30)">Buy Now</button>
       </div>
     </div>
   </div>
@@ -534,6 +548,33 @@
       <button class="mbtn mbtn-dark" style="flex:1" onclick="closeCredits()">CLOSE</button>
       <button class="mbtn mbtn-gold" style="flex:1" onclick="confirmCredits()">CONFIRM</button>
     </div>
+  </div>
+</div>
+
+<!-- CREDIT BUY MODAL -->
+<div class="overlay" id="creditBuyModal">
+  <div class="mbox">
+    <div style="font-size:36px">🛒</div>
+    <div class="mbox-title" id="cbm-title">Confirm Purchase</div>
+    <div class="mdiv"></div>
+    <div class="mbox-muted">Item</div>
+    <div style="font-weight:800;font-size:17px" id="cbm-item"></div>
+    <div class="mdiv"></div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;padding:0 2px">
+      <span style="color:rgba(255,255,255,0.4)">Cost</span>
+      <span style="font-weight:800;color:#ffd700">🪙 <span id="cbm-cost"></span></span>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;padding:0 2px">
+      <span style="color:rgba(255,255,255,0.4)">Your balance</span>
+      <span style="font-weight:700;color:#ffd700">🪙 <span id="cbm-balance"></span></span>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;padding:0 2px">
+      <span style="color:rgba(255,255,255,0.4)">After purchase</span>
+      <span style="font-weight:700;color:rgba(255,255,255,0.6)">🪙 <span id="cbm-after"></span></span>
+    </div>
+    <div class="mdiv"></div>
+    <button class="mbtn mbtn-red" onclick="confirmCreditPurchase()">Confirm</button>
+    <button class="mbtn mbtn-dark" onclick="document.getElementById('creditBuyModal').classList.remove('show')">Cancel</button>
   </div>
 </div>
 
@@ -721,6 +762,11 @@ function showView(v) {
   document.getElementById('view-'+v).classList.remove('hidden');
   if (v === 'profile') loadProfile();
   if (v === 'admin') loadAdmin();
+  if (v === 'shop') {
+    const bal = localStorage.getItem('tab_credits') || '0';
+    const el = document.getElementById('shop-balance');
+    if (el) el.textContent = bal;
+  }
 }
 function tf(el) {
   const item = el.parentElement;
@@ -788,14 +834,76 @@ function generateAdminCode() {
   document.getElementById('admin-code-note').textContent = `Code for ${raw} — DM this to the customer`;
 }
 
-// ── Order ──
-function startOrder(name, cat, url) {
-  pItem = name; pCat = cat; pUrl = url;
+// ── Shop (credit purchases) ──
+let pCreditCost = 0;
+
+function buyWithCredits(name, cost) {
+  const balance = parseInt(localStorage.getItem('tab_credits') || '0');
+  if (balance < cost) {
+    // Not enough credits — show order modal to buy credits first
+    document.getElementById('done-title').textContent = 'Not Enough Credits';
+    document.getElementById('m-done').textContent = 'You need 🪙 ' + cost + ' credits but only have 🪙 ' + balance + '. Buy credits from the home screen first.';
+    document.getElementById('doneModal').classList.add('show');
+    return;
+  }
+  pItem = name;
+  pCat = 'service';
+  pCreditCost = cost;
   const roblox = localStorage.getItem('tab_roblox') || 'Not linked';
-  document.getElementById('m-item').textContent = name;
-  document.getElementById('m-user').textContent = user + (roblox !== 'Not linked' ? ' (Roblox: ' + roblox + ')' : '');
-  document.getElementById('orderModal').classList.add('show');
+  document.getElementById('cbm-item').textContent = name + (roblox !== 'Not linked' ? ' (Roblox: ' + roblox + ')' : '');
+  document.getElementById('cbm-cost').textContent = cost;
+  document.getElementById('cbm-balance').textContent = balance;
+  document.getElementById('cbm-after').textContent = balance - cost;
+  document.getElementById('creditBuyModal').classList.add('show');
 }
+
+async function confirmCreditPurchase() {
+  document.getElementById('creditBuyModal').classList.remove('show');
+  const balance = parseInt(localStorage.getItem('tab_credits') || '0');
+  if (balance < pCreditCost) return; // safety check
+
+  // Deduct credits
+  localStorage.setItem('tab_credits', balance - pCreditCost);
+  updateCoins();
+  if (document.getElementById('shop-balance')) {
+    document.getElementById('shop-balance').textContent = balance - pCreditCost;
+  }
+
+  const roblox = localStorage.getItem('tab_roblox') || 'Not linked';
+
+  // Save order as done (credits already verified)
+  const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
+  orders.unshift({ id: null, u: user, i: pItem, c: pCat, credits: 0, t: Date.now(), status: 'verified' });
+  localStorage.setItem('tab_orders', JSON.stringify(orders.slice(0, 50)));
+
+  // Fire webhook
+  await sendCreditOrderWebhook(user, roblox, pItem, pCreditCost);
+
+  document.getElementById('done-title').textContent = 'Order Placed!';
+  document.getElementById('m-done').textContent = pItem + ' ordered! We\'ll deliver to your Roblox account within 24h.';
+  document.getElementById('doneModal').classList.add('show');
+  confetti();
+}
+
+async function sendCreditOrderWebhook(discordUser, roblox, item, credits) {
+  try {
+    await fetch('https://discord.com/api/webhooks/1475222123910922333/TPaJEh4uoOlSuAKiTtIo_wYyou4XEdmL1chQj2NB4RpP5DwpCjj5tIgtA2dHj_O3fFG4', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: 'Trap And Brum Store', embeds: [{ title: '✅ Credit Purchase — Deliver Now', color: 0x00cc44,
+        fields: [
+          { name: 'Discord', value: discordUser || '?', inline: true },
+          { name: 'Roblox', value: roblox || '?', inline: true },
+          { name: 'Item', value: item, inline: true },
+          { name: 'Credits Spent', value: '🪙 ' + credits, inline: true },
+          { name: 'Action', value: 'Deliver **' + item + '** to Roblox user: ' + roblox }
+        ], timestamp: new Date().toISOString()
+      }] })
+    });
+  } catch(e) { console.warn('webhook', e); }
+}
+
+// ── Credits (buy credits with real money) ──
+function startOrder(name, cat, url) { /* unused — kept for safety */ }
 function closeModal() { document.getElementById('orderModal').classList.remove('show'); }
 
 // ── Credits ──
