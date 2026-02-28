@@ -173,6 +173,28 @@
     .hbtn .icon { font-size: 15px; }
     .hbtn.discord-btn { border-color: rgba(88,101,242,0.2); }
     .hbtn.discord-btn:hover { background: rgba(88,101,242,0.12); border-color: rgba(88,101,242,0.4); }
+    .hbtn.hbtn-credits { border-color: rgba(255,215,0,0.2); color: #ffd700; }
+    .hbtn.hbtn-credits:hover { background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.4); }
+
+    /* ─── CREDITS MODAL INPUT ─── */
+    .credits-rate {
+      font-size: 14px; font-weight: 700; color: #ffd700;
+      background: rgba(255,215,0,0.07); border: 1px solid rgba(255,215,0,0.18);
+      border-radius: 8px; padding: 10px 14px;
+    }
+    .credits-input {
+      width: 100%; padding: 13px 16px;
+      background: rgba(30,12,12,0.95);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; color: #fff;
+      font-family: inherit; font-size: 15px; font-weight: 700;
+      text-align: center; outline: none;
+    }
+    .credits-input::placeholder { color: rgba(255,255,255,0.22); font-weight: 400; }
+    .credits-input:focus { border-color: rgba(255,215,0,0.4); }
+    .credits-error { font-size: 12px; color: #ff5555; min-height: 16px; }
+    .mbtn-gold { background: rgba(255,215,0,0.12); border: 1px solid rgba(255,215,0,0.35); color: #ffd700; }
+    .mbtn-gold:hover { background: rgba(255,215,0,0.22); border-color: rgba(255,215,0,0.6); }
 
     /* ─── SHOP ─── */
     .shop-inner { width: 100%; max-width: 960px; margin: 0 auto; padding: 0 16px 40px; }
@@ -345,6 +367,9 @@
   </div>
 
   <div class="home-btns">
+    <button class="hbtn hbtn-credits" onclick="openCredits()">
+      <span class="icon">🪙</span> BUY CREDITS
+    </button>
     <button class="hbtn" onclick="showView('shop')">
       <span class="icon">🛒</span> SHOP
     </button>
@@ -435,6 +460,23 @@
     <div class="faq-item">
       <div class="faq-q" onclick="tf(this)">How do I contact support? <span class="faq-ch">+</span></div>
       <div class="faq-a">Join our Discord server and open a support ticket. We respond within a few hours.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CREDITS MODAL -->
+<div class="overlay" id="creditsModal">
+  <div class="mbox">
+    <div style="font-size:36px">🪙</div>
+    <div class="mbox-title">Buy Credits</div>
+    <div class="credits-rate">1 GBP = 1 Credit</div>
+    <div class="mbox-muted">Credits can be used to purchase items in the shop.</div>
+    <div class="mdiv"></div>
+    <input class="credits-input" type="number" id="credit-amount" placeholder="Credit Amount" min="1" max="9999">
+    <div class="credits-error" id="credit-error"></div>
+    <div style="display:flex;gap:10px">
+      <button class="mbtn mbtn-dark" style="flex:1" onclick="closeCredits()">CLOSE</button>
+      <button class="mbtn mbtn-gold" style="flex:1" onclick="confirmCredits()">CONFIRM</button>
     </div>
   </div>
 </div>
@@ -563,6 +605,7 @@ function loadHome() {
   }
 
   document.getElementById('relink-input').value = localStorage.getItem('tab_roblox') || '';
+  updateCoins();
   showView('home');
 }
 
@@ -611,6 +654,37 @@ function startOrder(name, cat, url) {
 }
 function closeModal() { document.getElementById('orderModal').classList.remove('show'); }
 
+// ── Credits ──
+let pendingCredits = 0;
+function updateCoins() {
+  document.getElementById('tb-coins').textContent = localStorage.getItem('tab_credits') || '0';
+}
+function openCredits() {
+  document.getElementById('credit-amount').value = '';
+  document.getElementById('credit-error').textContent = '';
+  document.getElementById('creditsModal').classList.add('show');
+}
+function closeCredits() {
+  document.getElementById('creditsModal').classList.remove('show');
+}
+function confirmCredits() {
+  const amt = parseInt(document.getElementById('credit-amount').value);
+  if (!amt || amt < 1 || isNaN(amt)) {
+    document.getElementById('credit-error').textContent = 'Please enter a valid amount.';
+    return;
+  }
+  pendingCredits = amt;
+  closeCredits();
+  // Reuse the order modal flow for credits
+  pItem = amt + ' Credit' + (amt !== 1 ? 's' : '');
+  pCat = 'credits';
+  pUrl = 'https://paypal.me/TRAPSTUDIOSLTDWORKER/' + amt;
+  const roblox = localStorage.getItem('tab_roblox') || 'Not linked';
+  document.getElementById('m-item').textContent = pItem + ' — £' + amt;
+  document.getElementById('m-user').textContent = user + (roblox !== 'Not linked' ? ' (Roblox: ' + roblox + ')' : '');
+  document.getElementById('orderModal').classList.add('show');
+}
+
 let pendingMethod = null;
 
 function finaliseOrder(method) {
@@ -635,7 +709,14 @@ async function confirmPaid() {
   const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
   orders.unshift({ u:user, i:pItem, c:pCat, t:Date.now() });
   localStorage.setItem('tab_orders', JSON.stringify(orders.slice(0,50)));
-  document.getElementById('m-done').textContent = pItem + ' ordered for ' + user + '. We\'ll deliver to your Roblox account within 24h!';
+  if (pCat === 'credits') {
+    const current = parseInt(localStorage.getItem('tab_credits') || '0');
+    localStorage.setItem('tab_credits', current + pendingCredits);
+    updateCoins();
+    document.getElementById('m-done').textContent = pendingCredits + ' Credit' + (pendingCredits !== 1 ? 's' : '') + ' added to your account!';
+  } else {
+    document.getElementById('m-done').textContent = pItem + ' ordered for ' + user + '. We\'ll deliver to your Roblox account within 24h!';
+  }
   document.getElementById('doneModal').classList.add('show');
   confetti();
 }
