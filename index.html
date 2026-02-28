@@ -57,7 +57,7 @@
       text-align: center;
     }
     .view.hidden { display: none; }
-    #view-shop, #view-faq { justify-content: flex-start; padding-top: 68px; }
+    #view-shop, #view-faq, #view-admin { justify-content: flex-start; padding-top: 68px; }
 
     /* ─── LOGIN ─── */
     .login-brand {
@@ -72,28 +72,6 @@
     }
     .login-brand-text { font-size: 24px; font-weight: 800; }
 
-    .login-input-row {
-      display: flex; gap: 8px; width: 290px; margin-bottom: 10px;
-    }
-    .login-input-row input {
-      flex: 1; padding: 13px 16px;
-      background: rgba(30,12,12,0.95);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px; color: #fff;
-      font-family: inherit; font-size: 14px; outline: none;
-    }
-    .login-input-row input::placeholder { color: rgba(255,255,255,0.22); }
-    .login-input-row input:focus { border-color: rgba(229,0,0,0.45); }
-    .login-input-row button {
-      padding: 13px 18px;
-      background: rgba(50,18,18,0.95);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px; color: #fff;
-      font-family: inherit; font-size: 13px; font-weight: 700;
-      letter-spacing: 1px; cursor: pointer; transition: background 0.15s;
-      white-space: nowrap;
-    }
-    .login-input-row button:hover { background: rgba(229,0,0,0.2); border-color: rgba(229,0,0,0.4); }
     .login-sub { font-size: 12px; color: rgba(255,255,255,0.25); max-width: 260px; margin-top: 10px; }
     .discord-login-btn {
       display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -153,7 +131,7 @@
     }
     .home-input-row button:hover { background: rgba(229,0,0,0.2); border-color: rgba(229,0,0,0.4); }
 
-    /* ─── HOME BUTTONS (exact SW style) ─── */
+    /* ─── HOME BUTTONS ─── */
     .home-btns {
       display: flex; flex-direction: column; gap: 10px; width: 240px;
     }
@@ -171,10 +149,12 @@
     }
     .hbtn:hover { background: rgba(229,0,0,0.1); border-color: rgba(229,0,0,0.3); }
     .hbtn .icon { font-size: 15px; }
-    .hbtn.discord-btn { border-color: rgba(88,101,242,0.2); }
-    .hbtn.discord-btn:hover { background: rgba(88,101,242,0.12); border-color: rgba(88,101,242,0.4); }
     .hbtn.hbtn-credits { border-color: rgba(255,215,0,0.2); color: #ffd700; }
     .hbtn.hbtn-credits:hover { background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.4); }
+    .hbtn.hbtn-redeem { border-color: rgba(100,220,100,0.2); color: #6ddc6d; }
+    .hbtn.hbtn-redeem:hover { background: rgba(100,220,100,0.07); border-color: rgba(100,220,100,0.4); }
+    .hbtn.hbtn-admin { border-color: rgba(255,100,100,0.3); color: #ff6464; }
+    .hbtn.hbtn-admin:hover { background: rgba(229,0,0,0.12); border-color: rgba(229,0,0,0.5); }
 
     /* ─── CREDITS MODAL INPUT ─── */
     .credits-rate {
@@ -195,6 +175,8 @@
     .credits-error { font-size: 12px; color: #ff5555; min-height: 16px; }
     .mbtn-gold { background: rgba(255,215,0,0.12); border: 1px solid rgba(255,215,0,0.35); color: #ffd700; }
     .mbtn-gold:hover { background: rgba(255,215,0,0.22); border-color: rgba(255,215,0,0.6); }
+    .mbtn-green { background: rgba(80,200,80,0.12); border: 1px solid rgba(80,200,80,0.35); color: #6ddc6d; }
+    .mbtn-green:hover { background: rgba(80,200,80,0.22); border-color: rgba(80,200,80,0.6); }
 
     /* ─── SHOP ─── */
     .shop-inner { width: 100%; max-width: 960px; margin: 0 auto; padding: 0 16px 40px; }
@@ -209,22 +191,7 @@
     }
     .back-btn:hover { background: rgba(229,0,0,0.12); }
 
-    .tabs { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
-    .tab {
-      padding: 10px 20px; border-radius: 10px;
-      background: rgba(30,10,10,0.98);
-      border: 1px solid rgba(255,255,255,0.07);
-      color: rgba(255,255,255,0.4);
-      font-family: inherit; font-size: 12px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
-      cursor: pointer; transition: all 0.15s;
-    }
-    .tab.active, .tab:hover {
-      background: rgba(229,0,0,0.1); border-color: rgba(229,0,0,0.35); color: #ff5555;
-    }
-
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
-    .grid.hidden { display: none; }
     .icard {
       background: rgba(18,6,6,0.98); border: 1px solid rgba(255,255,255,0.07);
       border-radius: 12px; padding: 20px;
@@ -236,15 +203,6 @@
     .icard-name { font-size: 15px; font-weight: 700; }
     .icard-desc { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.5; }
     .icard-price { font-size: 22px; font-weight: 800; color: #e50000; }
-    .opt-lbl { font-size: 10px; color: rgba(255,255,255,0.28); letter-spacing: 1px; text-transform: uppercase; }
-    .opts { display: flex; gap: 5px; flex-wrap: wrap; }
-    .opt {
-      padding: 4px 11px; border-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: transparent; color: rgba(255,255,255,0.4);
-      font-family: inherit; font-size: 11px; cursor: pointer; transition: all 0.13s;
-    }
-    .opt.on { background: rgba(229,0,0,0.12); border-color: rgba(229,0,0,0.45); color: #ff5555; }
     .ibuy {
       margin-top: 4px; padding: 11px;
       border-radius: 10px;
@@ -265,8 +223,21 @@
       display: flex; justify-content: space-between; align-items: center;
       font-size: 13px;
     }
+    .order-row.pending { border-color: rgba(255,180,0,0.3); }
     .order-row .oitem { font-weight: 700; }
     .order-row .otime { color: rgba(255,255,255,0.3); font-size: 11px; }
+    .badge-pending {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      color: #ffb400; background: rgba(255,180,0,0.1);
+      border: 1px solid rgba(255,180,0,0.3);
+      border-radius: 5px; padding: 2px 7px; text-transform: uppercase;
+    }
+    .badge-ok {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      color: #6ddc6d; background: rgba(80,200,80,0.08);
+      border: 1px solid rgba(80,200,80,0.25);
+      border-radius: 5px; padding: 2px 7px; text-transform: uppercase;
+    }
 
     /* ─── FAQ ─── */
     #view-faq { justify-content: flex-start; padding-top: 68px; }
@@ -284,6 +255,50 @@
     .faq-item.open .faq-ch { transform: rotate(45deg); }
     .faq-a { display: none; padding: 0 18px 15px; font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.65; }
     .faq-item.open .faq-a { display: block; }
+
+    /* ─── ADMIN PANEL ─── */
+    .admin-inner { width: 100%; max-width: 480px; margin: 0 auto; padding: 0 16px 40px; }
+    .admin-card {
+      background: rgba(18,6,6,0.98); border: 1px solid rgba(229,0,0,0.18);
+      border-radius: 12px; padding: 22px; margin-bottom: 14px;
+    }
+    .admin-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 14px; color: #ff6464; letter-spacing: 1px; text-transform: uppercase; }
+    .admin-input {
+      width: 100%; padding: 12px 14px;
+      background: rgba(30,12,12,0.95);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; color: #fff;
+      font-family: inherit; font-size: 14px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; outline: none;
+      margin-bottom: 10px;
+    }
+    .admin-input::placeholder { color: rgba(255,255,255,0.2); font-weight: 400; letter-spacing: 0; text-transform: none; }
+    .admin-input:focus { border-color: rgba(229,0,0,0.4); }
+    .admin-code-display {
+      background: rgba(229,0,0,0.06); border: 1px solid rgba(229,0,0,0.2);
+      border-radius: 10px; padding: 16px;
+      font-size: 28px; font-weight: 900; letter-spacing: 6px;
+      color: #ff6464; text-align: center; min-height: 60px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .admin-code-note { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 8px; text-align: center; }
+    .admin-btn {
+      width: 100%; padding: 13px;
+      background: rgba(229,0,0,0.1); border: 1px solid rgba(229,0,0,0.3);
+      border-radius: 10px; color: #ff6464;
+      font-family: inherit; font-size: 13px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+      transition: all 0.15s; margin-top: 4px;
+    }
+    .admin-btn:hover { background: rgba(229,0,0,0.2); border-color: rgba(229,0,0,0.5); }
+    .admin-orders-list { margin-top: 6px; }
+    .admin-order-row {
+      background: rgba(30,10,10,0.9); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 8px;
+      font-size: 12px; text-align: left;
+    }
+    .admin-order-row .aoid { font-weight: 800; color: #ff6464; font-size: 13px; letter-spacing: 1px; }
+    .admin-order-row .aoinfo { color: rgba(255,255,255,0.45); margin-top: 3px; }
 
     /* ─── MODALS ─── */
     .overlay {
@@ -312,6 +327,14 @@
     .mbtn-revolut:hover { background: #2a2d30; border-color: rgba(255,255,255,0.25); }
     .mbtn-dark { background: rgba(30,10,10,0.98); border: 1px solid rgba(255,255,255,0.1); color: #fff; }
     .mbtn-dark:hover { background: rgba(60,20,20,0.98); }
+
+    /* ─── PENDING ORDER ID display ─── */
+    .order-id-display {
+      background: rgba(255,180,0,0.06); border: 1px solid rgba(255,180,0,0.25);
+      border-radius: 10px; padding: 14px;
+      font-size: 22px; font-weight: 900; letter-spacing: 4px;
+      color: #ffb400;
+    }
 
     /* ─── FOOTER ─── */
     footer {
@@ -367,11 +390,17 @@
   </div>
 
   <div class="home-btns">
+    <button class="hbtn hbtn-admin" id="btn-admin" style="display:none" onclick="showView('admin')">
+      <span class="icon">🔐</span> ADMIN
+    </button>
     <button class="hbtn hbtn-credits" onclick="openCredits()">
       <span class="icon">🪙</span> BUY CREDITS
     </button>
     <button class="hbtn" onclick="showView('shop')">
       <span class="icon">🛒</span> SHOP
+    </button>
+    <button class="hbtn hbtn-redeem" onclick="openRedeem()">
+      <span class="icon">🎟️</span> REDEEM CODE
     </button>
     <button class="hbtn" onclick="showView('profile')">
       <span class="icon">👤</span> PROFILE
@@ -439,15 +468,15 @@
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="tf(this)">How does delivery work? <span class="faq-ch">+</span></div>
-      <div class="faq-a">After payment, enter your Roblox username. We get a notification and manually deliver your item in-game — usually within 24 hours.</div>
+      <div class="faq-a">After payment, you'll receive an Order ID. Our team verifies your payment and sends you a verification code. Enter it on the site to confirm your order.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="tf(this)">What payment methods do you accept? <span class="faq-ch">+</span></div>
-      <div class="faq-a">We accept PayPal and Card. All transactions are processed securely through PayPal.</div>
+      <div class="faq-a">We accept PayPal and Revolut / Bank Transfer.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="tf(this)">How long does delivery take? <span class="faq-ch">+</span></div>
-      <div class="faq-a">Most orders are delivered within 1–24 hours. Join our Discord to track your order or message support.</div>
+      <div class="faq-a">Most orders are verified and delivered within 1–24 hours. Join our Discord to track your order or message support.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="tf(this)">Can I get a refund? <span class="faq-ch">+</span></div>
@@ -460,6 +489,33 @@
     <div class="faq-item">
       <div class="faq-q" onclick="tf(this)">How do I contact support? <span class="faq-ch">+</span></div>
       <div class="faq-a">Join our Discord server and open a support ticket. We respond within a few hours.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ADMIN ══════════ -->
+<div class="view hidden page" id="view-admin">
+  <div class="admin-inner">
+    <div class="section-head">
+      <button class="back-btn" onclick="showView('home')">← Back</button>
+      <h2 style="font-size:20px;font-weight:800">🔐 Admin Panel</h2>
+    </div>
+
+    <div class="admin-card">
+      <h3>Generate Verification Code</h3>
+      <input class="admin-input" id="admin-order-id" type="text" placeholder="Order ID (e.g. TAB-K7M2X)" maxlength="9" oninput="this.value=this.value.toUpperCase()">
+      <button class="admin-btn" onclick="generateAdminCode()">Generate Code</button>
+      <div style="margin-top:12px">
+        <div class="admin-code-display" id="admin-code-out">——</div>
+        <div class="admin-code-note" id="admin-code-note">Enter an order ID above and click Generate</div>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h3>Pending Orders (this device)</h3>
+      <div class="admin-orders-list" id="admin-orders-list">
+        <div style="color:rgba(255,255,255,0.3);font-size:13px;text-align:center;padding:10px 0">No orders on this device.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -509,11 +565,40 @@
   </div>
 </div>
 
+<!-- PENDING MODAL (shown after "I've Paid") -->
+<div class="overlay" id="pendingModal">
+  <div class="mbox">
+    <div style="font-size:40px">⏳</div>
+    <div class="mbox-title">Order Pending</div>
+    <div class="mbox-muted">Your order has been received. Your Order ID is:</div>
+    <div class="order-id-display" id="pending-order-id">TAB-XXXXX</div>
+    <div class="mbox-muted" style="font-size:12px">We'll verify your payment and DM you a code on Discord. Then hit <strong>REDEEM CODE</strong> on the home screen.</div>
+    <button class="mbtn mbtn-dark" onclick="document.getElementById('pendingModal').classList.remove('show')">Got It</button>
+  </div>
+</div>
+
+<!-- REDEEM MODAL -->
+<div class="overlay" id="redeemModal">
+  <div class="mbox">
+    <div style="font-size:36px">🎟️</div>
+    <div class="mbox-title">Redeem Code</div>
+    <div class="mbox-muted">Enter your Order ID and the verification code we sent you.</div>
+    <div class="mdiv"></div>
+    <input class="credits-input" id="redeem-order-id" type="text" placeholder="Order ID (TAB-XXXXX)" maxlength="9" style="letter-spacing:2px;text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+    <input class="credits-input" id="redeem-code" type="text" placeholder="Verify Code (6 chars)" maxlength="6" style="letter-spacing:3px;text-transform:uppercase;margin-top:4px" oninput="this.value=this.value.toUpperCase()">
+    <div class="credits-error" id="redeem-error"></div>
+    <div style="display:flex;gap:10px">
+      <button class="mbtn mbtn-dark" style="flex:1" onclick="closeRedeem()">CLOSE</button>
+      <button class="mbtn mbtn-green" style="flex:1" onclick="redeemCode()">CONFIRM</button>
+    </div>
+  </div>
+</div>
+
 <!-- DONE MODAL -->
 <div class="overlay" id="doneModal">
   <div class="mbox">
     <div style="font-size:40px">🎉</div>
-    <div class="mbox-title">Order Placed!</div>
+    <div class="mbox-title" id="done-title">Order Confirmed!</div>
     <div class="mbox-muted" id="m-done"></div>
     <button class="mbtn mbtn-red" onclick="document.getElementById('doneModal').classList.remove('show')">Done</button>
   </div>
@@ -556,17 +641,35 @@
   addEventListener('resize',()=>{ resize(); spawn(); });
 })();
 
+// ── Constants ──
+const ADMIN_ID = '1357419387639955740';
+const ADMIN_SECRET = 'TAB2026XKZADMIN';
+
+// ── Verification helpers ──
+function simpleHash(str) {
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) {
+    h = ((h << 5) + h) + str.charCodeAt(i);
+    h = h & h;
+  }
+  return Math.abs(h).toString(36).toUpperCase().padStart(6,'0').slice(0,6);
+}
+function genOrderId() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let id = 'TAB-';
+  for (let i = 0; i < 5; i++) id += chars[Math.floor(Math.random() * chars.length)];
+  return id;
+}
+function genVerifyCode(orderId) {
+  return simpleHash(orderId.trim().toUpperCase() + ADMIN_SECRET);
+}
+
 // ── State ──
 let user = localStorage.getItem('tab_user') || null;
-let pItem=null, pCat=null, pUrl=null;
+let pItem=null, pCat=null, pUrl=null, pendingCredits=0, pendingMethod=null, currentOrderId=null;
 if (user) loadHome();
 
 // ── Auth ──
-function doLogin() {
-  const v = document.getElementById('login-input').value.trim();
-  if (!v) return;
-  user = v; localStorage.setItem('tab_user', v); loadHome();
-}
 function doRelink() {
   const v = document.getElementById('relink-input').value.trim();
   if (!v) return;
@@ -585,6 +688,7 @@ function loadHome() {
   const init = (user||'?')[0].toUpperCase();
   const discord = JSON.parse(localStorage.getItem('tab_discord') || 'null');
   const avatarUrl = discord ? discord.avatar : null;
+  const isAdmin = discord && discord.id === ADMIN_ID;
 
   document.getElementById('topbar').style.display = 'flex';
   document.getElementById('tb-name').textContent = user;
@@ -604,6 +708,7 @@ function loadHome() {
     homeAv.textContent = init;
   }
 
+  document.getElementById('btn-admin').style.display = isAdmin ? 'flex' : 'none';
   document.getElementById('relink-input').value = localStorage.getItem('tab_roblox') || '';
   updateCoins();
   showView('home');
@@ -611,20 +716,11 @@ function loadHome() {
 
 // ── Nav ──
 function showView(v) {
-  ['login','home','shop','profile','faq'].forEach(id =>
+  ['login','home','shop','profile','faq','admin'].forEach(id =>
     document.getElementById('view-'+id).classList.add('hidden'));
   document.getElementById('view-'+v).classList.remove('hidden');
   if (v === 'profile') loadProfile();
-}
-function switchCat(cat, el) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.querySelectorAll('.grid').forEach(g => g.classList.add('hidden'));
-  document.getElementById('cat-'+cat).classList.remove('hidden');
-}
-function pick(el, gid) {
-  document.querySelectorAll('#'+gid+' .opt').forEach(o => o.classList.remove('on'));
-  el.classList.add('on');
+  if (v === 'admin') loadAdmin();
 }
 function tf(el) {
   const item = el.parentElement;
@@ -640,8 +736,56 @@ function loadProfile() {
   el.innerHTML = orders.map(o => {
     const d = new Date(o.t);
     const time = d.toLocaleDateString('en-GB') + ' ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-    return `<div class="order-row"><div><div class="oitem">${o.i}</div><div class="otime">${time}</div></div><div style="font-size:11px;color:rgba(255,255,255,0.3);text-transform:uppercase">${o.c}</div></div>`;
+    const isPending = o.status === 'pending';
+    const idTag = o.id ? `<div style="font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:1px;margin-top:2px">${o.id}</div>` : '';
+    return `<div class="order-row${isPending?' pending':''}">
+      <div><div class="oitem">${o.i}</div><div class="otime">${time}</div>${idTag}</div>
+      <span class="${isPending?'badge-pending':'badge-ok'}">${isPending?'Pending':'Done'}</span>
+    </div>`;
   }).join('');
+}
+
+// ── Admin panel ──
+function loadAdmin() {
+  const discord = JSON.parse(localStorage.getItem('tab_discord') || 'null');
+  if (!discord || discord.id !== ADMIN_ID) { showView('home'); return; }
+
+  document.getElementById('admin-order-id').value = '';
+  document.getElementById('admin-code-out').textContent = '——';
+  document.getElementById('admin-code-note').textContent = 'Enter an order ID above and click Generate';
+
+  const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
+  const pending = orders.filter(o => o.status === 'pending');
+  const listEl = document.getElementById('admin-orders-list');
+  if (!pending.length) {
+    listEl.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;text-align:center;padding:10px 0">No pending orders on this device.</div>';
+    return;
+  }
+  listEl.innerHTML = pending.map(o => {
+    const d = new Date(o.t);
+    const time = d.toLocaleDateString('en-GB') + ' ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    const code = genVerifyCode(o.id);
+    return `<div class="admin-order-row">
+      <div class="aoid">${o.id}</div>
+      <div class="aoinfo">${o.i} · ${o.u} · ${time}</div>
+      <div style="margin-top:6px;display:flex;align-items:center;gap:8px">
+        <span style="font-size:11px;color:rgba(255,255,255,0.35)">Verify code:</span>
+        <span style="font-weight:800;letter-spacing:3px;color:#ff6464;font-size:14px">${code}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function generateAdminCode() {
+  const raw = document.getElementById('admin-order-id').value.trim().toUpperCase();
+  if (!raw || raw.length < 4) {
+    document.getElementById('admin-code-out').textContent = '——';
+    document.getElementById('admin-code-note').textContent = 'Enter a valid Order ID first';
+    return;
+  }
+  const code = genVerifyCode(raw);
+  document.getElementById('admin-code-out').textContent = code;
+  document.getElementById('admin-code-note').textContent = `Code for ${raw} — DM this to the customer`;
 }
 
 // ── Order ──
@@ -655,7 +799,6 @@ function startOrder(name, cat, url) {
 function closeModal() { document.getElementById('orderModal').classList.remove('show'); }
 
 // ── Credits ──
-let pendingCredits = 0;
 function updateCoins() {
   document.getElementById('tb-coins').textContent = localStorage.getItem('tab_credits') || '0';
 }
@@ -675,7 +818,6 @@ function confirmCredits() {
   }
   pendingCredits = amt;
   closeCredits();
-  // Reuse the order modal flow for credits
   pItem = amt + ' Credit' + (amt !== 1 ? 's' : '');
   pCat = 'credits';
   pUrl = 'https://paypal.me/TRAPSTUDIOSLTDWORKER/' + amt;
@@ -685,19 +827,75 @@ function confirmCredits() {
   document.getElementById('orderModal').classList.add('show');
 }
 
-let pendingMethod = null;
+// ── Redeem ──
+function openRedeem() {
+  document.getElementById('redeem-order-id').value = '';
+  document.getElementById('redeem-code').value = '';
+  document.getElementById('redeem-error').textContent = '';
+  document.getElementById('redeemModal').classList.add('show');
+}
+function closeRedeem() {
+  document.getElementById('redeemModal').classList.remove('show');
+}
+function redeemCode() {
+  const orderId = document.getElementById('redeem-order-id').value.trim().toUpperCase();
+  const code = document.getElementById('redeem-code').value.trim().toUpperCase();
+  const errEl = document.getElementById('redeem-error');
 
+  if (!orderId || !code) { errEl.textContent = 'Enter both order ID and code.'; return; }
+
+  const expected = genVerifyCode(orderId);
+  if (code !== expected) { errEl.textContent = 'Invalid code. Double-check with support.'; return; }
+
+  // Find the pending order in localStorage
+  const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
+  const idx = orders.findIndex(o => o.id === orderId && o.status === 'pending');
+
+  if (idx === -1) {
+    // Order might be on another device — if code is valid, still honour credits
+    // Check if already redeemed
+    const already = orders.find(o => o.id === orderId && o.status === 'verified');
+    if (already) { errEl.textContent = 'This order has already been redeemed.'; return; }
+    // Valid code but no local order — still redeem (trust the code)
+    closeRedeem();
+    document.getElementById('done-title').textContent = 'Order Confirmed!';
+    document.getElementById('m-done').textContent = 'Your order ' + orderId + ' has been verified!';
+    document.getElementById('doneModal').classList.add('show');
+    confetti();
+    return;
+  }
+
+  const order = orders[idx];
+  order.status = 'verified';
+  localStorage.setItem('tab_orders', JSON.stringify(orders));
+
+  // Add credits if it was a credits order
+  if (order.c === 'credits' && order.credits > 0) {
+    const current = parseInt(localStorage.getItem('tab_credits') || '0');
+    localStorage.setItem('tab_credits', current + order.credits);
+    updateCoins();
+    closeRedeem();
+    document.getElementById('done-title').textContent = 'Credits Added!';
+    document.getElementById('m-done').textContent = order.credits + ' Credit' + (order.credits !== 1 ? 's' : '') + ' have been added to your account!';
+  } else {
+    closeRedeem();
+    document.getElementById('done-title').textContent = 'Order Confirmed!';
+    document.getElementById('m-done').textContent = order.i + ' verified! We\'ll deliver to your Roblox account within 24h.';
+  }
+  document.getElementById('doneModal').classList.add('show');
+  confetti();
+}
+
+// ── Payment flow ──
 function finaliseOrder(method) {
   pendingMethod = method;
   closeModal();
-  // Open payment in new tab FIRST
   if (method === 'revolut') {
     const amt = pUrl.split('/').pop();
     window.open('https://revolut.me/t_gallagher79/' + amt, '_blank');
   } else {
     window.open(pUrl, '_blank');
   }
-  // Show "confirm payment" step
   document.getElementById('pay-item-name').textContent = pItem;
   document.getElementById('payModal').classList.add('show');
 }
@@ -705,34 +903,48 @@ function finaliseOrder(method) {
 async function confirmPaid() {
   document.getElementById('payModal').classList.remove('show');
   const roblox = localStorage.getItem('tab_roblox') || 'Not linked';
-  await sendWebhook(user, roblox, pItem, pCat, pendingMethod);
+
+  // Generate unique order ID
+  currentOrderId = genOrderId();
+
+  // Save as PENDING
   const orders = JSON.parse(localStorage.getItem('tab_orders') || '[]');
-  orders.unshift({ u:user, i:pItem, c:pCat, t:Date.now() });
+  orders.unshift({
+    id: currentOrderId,
+    u: user,
+    i: pItem,
+    c: pCat,
+    credits: pCat === 'credits' ? pendingCredits : 0,
+    t: Date.now(),
+    status: 'pending'
+  });
   localStorage.setItem('tab_orders', JSON.stringify(orders.slice(0,50)));
-  if (pCat === 'credits') {
-    const current = parseInt(localStorage.getItem('tab_credits') || '0');
-    localStorage.setItem('tab_credits', current + pendingCredits);
-    updateCoins();
-    document.getElementById('m-done').textContent = pendingCredits + ' Credit' + (pendingCredits !== 1 ? 's' : '') + ' added to your account!';
-  } else {
-    document.getElementById('m-done').textContent = pItem + ' ordered for ' + user + '. We\'ll deliver to your Roblox account within 24h!';
-  }
-  document.getElementById('doneModal').classList.add('show');
-  confetti();
+
+  // Fire webhook with pending status
+  await sendWebhook(user, roblox, pItem, pCat, pendingMethod, currentOrderId);
+
+  // Show pending modal
+  document.getElementById('pending-order-id').textContent = currentOrderId;
+  document.getElementById('pendingModal').classList.add('show');
 }
-async function sendWebhook(discordUser, roblox, item, cat, method) {
+
+async function sendWebhook(discordUser, roblox, item, cat, method, orderId) {
   try {
     await fetch('https://discord.com/api/webhooks/1475222123910922333/TPaJEh4uoOlSuAKiTtIo_wYyou4XEdmL1chQj2NB4RpP5DwpCjj5tIgtA2dHj_O3fFG4', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ username:'Trap And Brum Store', embeds:[{ title:'New Order', color:0xe50000,
+      body: JSON.stringify({ username:'Trap And Brum Store', embeds:[{
+        title:'⏳ New Pending Order',
+        color: 0xffb400,
         fields:[
+          {name:'Order ID',value:'`' + orderId + '`',inline:true},
           {name:'Discord',value:discordUser||'?',inline:true},
-          {name:'Roblox Username',value:roblox||'?',inline:true},
+          {name:'Roblox',value:roblox||'?',inline:true},
           {name:'Item',value:item,inline:true},
-          {name:'Category',value:cat,inline:true},
           {name:'Payment',value:(method==='revolut'?'Revolut / Bank Transfer':'PayPal'),inline:true},
-          {name:'Action',value:'Deliver in-game item to Roblox user: '+roblox}
-        ], timestamp:new Date().toISOString() }] })
+          {name:'Action',value:'Check ' + (method==='revolut'?'Revolut':'PayPal') + ' then go to Admin panel → generate verify code → DM it to customer'}
+        ],
+        timestamp: new Date().toISOString()
+      }] })
     });
   } catch(e) { console.warn('webhook',e); }
 }
@@ -767,7 +979,6 @@ async function checkDiscordCallback() {
   const hash = new URLSearchParams(window.location.hash.slice(1));
   const token = hash.get('access_token');
   if (!token) return false;
-  // Clean URL
   history.replaceState(null, null, window.location.pathname);
   try {
     const res = await fetch('https://discord.com/api/users/@me', {
