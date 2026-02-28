@@ -358,143 +358,28 @@
       <button class="back-btn" onclick="showView('home')">← Back</button>
       <h2 style="font-size:20px;font-weight:800">Shop</h2>
     </div>
-    <div class="tabs">
-      <button class="tab active" onclick="switchCat('cars',this)">🚗 Cars</button>
-      <button class="tab" onclick="switchCat('hats',this)">🧢 Hats</button>
-      <button class="tab" onclick="switchCat('shirts',this)">👕 Shirts</button>
-      <button class="tab" onclick="switchCat('pants',this)">👖 Pants</button>
-    </div>
 
-    <!-- Cars -->
-    <div class="grid" id="cat-cars">
+    <div class="grid">
       <div class="icard">
-        <div class="icard-icon">🚗</div>
-        <div class="icard-name">Custom RS3</div>
-        <div class="icard-desc">Audi RS3 — custom livery, exclusive to Trap Town</div>
+        <div class="icard-icon">✏️</div>
+        <div class="icard-name">Custom Name</div>
+        <div class="icard-desc">Get a custom name set on your account in Trap Town. Tell us what you want after purchase.</div>
+        <div class="icard-price">£10</div>
+        <button class="ibuy" onclick="startOrder('Custom Name','service','https://paypal.me/TRAPSTUDIOSLTDWORKER/10')">Buy Now</button>
+      </div>
+      <div class="icard">
+        <div class="icard-icon">⬆️</div>
+        <div class="icard-name">Custom Level</div>
+        <div class="icard-desc">Get a custom level set on your account in Trap Town.</div>
+        <div class="icard-price">£20</div>
+        <button class="ibuy" onclick="startOrder('Custom Level','service','https://paypal.me/TRAPSTUDIOSLTDWORKER/20')">Buy Now</button>
+      </div>
+      <div class="icard">
+        <div class="icard-icon">🖼️</div>
+        <div class="icard-name">Custom Avatar</div>
+        <div class="icard-desc">Get a custom avatar applied to your profile in Trap Town.</div>
         <div class="icard-price">£30</div>
-        <button class="ibuy" onclick="startOrder('Custom RS3','cars','https://paypal.me/TRAPSTUDIOSLTDWORKER/30')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">🚗</div>
-        <div class="icard-name">Custom BMW</div>
-        <div class="icard-desc">BMW M3 — custom livery, exclusive to Trap Town</div>
-        <div class="icard-price">£40</div>
-        <button class="ibuy" onclick="startOrder('Custom BMW','cars','https://paypal.me/TRAPSTUDIOSLTDWORKER/40')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">🚗</div>
-        <div class="icard-name">Custom Durago</div>
-        <div class="icard-desc">Dodge Durango — custom livery, exclusive to Trap Town</div>
-        <div class="icard-price">£50</div>
-        <button class="ibuy" onclick="startOrder('Custom Durago','cars','https://paypal.me/TRAPSTUDIOSLTDWORKER/50')">Buy Now</button>
-      </div>
-    </div>
-
-    <!-- Hats -->
-    <div class="grid hidden" id="cat-hats">
-      <div class="icard">
-        <div class="icard-icon">🧢</div><div class="icard-name">TNB Classic Cap</div>
-        <div class="icard-desc">Trap And Brum classic snapback</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="h1"><span class="opt on" onclick="pick(this,'h1')">Black</span><span class="opt" onclick="pick(this,'h1')">White</span><span class="opt" onclick="pick(this,'h1')">Red</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('TNB Classic Cap','hats','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">🧢</div><div class="icard-name">Brum Fitted</div>
-        <div class="icard-desc">Fitted cap with embroidered Trap Town logo</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="h2"><span class="opt on" onclick="pick(this,'h2')">Black</span><span class="opt" onclick="pick(this,'h2')">Navy</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('Brum Fitted','hats','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">🧢</div><div class="icard-name">Street Bucket</div>
-        <div class="icard-desc">Bucket hat — summer drip in Trap Town</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="h3"><span class="opt on" onclick="pick(this,'h3')">Khaki</span><span class="opt" onclick="pick(this,'h3')">Black</span><span class="opt" onclick="pick(this,'h3')">White</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('Street Bucket','hats','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">🧢</div><div class="icard-name">TAB Beanie</div>
-        <div class="icard-desc">Winter beanie with Trap And Brum logo</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="h4"><span class="opt on" onclick="pick(this,'h4')">Black</span><span class="opt" onclick="pick(this,'h4')">Grey</span><span class="opt" onclick="pick(this,'h4')">Red</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('TAB Beanie','hats','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-    </div>
-
-    <!-- Shirts -->
-    <div class="grid hidden" id="cat-shirts">
-      <div class="icard">
-        <div class="icard-icon">👕</div><div class="icard-name">TAB Classic Tee</div>
-        <div class="icard-desc">Classic Trap And Brum graphic tee</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="s1"><span class="opt on" onclick="pick(this,'s1')">Black</span><span class="opt" onclick="pick(this,'s1')">White</span><span class="opt" onclick="pick(this,'s1')">Red</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('TAB Classic Tee','shirts','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">👕</div><div class="icard-name">Trap Town Jersey</div>
-        <div class="icard-desc">Basketball-style Trap Town jersey</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="s2"><span class="opt on" onclick="pick(this,'s2')">Black/Red</span><span class="opt" onclick="pick(this,'s2')">White/Red</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('Trap Town Jersey','shirts','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">👕</div><div class="icard-name">Brum Hoodie</div>
-        <div class="icard-desc">Pullover hoodie with Brum city graphic</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="s3"><span class="opt on" onclick="pick(this,'s3')">Black</span><span class="opt" onclick="pick(this,'s3')">Grey</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('Brum Hoodie','shirts','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">👕</div><div class="icard-name">TAB Tracksuit Top</div>
-        <div class="icard-desc">Zip-up tracksuit top, full TAB branding</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="s4"><span class="opt on" onclick="pick(this,'s4')">Black</span><span class="opt" onclick="pick(this,'s4')">Red</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('TAB Tracksuit Top','shirts','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-    </div>
-
-    <!-- Pants -->
-    <div class="grid hidden" id="cat-pants">
-      <div class="icard">
-        <div class="icard-icon">👖</div><div class="icard-name">TAB Track Pants</div>
-        <div class="icard-desc">Slim-fit track pants with TAB stripe</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="p1"><span class="opt on" onclick="pick(this,'p1')">Black</span><span class="opt" onclick="pick(this,'p1')">Navy</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('TAB Track Pants','pants','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">👖</div><div class="icard-name">Trap Denim</div>
-        <div class="icard-desc">Ripped skinny jeans with TAB logo</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="p2"><span class="opt on" onclick="pick(this,'p2')">Indigo</span><span class="opt" onclick="pick(this,'p2')">Black</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('Trap Denim','pants','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">👖</div><div class="icard-name">Brum Cargo</div>
-        <div class="icard-desc">Cargo trousers with side pockets and TAB patch</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="p3"><span class="opt on" onclick="pick(this,'p3')">Khaki</span><span class="opt" onclick="pick(this,'p3')">Black</span><span class="opt" onclick="pick(this,'p3')">Olive</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('Brum Cargo','pants','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
-      </div>
-      <div class="icard">
-        <div class="icard-icon">👖</div><div class="icard-name">Street Joggers</div>
-        <div class="icard-desc">Comfortable joggers — everyday wear in Trap Town</div>
-        <div class="opt-lbl">Colour</div>
-        <div class="opts" id="p4"><span class="opt on" onclick="pick(this,'p4')">Grey</span><span class="opt" onclick="pick(this,'p4')">Black</span><span class="opt" onclick="pick(this,'p4')">Red</span></div>
-        <div class="icard-price">£25</div>
-        <button class="ibuy" onclick="startOrder('Street Joggers','pants','https://paypal.me/TRAPSTUDIOSLTDWORKER/25')">Buy Now</button>
+        <button class="ibuy" onclick="startOrder('Custom Avatar','service','https://paypal.me/TRAPSTUDIOSLTDWORKER/30')">Buy Now</button>
       </div>
     </div>
   </div>
