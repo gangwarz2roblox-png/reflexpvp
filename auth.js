@@ -1,5 +1,5 @@
 const DISCORD_CLIENT_ID = '1470840282760085515';
-const REDIRECT_URI = encodeURIComponent(window.location.origin + '/dashboard.html');
+const REDIRECT_URI = encodeURIComponent('https://reflexpvp.co.uk/dashboard.html');
 const SCOPES = 'identify';
 
 const DISCORD_AUTH_URL =
@@ -66,7 +66,7 @@ if (loginBtn) {
     window.location.reload();
   } catch (err) {
     console.error('Discord auth error:', err);
-    alert('Login failed. Please try again.');
+    alert('Login failed: ' + err.message);
     window.location.href = 'index.html';
   }
 })();
