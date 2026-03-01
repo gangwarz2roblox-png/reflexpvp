@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MPS Roblox | Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="bg-overlay"></div>
+<nav class="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo">MPS</div>
+    <div class="nav-title">Metropolitan <span>Police Service</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="dashboard.html" class="active">Ranks</a>
+    <a href="dashboard.html" id="forcesTab">Forces</a>
+  </div>
+  <div class="nav-user">
+    <img class="nav-avatar" id="navAvatar" src="" alt="Avatar" />
+    <span class="nav-username" id="navUsername"></span>
+    <button class="btn-logout" id="logoutBtn">Logout</button>
+  </div>
+</nav>
+<div class="page">
+  <div class="container">
+    <div class="page-header">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Ranks & Force Codes</span></div>
+      <h1>UK POLICE REFERENCE</h1>
+      <p>Metropolitan Police Service — Roblox Community Reference Guide</p>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="ranks" onclick="switchTab('ranks')">Ranks</button>
+      <button class="tab-btn" data-tab="forces" onclick="switchTab('forces')">Force Codes</button>
+    </div>
+
+    <!-- RANKS -->
+    <div class="tab-content active" id="tab-ranks">
+      <div class="stats-bar">
+        <div class="stat-pill"><strong>20</strong><span>Total Ranks</span></div>
+        <div class="stat-pill"><strong>ACPO</strong><span>Senior Rank Tier</span></div>
+        <div class="stat-pill"><strong>MPS</strong><span>Rank Structure</span></div>
+      </div>
+      <div class="section-label">Senior Officers (ACPO Ranks)</div>
+      <div class="ranks-grid">
+        <div class="rank-card tier-1"><div class="rank-number">1</div><div class="rank-info"><div class="rank-title">Commissioner</div><div class="rank-abbr">The highest rank in the Metropolitan Police Service</div></div><span class="rank-badge badge-gold">Commissioner</span></div>
+        <div class="rank-card tier-1"><div class="rank-number">2</div><div class="rank-info"><div class="rank-title">Deputy Commissioner</div><div class="rank-abbr">Dep. Com. — Second in command of the MPS</div></div><span class="rank-badge badge-gold">ACPO</span></div>
+        <div class="rank-card tier-1"><div class="rank-number">3</div><div class="rank-info"><div class="rank-title">Assistant Commissioner</div><div class="rank-abbr">AC — Senior strategic commander</div></div><span class="rank-badge badge-gold">ACPO</span></div>
+        <div class="rank-card tier-1"><div class="rank-number">4</div><div class="rank-info"><div class="rank-title">Deputy Assistant Commissioner</div><div class="rank-abbr">DAC — Senior operational commander</div></div><span class="rank-badge badge-gold">ACPO</span></div>
+        <div class="rank-card tier-1"><div class="rank-number">5</div><div class="rank-info"><div class="rank-title">Commander</div><div class="rank-abbr">Cmdr — MPS-specific ACPO rank</div></div><span class="rank-badge badge-gold">ACPO</span></div>
+      </div>
+      <div class="section-label">Senior Officers</div>
+      <div class="ranks-grid">
+        <div class="rank-card tier-2"><div class="rank-number">6</div><div class="rank-info"><div class="rank-title">Chief Superintendent</div><div class="rank-abbr">Ch. Supt — Commands a borough or large department</div></div><span class="rank-badge badge-silver">Senior</span></div>
+        <div class="rank-card tier-2"><div class="rank-number">7</div><div class="rank-info"><div class="rank-title">Superintendent</div><div class="rank-abbr">Supt — Commands divisions and specialist units</div></div><span class="rank-badge badge-silver">Senior</span></div>
+      </div>
+      <div class="section-label">Middle Management (Inspector Ranks)</div>
+      <div class="ranks-grid">
+        <div class="rank-card tier-3"><div class="rank-number">8</div><div class="rank-info"><div class="rank-title">Chief Inspector</div><div class="rank-abbr">Ch. Insp — Area commander, manages multiple response teams</div></div><span class="rank-badge badge-bronze">Inspector</span></div>
+        <div class="rank-card tier-3"><div class="rank-number">9</div><div class="rank-info"><div class="rank-title">Inspector</div><div class="rank-abbr">Insp — Shift commander, first-line management</div></div><span class="rank-badge badge-bronze">Inspector</span></div>
+      </div>
+      <div class="section-label">Supervisory Ranks</div>
+      <div class="ranks-grid">
+        <div class="rank-card tier-4"><div class="rank-number">10</div><div class="rank-info"><div class="rank-title">Detective Chief Inspector</div><div class="rank-abbr">DCI — Senior investigator, heads major investigations</div></div><span class="rank-badge badge-blue">Detective</span></div>
+        <div class="rank-card tier-4"><div class="rank-number">11</div><div class="rank-info"><div class="rank-title">Detective Inspector</div><div class="rank-abbr">DI — Leads detective teams and complex investigations</div></div><span class="rank-badge badge-blue">Detective</span></div>
+        <div class="rank-card tier-4"><div class="rank-number">12</div><div class="rank-info"><div class="rank-title">Detective Sergeant</div><div class="rank-abbr">DS — Supervises detective constables</div></div><span class="rank-badge badge-blue">Detective</span></div>
+        <div class="rank-card tier-4"><div class="rank-number">13</div><div class="rank-info"><div class="rank-title">Sergeant</div><div class="rank-abbr">Sgt — First line supervisor of uniform constables</div></div><span class="rank-badge badge-gray">Supervisory</span></div>
+      </div>
+      <div class="section-label">Constable Ranks</div>
+      <div class="ranks-grid">
+        <div class="rank-card tier-5"><div class="rank-number">14</div><div class="rank-info"><div class="rank-title">Detective Constable</div><div class="rank-abbr">DC — Plain-clothes investigator</div></div><span class="rank-badge badge-blue">Detective</span></div>
+        <div class="rank-card tier-5"><div class="rank-number">15</div><div class="rank-info"><div class="rank-title">Police Constable</div><div class="rank-abbr">PC — Frontline response officer</div></div><span class="rank-badge badge-gray">Constable</span></div>
+        <div class="rank-card tier-5"><div class="rank-number">16</div><div class="rank-info"><div class="rank-title">Trainee Detective Constable</div><div class="rank-abbr">TDC — Constable undergoing detective training</div></div><span class="rank-badge badge-gray">Trainee</span></div>
+        <div class="rank-card tier-5"><div class="rank-number">17</div><div class="rank-info"><div class="rank-title">Special Constable</div><div class="rank-abbr">SC — Volunteer warranted officer</div></div><span class="rank-badge badge-gray">Special</span></div>
+        <div class="rank-card tier-5"><div class="rank-number">18</div><div class="rank-info"><div class="rank-title">Police Community Support Officer</div><div class="rank-abbr">PCSO — Visible community presence, limited powers</div></div><span class="rank-badge badge-gray">Support</span></div>
+        <div class="rank-card tier-5"><div class="rank-number">19</div><div class="rank-info"><div class="rank-title">Police Cadet</div><div class="rank-abbr">Cadet — Youth volunteer programme member</div></div><span class="rank-badge badge-gray">Cadet</span></div>
+        <div class="rank-card tier-5"><div class="rank-number">20</div><div class="rank-info"><div class="rank-title">Probationary Constable</div><div class="rank-abbr">PC (Prob.) — Officer in initial 2-year probationary period</div></div><span class="rank-badge badge-gray">Probationary</span></div>
+      </div>
+    </div>
+
+    <!-- FORCES -->
+    <div class="tab-content" id="tab-forces">
+      <div class="stats-bar">
+        <div class="stat-pill"><strong>45</strong><span>Total Forces</span></div>
+        <div class="stat-pill"><strong>43</strong><span>England & Wales</span></div>
+        <div class="stat-pill"><strong>1</strong><span>Scotland</span></div>
+        <div class="stat-pill"><strong>1</strong><span>N. Ireland</span></div>
+      </div>
+      <div class="search-bar">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="forceSearch" placeholder="Search force name or code..." oninput="filterForces()" />
+      </div>
+      <div class="section-label">Metropolitan & City of London</div>
+      <div class="forces-grid">
+        <div class="force-card" data-name="Metropolitan Police Service London MPS"><div class="force-code highlight">MPS</div><div><div class="force-name">Metropolitan Police Service</div><div class="force-region">London</div></div></div>
+        <div class="force-card" data-name="City of London Police CoLP London"><div class="force-code highlight">CoLP</div><div><div class="force-name">City of London Police</div><div class="force-region">London (Square Mile)</div></div></div>
+      </div>
+      <div class="section-label">England — North</div>
+      <div class="forces-grid">
+        <div class="force-card" data-name="Cumbria Constabulary CU"><div class="force-code">CU</div><div><div class="force-name">Cumbria Constabulary</div><div class="force-region">North West</div></div></div>
+        <div class="force-card" data-name="Durham Constabulary DU"><div class="force-code">DU</div><div><div class="force-name">Durham Constabulary</div><div class="force-region">North East</div></div></div>
+        <div class="force-card" data-name="Greater Manchester Police GMP"><div class="force-code">GMP</div><div><div class="force-name">Greater Manchester Police</div><div class="force-region">North West</div></div></div>
+        <div class="force-card" data-name="Humberside Police HU"><div class="force-code">HU</div><div><div class="force-name">Humberside Police</div><div class="force-region">Yorkshire & Humber</div></div></div>
+        <div class="force-card" data-name="Lancashire Constabulary LA"><div class="force-code">LA</div><div><div class="force-name">Lancashire Constabulary</div><div class="force-region">North West</div></div></div>
+        <div class="force-card" data-name="Merseyside Police ME"><div class="force-code">ME</div><div><div class="force-name">Merseyside Police</div><div class="force-region">North West</div></div></div>
+        <div class="force-card" data-name="North Yorkshire Police NY"><div class="force-code">NY</div><div><div class="force-name">North Yorkshire Police</div><div class="force-region">Yorkshire</div></div></div>
+        <div class="force-card" data-name="Northumbria Police NU"><div class="force-code">NU</div><div><div class="force-name">Northumbria Police</div><div class="force-region">North East</div></div></div>
+        <div class="force-card" data-name="South Yorkshire Police SY"><div class="force-code">SY</div><div><div class="force-name">South Yorkshire Police</div><div class="force-region">Yorkshire</div></div></div>
+        <div class="force-card" data-name="West Yorkshire Police WY"><div class="force-code">WY</div><div><div class="force-name">West Yorkshire Police</div><div class="force-region">Yorkshire</div></div></div>
+        <div class="force-card" data-name="Cheshire Constabulary CH"><div class="force-code">CH</div><div><div class="force-name">Cheshire Constabulary</div><div class="force-region">North West</div></div></div>
+        <div class="force-card" data-name="Cleveland Police CV"><div class="force-code">CV</div><div><div class="force-name">Cleveland Police</div><div class="force-region">North East</div></div></div>
+      </div>
+      <div class="section-label">England — Midlands</div>
+      <div class="forces-grid">
+        <div class="force-card" data-name="Derbyshire Constabulary DE"><div class="force-code">DE</div><div><div class="force-name">Derbyshire Constabulary</div><div class="force-region">East Midlands</div></div></div>
+        <div class="force-card" data-name="Leicestershire Police LE"><div class="force-code">LE</div><div><div class="force-name">Leicestershire Police</div><div class="force-region">East Midlands</div></div></div>
+        <div class="force-card" data-name="Lincolnshire Police LI"><div class="force-code">LI</div><div><div class="force-name">Lincolnshire Police</div><div class="force-region">East Midlands</div></div></div>
+        <div class="force-card" data-name="Northamptonshire Police NH"><div class="force-code">NH</div><div><div class="force-name">Northamptonshire Police</div><div class="force-region">East Midlands</div></div></div>
+        <div class="force-card" data-name="Nottinghamshire Police NT"><div class="force-code">NT</div><div><div class="force-name">Nottinghamshire Police</div><div class="force-region">East Midlands</div></div></div>
+        <div class="force-card" data-name="Staffordshire Police SF"><div class="force-code">SF</div><div><div class="force-name">Staffordshire Police</div><div class="force-region">West Midlands</div></div></div>
+        <div class="force-card" data-name="Warwickshire Police WA"><div class="force-code">WA</div><div><div class="force-name">Warwickshire Police</div><div class="force-region">West Midlands</div></div></div>
+        <div class="force-card" data-name="West Mercia Police WM"><div class="force-code">WM</div><div><div class="force-name">West Mercia Police</div><div class="force-region">West Midlands</div></div></div>
+        <div class="force-card" data-name="West Midlands Police WMP"><div class="force-code">WMP</div><div><div class="force-name">West Midlands Police</div><div class="force-region">West Midlands</div></div></div>
+      </div>
+      <div class="section-label">England — East & South East</div>
+      <div class="forces-grid">
+        <div class="force-card" data-name="Bedfordshire Police BD"><div class="force-code">BD</div><div><div class="force-name">Bedfordshire Police</div><div class="force-region">East of England</div></div></div>
+        <div class="force-card" data-name="Cambridgeshire Constabulary CB"><div class="force-code">CB</div><div><div class="force-name">Cambridgeshire Constabulary</div><div class="force-region">East of England</div></div></div>
+        <div class="force-card" data-name="Essex Police EX"><div class="force-code">EX</div><div><div class="force-name">Essex Police</div><div class="force-region">East of England</div></div></div>
+        <div class="force-card" data-name="Hertfordshire Constabulary HT"><div class="force-code">HT</div><div><div class="force-name">Hertfordshire Constabulary</div><div class="force-region">East of England</div></div></div>
+        <div class="force-card" data-name="Norfolk Constabulary NF"><div class="force-code">NF</div><div><div class="force-name">Norfolk Constabulary</div><div class="force-region">East of England</div></div></div>
+        <div class="force-card" data-name="Suffolk Constabulary SU"><div class="force-code">SU</div><div><div class="force-name">Suffolk Constabulary</div><div class="force-region">East of England</div></div></div>
+        <div class="force-card" data-name="Kent Police KT"><div class="force-code">KT</div><div><div class="force-name">Kent Police</div><div class="force-region">South East</div></div></div>
+        <div class="force-card" data-name="Surrey Police SR"><div class="force-code">SR</div><div><div class="force-name">Surrey Police</div><div class="force-region">South East</div></div></div>
+        <div class="force-card" data-name="Sussex Police SX"><div class="force-code">SX</div><div><div class="force-name">Sussex Police</div><div class="force-region">South East</div></div></div>
+        <div class="force-card" data-name="Thames Valley Police TV"><div class="force-code">TV</div><div><div class="force-name">Thames Valley Police</div><div class="force-region">South East</div></div></div>
+      </div>
+      <div class="section-label">England — South West</div>
+      <div class="forces-grid">
+        <div class="force-card" data-name="Avon and Somerset Constabulary AV"><div class="force-code">AV</div><div><div class="force-name">Avon and Somerset Constabulary</div><div class="force-region">South West</div></div></div>
+        <div class="force-card" data-name="Devon and Cornwall Police DN"><div class="force-code">DN</div><div><div class="force-name">Devon and Cornwall Police</div><div class="force-region">South West</div></div></div>
+        <div class="force-card" data-name="Dorset Police DT"><div class="force-code">DT</div><div><div class="force-name">Dorset Police</div><div class="force-region">South West</div></div></div>
+        <div class="force-card" data-name="Gloucestershire Constabulary GL"><div class="force-code">GL</div><div><div class="force-name">Gloucestershire Constabulary</div><div class="force-region">South West</div></div></div>
+        <div class="force-card" data-name="Hampshire Constabulary HM"><div class="force-code">HM</div><div><div class="force-name">Hampshire Constabulary</div><div class="force-region">South / Isle of Wight</div></div></div>
+        <div class="force-card" data-name="Wiltshire Police WT"><div class="force-code">WT</div><div><div class="force-name">Wiltshire Police</div><div class="force-region">South West</div></div></div>
+      </div>
+      <div class="section-label">Wales</div>
+      <div class="forces-grid">
+        <div class="force-card" data-name="Dyfed-Powys Police DP"><div class="force-code">DP</div><div><div class="force-name">Dyfed-Powys Police</div><div class="force-region">Mid & West Wales</div></div></div>
+        <div class="force-card" data-name="Gwent Police GW"><div class="force-code">GW</div><div><div class="force-name">Gwent Police</div><div class="force-region">South East Wales</div></div></div>
+        <div class="force-card" data-name="North Wales Police NW"><div class="force-code">NW</div><div><div class="force-name">North Wales Police</div><div class="force-region">North Wales</div></div></div>
+        <div class="force-card" data-name="South Wales Police SW"><div class="force-code">SW</div><div><div class="force-name">South Wales Police</div><div class="force-region">South Wales</div></div></div>
+      </div>
+      <div class="section-label">Scotland & Northern Ireland</div>
+      <div class="forces-grid">
+        <div class="force-card" data-name="Police Scotland PS"><div class="force-code">PS</div><div><div class="force-name">Police Scotland</div><div class="force-region">Scotland (National Force)</div></div></div>
+        <div class="force-card" data-name="Police Service of Northern Ireland PSNI"><div class="force-code">PSNI</div><div><div class="force-name">Police Service of Northern Ireland</div><div class="force-region">Northern Ireland</div></div></div>
+      </div>
+      <div class="section-label">National & Specialist Agencies</div>
+      <div class="forces-grid">
+        <div class="force-card" data-name="National Crime Agency NCA"><div class="force-code highlight">NCA</div><div><div class="force-name">National Crime Agency</div><div class="force-region">National — Serious & Organised Crime</div></div></div>
+        <div class="force-card" data-name="British Transport Police BTP"><div class="force-code">BTP</div><div><div class="force-name">British Transport Police</div><div class="force-region">National — Railway Network</div></div></div>
+        <div class="force-card" data-name="Ministry of Defence Police MDP"><div class="force-code">MDP</div><div><div class="force-name">Ministry of Defence Police</div><div class="force-region">National — Defence Sites</div></div></div>
+        <div class="force-card" data-name="Civil Nuclear Constabulary CNC"><div class="force-code">CNC</div><div><div class="force-name">Civil Nuclear Constabulary</div><div class="force-region">National — Nuclear Sites</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><p>MPS Roblox Community &mdash; Not affiliated with <span>the real Metropolitan Police Service</span></p></footer>
+<script src="auth.js"></script>
+<script>
+  const user = getUser();
+  if (!user) { window.location.href = 'index.html'; }
+  else {
+    document.getElementById('navUsername').textContent = user.username;
+    document.getElementById('navAvatar').src = user.avatar
+      ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`
+      : `https://cdn.discordapp.com/embed/avatars/${parseInt(user.discriminator||'0')%5}.png`;
+  }
+  document.getElementById('logoutBtn').addEventListener('click', logout);
+  function switchTab(t) {
+    document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(e=>e.classList.remove('active'));
+    document.getElementById('tab-'+t).classList.add('active');
+    document.querySelector(`[data-tab="${t}"]`).classList.add('active');
+  }
+  document.getElementById('forcesTab').addEventListener('click',e=>{e.preventDefault();switchTab('forces');window.scrollTo({top:0,behavior:'smooth'});});
+  if(window.location.hash==='#forces') switchTab('forces');
+  function filterForces(){
+    const q=document.getElementById('forceSearch').value.toLowerCase();
+    document.querySelectorAll('.force-card').forEach(c=>{c.style.display=c.getAttribute('data-name').toLowerCase().includes(q)?'flex':'none';});
+  }
+</script>
+</body>
+</html>
