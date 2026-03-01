@@ -23,7 +23,17 @@
       Discord
     </a>
   </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="dashboard.html">Ranks</a>
+  <a href="dashboard.html#forces">Forces</a>
+  <a href="apply.html">Apply</a>
+  <a href="https://discord.gg/X68UEHfxPH" target="_blank" class="discord-mob">Discord</a>
+</div>
 <div class="page">
   <div class="container">
     <div class="page-header">
@@ -174,6 +184,10 @@
 
 <footer><p>MPS Roblox Community &mdash; Not affiliated with <span>the real Metropolitan Police Service</span></p></footer>
 <script>
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
   function switchTab(t) {
     document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(e=>e.classList.remove('active'));
