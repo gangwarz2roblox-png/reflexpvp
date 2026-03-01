@@ -155,7 +155,7 @@
         <div class="form-group">
           <label>What is the rank above Police Constable? <span class="req">*</span></label>
           <input type="text" id="rankQ" placeholder="Your answer..." required />
-          <p class="form-note">Check the Ranks page if unsure.</p>
+          <p class="form-note">Answer: Sergeant</p>
         </div>
 
         <div class="form-group">
@@ -201,7 +201,7 @@ document.getElementById('applyForm').addEventListener('submit', async (e) => {
 
   const rankAnswer = document.getElementById('rankQ').value.trim().toLowerCase();
   if (!rankAnswer.includes('sergeant') && !rankAnswer.includes('sgt')) {
-    showError('Incorrect answer to the rank question. Check the Ranks page and try again.');
+    showError('Incorrect answer to the rank question. The answer is Sergeant.');
     return;
   }
 
