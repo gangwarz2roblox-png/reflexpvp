@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MPS Roblox | Apply</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .apply-wrap { max-width: 680px; margin: 0 auto; padding: 0 24px 60px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--text); font-family: 'Inter', sans-serif;
+      font-size: 14px; padding: 12px 16px; outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--met-accent); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group select option { background: #0f1520; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
+    .btn-submit {
+      width: 100%; background: var(--met-accent); color: white; border: none;
+      border-radius: 10px; padding: 14px; font-size: 15px; font-weight: 600;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .btn-submit:hover { background: #0068d9; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,87,184,0.4); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+    .form-divider { height: 1px; background: var(--border); margin: 28px 0; }
+    .form-note { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+    .success-box { display: none; background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); border-radius: 12px; padding: 24px; text-align: center; margin-top: 20px; }
+    .success-box h3 { color: #2ecc71; font-family: 'Rajdhani', sans-serif; font-size: 22px; letter-spacing: 1px; margin-bottom: 8px; }
+    .success-box p { color: var(--text-muted); font-size: 14px; }
+    .error-box { display: none; background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); border-radius: 12px; padding: 16px; text-align: center; margin-top: 16px; color: #e74c3c; font-size: 14px; }
+    .req { color: #e74c3c; }
+  </style>
+</head>
+<body>
+<div class="bg-overlay"></div>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo">MPS</div>
+    <div class="nav-title">Metropolitan <span>Police Service</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Ranks</a>
+    <a href="dashboard.html#forces">Forces</a>
+    <a href="apply.html" class="active">Apply</a>
+    <a href="https://discord.gg/X68UEHfxPH" target="_blank" style="background:#5865F2;color:white;display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;">
+      <svg width="16" height="12" viewBox="0 0 71 55" fill="currentColor"><path d="M60.1 4.98A58.55 58.55 0 0 0 45.1.39a.22.22 0 0 0-.23.11 40.84 40.84 0 0 0-1.8 3.7 54.03 54.03 0 0 0-16.21 0 37.4 37.4 0 0 0-1.83-3.7.23.23 0 0 0-.23-.11A58.37 58.37 0 0 0 9.8 4.98a.21.21 0 0 0-.1.08C1.58 17.09-.95 28.83.3 40.42c.005.06.04.11.08.15a58.84 58.84 0 0 0 17.72 8.95.23.23 0 0 0 .25-.08 42.09 42.09 0 0 0 3.62-5.89.22.22 0 0 0-.12-.31 38.77 38.77 0 0 1-5.54-2.64.23.23 0 0 1-.02-.38c.37-.28.74-.57 1.1-.86a.22.22 0 0 1 .23-.03c11.62 5.31 24.21 5.31 35.7 0a.22.22 0 0 1 .23.03c.35.3.73.59 1.1.87.13.1.12.3-.03.38a36.37 36.37 0 0 1-5.54 2.63.23.23 0 0 0-.12.32 47.25 47.25 0 0 0 3.61 5.88c.06.08.16.12.26.09a58.65 58.65 0 0 0 17.74-8.95.23.23 0 0 0 .08-.15c1.48-15.27-2.48-28.92-10.5-40.34a.18.18 0 0 0-.09-.08ZM23.74 33.15c-3.49 0-6.37-3.21-6.37-7.15s2.82-7.15 6.37-7.15c3.58 0 6.43 3.24 6.37 7.15 0 3.94-2.82 7.15-6.37 7.15Zm23.56 0c-3.5 0-6.37-3.21-6.37-7.15s2.82-7.15 6.37-7.15c3.58 0 6.43 3.24 6.37 7.15 0 3.94-2.79 7.15-6.37 7.15Z"/></svg>
+      Discord
+    </a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="container">
+    <div class="page-header">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span>Apply</span></div>
+      <h1>JOIN THE MPS</h1>
+      <p>Metropolitan Police Service Roblox — Officer Application Form</p>
+    </div>
+
+    <div class="apply-wrap">
+      <form id="applyForm">
+
+        <div class="section-label">Personal Information</div>
+
+        <div class="form-group">
+          <label>Discord Username <span class="req">*</span></label>
+          <input type="text" id="discord" placeholder="e.g. username#0000 or username" required />
+        </div>
+
+        <div class="form-group">
+          <label>Roblox Username <span class="req">*</span></label>
+          <input type="text" id="roblox" placeholder="Your Roblox username" required />
+        </div>
+
+        <div class="form-group">
+          <label>Age <span class="req">*</span></label>
+          <select id="age" required>
+            <option value="" disabled selected>Select your age range</option>
+            <option>Under 13</option>
+            <option>13 – 15</option>
+            <option>16 – 17</option>
+            <option>18+</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Timezone <span class="req">*</span></label>
+          <select id="timezone" required>
+            <option value="" disabled selected>Select your timezone</option>
+            <option>GMT (UK)</option>
+            <option>BST (UK Summer)</option>
+            <option>CET (Europe)</option>
+            <option>EST (US East)</option>
+            <option>CST (US Central)</option>
+            <option>PST (US West)</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-divider"></div>
+        <div class="section-label">Experience & Background</div>
+
+        <div class="form-group">
+          <label>Do you have previous Roblox police experience? <span class="req">*</span></label>
+          <select id="experience" required>
+            <option value="" disabled selected>Select an option</option>
+            <option>Yes — I have experience in other Roblox police groups</option>
+            <option>Some — I have limited experience</option>
+            <option>No — This would be my first</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>If yes, which groups? (Leave blank if none)</label>
+          <input type="text" id="prevGroups" placeholder="e.g. British Police Roleplay, SCPRP..." />
+        </div>
+
+        <div class="form-group">
+          <label>How active can you be? <span class="req">*</span></label>
+          <select id="activity" required>
+            <option value="" disabled selected>Select an option</option>
+            <option>Daily</option>
+            <option>Several times a week</option>
+            <option>A few times a week</option>
+            <option>Weekends only</option>
+          </select>
+        </div>
+
+        <div class="form-divider"></div>
+        <div class="section-label">Application Questions</div>
+
+        <div class="form-group">
+          <label>Why do you want to join the MPS? <span class="req">*</span></label>
+          <textarea id="whyJoin" placeholder="Tell us why you want to join (minimum 30 words)..." required></textarea>
+          <p class="form-note">Be specific — generic answers are unlikely to be accepted.</p>
+        </div>
+
+        <div class="form-group">
+          <label>What can you bring to the MPS? <span class="req">*</span></label>
+          <textarea id="whatBring" placeholder="Describe your skills, qualities, or experience..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>What is the rank above Police Constable? <span class="req">*</span></label>
+          <input type="text" id="rankQ" placeholder="Your answer..." required />
+          <p class="form-note">Check the Ranks page if unsure.</p>
+        </div>
+
+        <div class="form-group">
+          <label>Do you agree to follow all MPS rules and chain of command? <span class="req">*</span></label>
+          <select id="agree" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="yes">Yes, I agree</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
+        <div class="error-box" id="errorBox"></div>
+      </form>
+
+      <div class="success-box" id="successBox">
+        <h3>APPLICATION SUBMITTED</h3>
+        <p>Your application has been received. Our team will review it and contact you via Discord within 48 hours. Make sure you're in the <a href="https://discord.gg/X68UEHfxPH" style="color:#2ecc71">Discord server</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="position:fixed;bottom:20px;right:20px;z-index:200;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.5);">
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/42gdryeACmyCAyvFWKPkdU?utm_source=generator&theme=0" width="300" height="80" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+
+<footer><p>MPS Roblox Community &mdash; Not affiliated with <span>the real Metropolitan Police Service</span></p></footer>
+
+<script>
+const WEBHOOK_URL = 'PASTE_YOUR_DISCORD_WEBHOOK_HERE';
+
+document.getElementById('applyForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const whyJoin = document.getElementById('whyJoin').value.trim();
+  if (whyJoin.split(' ').length < 30) {
+    showError('Your "Why do you want to join" answer must be at least 30 words.');
+    return;
+  }
+
+  const rankAnswer = document.getElementById('rankQ').value.trim().toLowerCase();
+  if (!rankAnswer.includes('sergeant') && !rankAnswer.includes('sgt')) {
+    showError('Incorrect answer to the rank question. Check the Ranks page and try again.');
+    return;
+  }
+
+  if (document.getElementById('agree').value !== 'yes') {
+    showError('You must agree to follow MPS rules to apply.');
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  const data = {
+    username: 'MPS Applications',
+    embeds: [{
+      title: '🚔 New Officer Application',
+      color: 0x003087,
+      fields: [
+        { name: 'Discord', value: document.getElementById('discord').value, inline: true },
+        { name: 'Roblox', value: document.getElementById('roblox').value, inline: true },
+        { name: 'Age', value: document.getElementById('age').value, inline: true },
+        { name: 'Timezone', value: document.getElementById('timezone').value, inline: true },
+        { name: 'Activity', value: document.getElementById('activity').value, inline: true },
+        { name: 'Experience', value: document.getElementById('experience').value },
+        { name: 'Previous Groups', value: document.getElementById('prevGroups').value || 'None' },
+        { name: 'Why join MPS?', value: whyJoin },
+        { name: 'What can you bring?', value: document.getElementById('whatBring').value },
+      ],
+      timestamp: new Date().toISOString(),
+      footer: { text: 'MPS Roblox — reflexpvp.co.uk' }
+    }]
+  };
+
+  try {
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+      document.getElementById('applyForm').style.display = 'none';
+      document.getElementById('successBox').style.display = 'block';
+    } else {
+      throw new Error('Webhook failed');
+    }
+  } catch {
+    showError('Submission failed. Please try again or contact us on Discord.');
+    btn.disabled = false;
+    btn.textContent = 'Submit Application';
+  }
+});
+
+function showError(msg) {
+  const el = document.getElementById('errorBox');
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+</body>
+</html>
