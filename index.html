@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MPS Roblox | Login</title>
+  <title>MPS Roblox</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -29,18 +29,10 @@
     </div>
     <div class="hero-tag">Roblox Community</div>
     <h1>Metropolitan <span>Police Service</span></h1>
-    <p>Welcome to the official MPS Roblox community portal. Access ranks, UK police force codes, and community resources. Sign in with Discord to continue.</p>
-    <div class="login-card">
-      <h3>OFFICER AUTHENTICATION</h3>
-      <p>Login with your Discord account to access the portal. No Roblox account linking required.</p>
-      <a href="#" class="btn-discord" id="loginBtn">
-        <svg width="22" height="16" viewBox="0 0 71 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M60.1 4.98A58.55 58.55 0 0 0 45.1.39a.22.22 0 0 0-.23.11 40.84 40.84 0 0 0-1.8 3.7 54.03 54.03 0 0 0-16.21 0 37.4 37.4 0 0 0-1.83-3.7.23.23 0 0 0-.23-.11A58.37 58.37 0 0 0 9.8 4.98a.21.21 0 0 0-.1.08C1.58 17.09-.95 28.83.3 40.42c.005.06.04.11.08.15a58.84 58.84 0 0 0 17.72 8.95.23.23 0 0 0 .25-.08 42.09 42.09 0 0 0 3.62-5.89.22.22 0 0 0-.12-.31 38.77 38.77 0 0 1-5.54-2.64.23.23 0 0 1-.02-.38c.37-.28.74-.57 1.1-.86a.22.22 0 0 1 .23-.03c11.62 5.31 24.21 5.31 35.7 0a.22.22 0 0 1 .23.03c.35.3.73.59 1.1.87.13.1.12.3-.03.38a36.37 36.37 0 0 1-5.54 2.63.23.23 0 0 0-.12.32 47.25 47.25 0 0 0 3.61 5.88c.06.08.16.12.26.09a58.65 58.65 0 0 0 17.74-8.95.23.23 0 0 0 .08-.15c1.48-15.27-2.48-28.92-10.5-40.34a.18.18 0 0 0-.09-.08ZM23.74 33.15c-3.49 0-6.37-3.21-6.37-7.15s2.82-7.15 6.37-7.15c3.58 0 6.43 3.24 6.37 7.15 0 3.94-2.82 7.15-6.37 7.15Zm23.56 0c-3.5 0-6.37-3.21-6.37-7.15s2.82-7.15 6.37-7.15c3.58 0 6.43 3.24 6.37 7.15 0 3.94-2.79 7.15-6.37 7.15Z" fill="currentColor"/>
-        </svg>
-        Login with Discord
-      </a>
-      <p class="login-note">Your Roblox account is never accessed or linked</p>
-    </div>
+    <p>Welcome to the official MPS Roblox community portal. Access ranks, UK police force codes, and community resources.</p>
+    <a href="dashboard.html" class="btn-discord" style="display:inline-flex;width:auto;padding:14px 32px;margin-top:8px">
+      View Ranks &amp; Force Codes
+    </a>
   </div>
 </section>
 
@@ -48,10 +40,5 @@
   <p>MPS Roblox Community &mdash; Not affiliated with <span>the real Metropolitan Police Service</span></p>
 </footer>
 
-<script src="auth.js"></script>
-<script>
-  const user = getUser();
-  if (user) window.location.href = 'dashboard.html';
-</script>
 </body>
 </html>
