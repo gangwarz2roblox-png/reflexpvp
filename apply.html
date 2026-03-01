@@ -188,7 +188,8 @@
 <footer><p>MPS Roblox Community &mdash; Not affiliated with <span>the real Metropolitan Police Service</span></p></footer>
 
 <script>
-const WEBHOOK_URL = 'https://discord.com/api/webhooks/1477766522712752139/QR7skr6Skny_mc5UVIFYmapbG_vpIayUofjOhNFn-m_iwB2_GHJLm4Btu2v-zCN6Xe-A';
+// !! After deploying the bot to Railway, replace this with your Railway URL
+const BOT_URL = 'https://REPLACE-WITH-YOUR-RAILWAY-URL.up.railway.app/apply';
 
 document.getElementById('applyForm').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -215,28 +216,19 @@ document.getElementById('applyForm').addEventListener('submit', async (e) => {
   btn.textContent = 'Submitting...';
 
   const data = {
-    username: 'MPS Applications',
-    embeds: [{
-      title: '🚔 New Officer Application',
-      color: 0x003087,
-      fields: [
-        { name: 'Discord', value: document.getElementById('discord').value, inline: true },
-        { name: 'Roblox', value: document.getElementById('roblox').value, inline: true },
-        { name: 'Age', value: document.getElementById('age').value, inline: true },
-        { name: 'Timezone', value: document.getElementById('timezone').value, inline: true },
-        { name: 'Activity', value: document.getElementById('activity').value, inline: true },
-        { name: 'Experience', value: document.getElementById('experience').value },
-        { name: 'Previous Groups', value: document.getElementById('prevGroups').value || 'None' },
-        { name: 'Why join MPS?', value: whyJoin },
-        { name: 'What can you bring?', value: document.getElementById('whatBring').value },
-      ],
-      timestamp: new Date().toISOString(),
-      footer: { text: 'MPS Roblox — reflexpvp.co.uk' }
-    }]
+    discord:    document.getElementById('discord').value,
+    roblox:     document.getElementById('roblox').value,
+    age:        document.getElementById('age').value,
+    timezone:   document.getElementById('timezone').value,
+    activity:   document.getElementById('activity').value,
+    experience: document.getElementById('experience').value,
+    prevGroups: document.getElementById('prevGroups').value,
+    whyJoin:    whyJoin,
+    whatBring:  document.getElementById('whatBring').value,
   };
 
   try {
-    const res = await fetch(WEBHOOK_URL, {
+    const res = await fetch(BOT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -246,7 +238,7 @@ document.getElementById('applyForm').addEventListener('submit', async (e) => {
       document.getElementById('applyForm').style.display = 'none';
       document.getElementById('successBox').style.display = 'block';
     } else {
-      throw new Error('Webhook failed');
+      throw new Error('Bot server error');
     }
   } catch {
     showError('Submission failed. Please try again or contact us on Discord.');
