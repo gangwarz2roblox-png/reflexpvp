@@ -86,6 +86,23 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .shop-tab:hover { color: white; }
 .shop-tab.active { background: var(--accent); color: white; }
 
+/* ── Met Access Cards ── */
+.met-card { border-color: rgba(59,130,246,0.25); }
+.met-card:hover { border-color: rgba(59,130,246,0.7); box-shadow: 0 8px 40px rgba(59,130,246,0.15); }
+.met-card-silver { border-color: rgba(192,192,192,0.25); }
+.met-card-silver:hover { border-color: rgba(192,192,192,0.6); box-shadow: 0 8px 40px rgba(192,192,192,0.1); }
+.met-card-gold { border-color: rgba(207,181,59,0.35); box-shadow: 0 0 20px rgba(207,181,59,0.08); }
+.met-card-gold:hover { border-color: rgba(207,181,59,0.7); box-shadow: 0 8px 40px rgba(207,181,59,0.2); }
+
+.met-body { padding: 24px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.met-icon { font-size: 40px; }
+.met-tier { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+.met-card-silver .met-tier { color: #c0c0c0; }
+.met-card-gold .met-tier { color: #cfb53b; }
+
+.met-perks { display: flex; flex-direction: column; gap: 6px; margin: 4px 0; }
+.met-perk { font-size: 12px; color: rgba(232,232,240,0.65); }
+
 /* ── Coming Soon ── */
 .coming-soon {
   grid-column: 1 / -1;
