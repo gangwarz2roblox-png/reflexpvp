@@ -47,6 +47,7 @@
       <button class="shop-tab active" onclick="switchTab('vehicles', this)">🚗 Vehicles</button>
       <button class="shop-tab" onclick="switchTab('clothes', this)">👕 Custom Clothes</button>
       <button class="shop-tab" onclick="switchTab('met', this)">👮 Met Access</button>
+      <button class="shop-tab" onclick="switchTab('staff', this)">👥 Staff Team</button>
     </div>
 
     <!-- VEHICLES TAB -->
@@ -258,6 +259,16 @@
 
     </div>
 
+    <!-- STAFF TEAM TAB -->
+    <div id="tab-staff" class="shop-grid staff-grid" style="display:none">
+      <div class="staff-card">
+        <div class="staff-owner-badge">👑 Owner</div>
+        <img class="staff-avatar" src="https://cdn.discordapp.com/avatars/1357419387639955740/a52426e1b7851f05ad7aa973c3d4ff21.png?size=256" alt="MB #MS"/>
+        <div class="staff-name">MB #MS</div>
+        <div class="staff-role owner">Owner</div>
+      </div>
+    </div>
+
     <!-- HOW TO BUY -->
     <div class="how-box">
       <div class="how-title">How to Buy</div>
@@ -289,6 +300,7 @@ function switchTab(tab, btn) {
   document.getElementById('tab-vehicles').style.display = tab === 'vehicles' ? 'grid' : 'none';
   document.getElementById('tab-clothes').style.display  = tab === 'clothes'  ? 'grid' : 'none';
   document.getElementById('tab-met').style.display      = tab === 'met'      ? 'grid' : 'none';
+  document.getElementById('tab-staff').style.display    = tab === 'staff'    ? 'grid' : 'none';
   document.querySelectorAll('.shop-tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 }

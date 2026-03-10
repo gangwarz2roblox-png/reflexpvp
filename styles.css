@@ -250,6 +250,26 @@ footer span { color: var(--accent); }
 .mobile-menu a:hover { background: rgba(168,85,247,0.12); }
 .mobile-menu a.discord-mob { background: var(--discord); color: white; text-align: center; display: flex; justify-content: center; }
 
+/* ── Staff Team ── */
+.staff-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+.staff-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 20px 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  position: relative; text-align: center;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.staff-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 8px 40px var(--accent-glow); }
+.staff-owner-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--accent); color: white;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 4px 10px; border-radius: 20px;
+}
+.staff-avatar { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; box-shadow: 0 0 20px var(--accent-glow); }
+.staff-name { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: white; }
+.staff-role { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; }
+.staff-role.owner { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+
 @media (max-width: 768px) {
   .navbar { padding: 0 16px; }
   .nav-links { display: none; }
