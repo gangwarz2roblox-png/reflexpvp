@@ -76,12 +76,16 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .shop-tabs {
   display: flex; gap: 8px; margin-bottom: 28px;
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 12px; padding: 6px; width: fit-content;
+  border-radius: 12px; padding: 6px;
+  width: 100%; overflow-x: auto;
+  scrollbar-width: none; -ms-overflow-style: none;
 }
+.shop-tabs::-webkit-scrollbar { display: none; }
 .shop-tab {
   background: none; border: none; color: var(--text-muted);
   padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
   cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s;
+  white-space: nowrap; flex-shrink: 0;
 }
 .shop-tab:hover { color: white; }
 .shop-tab.active { background: var(--accent); color: white; }
