@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --accent: #ef4444;
-  --accent-dark: #dc2626;
-  --accent-glow: rgba(239,68,68,0.3);
-  --bg: #0e0808;
-  --bg-card: #180f0f;
-  --bg-card2: #1f1414;
-  --border: rgba(239,68,68,0.15);
-  --text: #f0e8e8;
-  --text-muted: #6a5555;
+  --accent: #a855f7;
+  --accent-dark: #7c3aed;
+  --accent-glow: rgba(168,85,247,0.3);
+  --bg: #08080e;
+  --bg-card: #0f0f18;
+  --bg-card2: #14141f;
+  --border: rgba(168,85,247,0.15);
+  --text: #e8e8f0;
+  --text-muted: #55556a;
   --green: #22c55e;
   --discord: #5865F2;
   --discord-hover: #4752c4;
@@ -24,8 +24,8 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .bg-overlay {
   position: fixed; inset: 0; pointer-events: none; z-index: 0;
   background:
-    radial-gradient(ellipse at 20% 20%, rgba(239,68,68,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 80%, rgba(220,38,38,0.04) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 20%, rgba(168,85,247,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(124,58,237,0.04) 0%, transparent 50%);
 }
 
 /* ── Navbar ── */
@@ -47,7 +47,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .nav-title span { color: var(--text-muted); font-weight: 400; }
 .nav-links { display: flex; align-items: center; gap: 8px; }
 .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; }
-.nav-links a:hover, .nav-links a.active { color: white; background: rgba(239,68,68,0.12); }
+.nav-links a:hover, .nav-links a.active { color: white; background: rgba(168,85,247,0.12); }
 .btn-discord-nav {
   display: flex !important; align-items: center; gap: 6px;
   background: var(--discord) !important; color: white !important; padding: 6px 14px; border-radius: 6px;
@@ -60,8 +60,8 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 
 .page-header { padding: 56px 0 40px; text-align: center; }
 .page-header-tag {
-  display: inline-block; background: rgba(239,68,68,0.1);
-  border: 1px solid rgba(239,68,68,0.3); color: #f87171;
+  display: inline-block; background: rgba(168,85,247,0.1);
+  border: 1px solid rgba(168,85,247,0.3); color: #c084fc;
   font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
   padding: 5px 16px; border-radius: 20px; margin-bottom: 16px;
 }
@@ -227,44 +227,6 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .how-text { font-size: 12px; color: var(--text-muted); text-align: center; }
 .how-arr { font-size: 18px; color: var(--text-muted); }
 
-/* ── Roblox card image placeholder ── */
-.rblx-card-img { display: flex; align-items: center; justify-content: center; background: #0d0505; }
-.rblx-icon { font-size: 72px; line-height: 1; filter: drop-shadow(0 0 16px rgba(239,68,68,0.4)); }
-
-/* ── Staff Team ── */
-.staff-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
-.staff-card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 16px; padding: 28px 20px 20px;
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-  position: relative; text-align: center;
-  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-}
-.staff-card:hover {
-  transform: translateY(-4px); border-color: var(--accent);
-  box-shadow: 0 8px 40px rgba(239,68,68,0.2);
-}
-.staff-owner-badge {
-  position: absolute; top: 12px; left: 12px;
-  background: var(--accent); color: white;
-  font-size: 11px; font-weight: 700; letter-spacing: 1px;
-  padding: 4px 10px; border-radius: 20px;
-}
-.staff-avatar {
-  width: 90px; height: 90px; border-radius: 50%;
-  border: 3px solid var(--accent); object-fit: cover;
-  box-shadow: 0 0 20px rgba(239,68,68,0.3);
-}
-.staff-name {
-  font-family: 'Rajdhani', sans-serif; font-size: 20px;
-  font-weight: 700; color: white;
-}
-.staff-role {
-  font-size: 12px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; padding: 4px 14px; border-radius: 20px;
-}
-.staff-role.owner { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
-
 /* ── Footer ── */
 footer {
   border-top: 1px solid var(--border); padding: 24px; text-align: center;
@@ -285,7 +247,7 @@ footer span { color: var(--accent); }
 }
 .mobile-menu.open { display: flex; }
 .mobile-menu a { color: var(--text); text-decoration: none; font-size: 15px; font-weight: 500; padding: 12px 16px; border-radius: 8px; transition: background 0.2s; }
-.mobile-menu a:hover { background: rgba(239,68,68,0.12); }
+.mobile-menu a:hover { background: rgba(168,85,247,0.12); }
 .mobile-menu a.discord-mob { background: var(--discord); color: white; text-align: center; display: flex; justify-content: center; }
 
 @media (max-width: 768px) {
