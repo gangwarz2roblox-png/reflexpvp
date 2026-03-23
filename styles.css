@@ -371,3 +371,34 @@ footer span { color: var(--accent); }
 .rule-title { font-size: 15px; font-weight: 700; color: var(--text); }
 .rule-body { padding: 16px 20px; font-size: 14px; color: #aaa; line-height: 1.7; }
 .rule-body strong { color: var(--text); }
+
+/* ── Factions page ── */
+.factions-discord-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #5865f2; color: #fff; text-decoration: none;
+  font-size: 15px; font-weight: 700; padding: 14px 32px;
+  border-radius: 10px; transition: background .2s, transform .15s;
+}
+.factions-discord-btn:hover { background: #4752c4; transform: translateY(-2px); }
+.factions-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px; max-width: 900px; margin: 0 auto;
+}
+.faction-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 28px 24px; text-align: center;
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+}
+.faction-card:hover {
+  border-color: var(--accent); box-shadow: 0 0 24px var(--accent-glow);
+  transform: translateY(-4px);
+}
+.faction-tag {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--accent); margin-bottom: 12px;
+}
+.faction-name {
+  font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 700;
+  color: var(--text); letter-spacing: .05em; margin-bottom: 10px;
+}
+.faction-desc { font-size: 13px; color: var(--text-muted); }

@@ -41,6 +41,7 @@
       <button class="shop-tab active" id="tab-btn-store" onclick="switchPage('store')">🛒 Store</button>
       <button class="shop-tab" id="tab-btn-staff" onclick="switchPage('staff')">👥 Apply for Staff</button>
       <button class="shop-tab" id="tab-btn-rules" onclick="switchPage('rules')">📋 Rules</button>
+      <button class="shop-tab" id="tab-btn-factions" onclick="switchPage('factions')">🔫 Factions</button>
     </div>
 
     <!-- STORE PAGE -->
@@ -300,6 +301,50 @@
       </div>
     </div><!-- end #page-rules -->
 
+    <!-- FACTIONS PAGE -->
+    <div id="page-factions" style="display:none">
+      <div class="page-header">
+        <div class="page-header-tag">🔫 Active Gangs</div>
+        <h1>Server <span>Factions</span></h1>
+        <p>The gangs currently active in Shot In Brum.</p>
+      </div>
+
+      <div style="text-align:center;margin-bottom:36px">
+        <a href="https://discord.gg/btKxTTeFZJ" target="_blank" class="factions-discord-btn">
+          <svg width="20" height="15" viewBox="0 0 71 55" fill="currentColor"><path d="M60.1 4.98A58.55 58.55 0 0 0 45.1.39a.22.22 0 0 0-.23.11 40.84 40.84 0 0 0-1.8 3.7 54.03 54.03 0 0 0-16.21 0 37.4 37.4 0 0 0-1.83-3.7.23.23 0 0 0-.23-.11A58.37 58.37 0 0 0 9.8 4.98a.21.21 0 0 0-.1.08C1.58 17.09-.95 28.83.3 40.42c.005.06.04.11.08.15a58.84 58.84 0 0 0 17.72 8.95.23.23 0 0 0 .25-.08 42.09 42.09 0 0 0 3.62-5.89.22.22 0 0 0-.12-.31 38.77 38.77 0 0 1-5.54-2.64.23.23 0 0 1-.02-.38c.37-.28.74-.57 1.1-.86a.22.22 0 0 1 .23-.03c11.62 5.31 24.21 5.31 35.7 0a.22.22 0 0 1 .23.03c.35.3.73.59 1.1.87.13.1.12.3-.03.38a36.37 36.37 0 0 1-5.54 2.63.23.23 0 0 0-.12.32 47.25 47.25 0 0 0 3.61 5.88c.06.08.16.12.26.09a58.65 58.65 0 0 0 17.74-8.95.23.23 0 0 0 .08-.15c1.48-15.27-2.48-28.92-10.5-40.34a.18.18 0 0 0-.09-.08Z"/></svg>
+          Join Factions Discord
+        </a>
+      </div>
+
+      <div class="factions-grid">
+
+        <div class="faction-card">
+          <div class="faction-tag">Gang</div>
+          <div class="faction-name">NPK</div>
+          <div class="faction-desc">Active faction in Shot In Brum.</div>
+        </div>
+
+        <div class="faction-card">
+          <div class="faction-tag">Gang</div>
+          <div class="faction-name">HBZ</div>
+          <div class="faction-desc">Active faction in Shot In Brum.</div>
+        </div>
+
+        <div class="faction-card">
+          <div class="faction-tag">Gang</div>
+          <div class="faction-name">AFG</div>
+          <div class="faction-desc">Active faction in Shot In Brum.</div>
+        </div>
+
+        <div class="faction-card">
+          <div class="faction-tag">Gang</div>
+          <div class="faction-name">Silent Steppas</div>
+          <div class="faction-desc">Active faction in Shot In Brum.</div>
+        </div>
+
+      </div>
+    </div><!-- end #page-factions -->
+
   </div>
 </main>
 
@@ -376,9 +421,11 @@ function switchPage(page) {
   document.getElementById('page-store').style.display = page === 'store' ? 'block' : 'none';
   document.getElementById('page-staff').style.display = page === 'staff' ? 'block' : 'none';
   document.getElementById('page-rules').style.display = page === 'rules' ? 'block' : 'none';
+  document.getElementById('page-factions').style.display = page === 'factions' ? 'block' : 'none';
   document.getElementById('tab-btn-store').classList.toggle('active', page === 'store');
   document.getElementById('tab-btn-staff').classList.toggle('active', page === 'staff');
   document.getElementById('tab-btn-rules').classList.toggle('active', page === 'rules');
+  document.getElementById('tab-btn-factions').classList.toggle('active', page === 'factions');
 }
 
 // On load — handle OAuth callback or restore session
