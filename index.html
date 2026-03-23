@@ -36,6 +36,14 @@
 <main class="page">
   <div class="container">
 
+    <!-- PAGE TABS -->
+    <div class="shop-tabs" style="margin-bottom:32px">
+      <button class="shop-tab active" id="tab-btn-store" onclick="switchPage('store')">🛒 Store</button>
+      <button class="shop-tab" id="tab-btn-staff" onclick="switchPage('staff')">👥 Apply for Staff</button>
+    </div>
+
+    <!-- STORE PAGE -->
+    <div id="page-store">
     <div class="page-header">
       <div class="page-header-tag">🛒 Available Now</div>
       <h1>Shot In Brum <span>Store</span></h1>
@@ -131,6 +139,55 @@
         <div class="how-step"><div class="how-num">4</div><div class="how-text">Pay &amp; get item</div></div>
       </div>
     </div>
+    </div><!-- end #page-store -->
+
+    <!-- STAFF APPLICATION PAGE -->
+    <div id="page-staff" style="display:none">
+      <div class="page-header">
+        <div class="page-header-tag">👥 Join the Team</div>
+        <h1>Apply for <span>Staff</span></h1>
+        <p>Fill in the form below and your application will be sent straight to us.</p>
+      </div>
+
+      <div class="apply-form-wrap">
+        <form id="staff-form" onsubmit="submitApp(event)">
+          <div class="apply-field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your real name" required />
+          </div>
+          <div class="apply-field">
+            <label>Age</label>
+            <input type="number" name="age" placeholder="Your age" min="1" max="99" required />
+          </div>
+          <div class="apply-field">
+            <label>Ingame Name</label>
+            <input type="text" name="ingame" placeholder="Your Roblox username" required />
+          </div>
+          <div class="apply-field">
+            <label>Discord Username</label>
+            <input type="text" name="discord_user" placeholder="e.g. username#0000 or username" required />
+          </div>
+          <div class="apply-field">
+            <label>Discord ID</label>
+            <input type="text" name="discord_id" placeholder="e.g. 123456789012345678" required />
+          </div>
+          <div class="apply-field">
+            <label>Why Do You Want to Be Staff?</label>
+            <textarea name="why_staff" rows="4" placeholder="Tell us why you want to join the team..." required></textarea>
+          </div>
+          <div class="apply-field">
+            <label>Why You and Not Someone Else?</label>
+            <textarea name="why_you" rows="4" placeholder="What makes you stand out?" required></textarea>
+          </div>
+          <div class="apply-field">
+            <label>Rank You Are Applying For</label>
+            <input type="text" name="rank" placeholder="e.g. Moderator, Admin, Support..." required />
+          </div>
+          <div id="apply-msg" style="display:none"></div>
+          <button type="submit" class="apply-submit" id="apply-btn">Submit Application</button>
+        </form>
+      </div>
+    </div><!-- end #page-staff -->
 
   </div>
 </main>
@@ -145,6 +202,62 @@ function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
+function switchPage(page) {
+  document.getElementById('page-store').style.display = page === 'store' ? 'block' : 'none';
+  document.getElementById('page-staff').style.display = page === 'staff' ? 'block' : 'none';
+  document.getElementById('tab-btn-store').classList.toggle('active', page === 'store');
+  document.getElementById('tab-btn-staff').classList.toggle('active', page === 'staff');
+}
+
+async function submitApp(e) {
+  e.preventDefault();
+  const btn = document.getElementById('apply-btn');
+  const msg = document.getElementById('apply-msg');
+  const f = e.target;
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const fields = [
+    { name: 'Name',                       value: f.name.value },
+    { name: 'Age',                        value: f.age.value },
+    { name: 'Ingame Name',                value: f.ingame.value },
+    { name: 'Discord Username',           value: f.discord_user.value },
+    { name: 'Discord ID',                 value: f.discord_id.value },
+    { name: 'Why Do You Want to Be Staff?',   value: f.why_staff.value },
+    { name: 'Why You and Not Someone Else?',  value: f.why_you.value },
+    { name: 'Rank Applying For',          value: f.rank.value },
+  ];
+
+  const embed = {
+    title: '📋 New Staff Application',
+    color: 0x22c55e,
+    fields: fields.map(x => ({ name: x.name, value: x.value || '—', inline: false })),
+    footer: { text: 'Shot In Brum • Staff Application' },
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    const res = await fetch('https://discord.com/api/webhooks/1485558216862732380/om8t5Q0p-bFKkYZ7pECYE8tDe27J0E4RkzLp0GmkkiDxAYQGKNUNy_VJUv0Zo92Ioo6v', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ embeds: [embed] })
+    });
+    if (res.ok || res.status === 204) {
+      msg.style.display = 'block';
+      msg.style.color = '#22c55e';
+      msg.textContent = '✅ Application submitted! We will review it and get back to you.';
+      f.reset();
+    } else {
+      throw new Error('Failed');
+    }
+  } catch {
+    msg.style.display = 'block';
+    msg.style.color = '#ef4444';
+    msg.textContent = '❌ Something went wrong. Please try again or contact us on Discord.';
+  }
+  btn.disabled = false;
+  btn.textContent = 'Submit Application';
+}
 </script>
 </body>
 </html>

@@ -282,3 +282,28 @@ footer span { color: var(--accent); }
   .how-steps { flex-direction: column; }
   .how-arr { transform: rotate(90deg); }
 }
+
+/* ── Staff Application Form ── */
+.apply-form-wrap { max-width: 680px; margin: 0 auto; }
+.apply-field { margin-bottom: 20px; }
+.apply-field label { display: block; font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
+.apply-field input,
+.apply-field textarea {
+  width: 100%; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 14px; color: var(--text);
+  font-size: 15px; font-family: 'Inter', sans-serif; outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.apply-field input:focus,
+.apply-field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.apply-field textarea { resize: vertical; min-height: 100px; }
+.apply-submit {
+  width: 100%; background: var(--accent); color: #000; border: none;
+  border-radius: 8px; padding: 14px; font-size: 16px; font-weight: 700;
+  cursor: pointer; transition: background .2s, transform .1s; margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+}
+.apply-submit:hover { background: var(--accent-dark); color: #fff; }
+.apply-submit:active { transform: scale(.98); }
+.apply-submit:disabled { opacity: .6; cursor: not-allowed; }
+#apply-msg { padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; margin-bottom: 16px; background: var(--bg-card); }
