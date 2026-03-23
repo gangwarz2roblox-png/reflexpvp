@@ -350,3 +350,24 @@ footer span { color: var(--accent); }
 .apply-field input[readonly],
 .apply-field textarea[readonly] { opacity: .6; cursor: not-allowed; }
 @media (max-width: 560px) { .apply-row { grid-template-columns: 1fr; } }
+
+/* ── Rules page ── */
+.rules-list { display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto; }
+.rule-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.rule-card:hover { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+.rule-header {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 20px; background: var(--bg-card2);
+  border-bottom: 1px solid var(--border);
+}
+.rule-num {
+  font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700;
+  color: var(--accent); min-width: 36px;
+}
+.rule-title { font-size: 15px; font-weight: 700; color: var(--text); }
+.rule-body { padding: 16px 20px; font-size: 14px; color: #aaa; line-height: 1.7; }
+.rule-body strong { color: var(--text); }

@@ -40,6 +40,7 @@
     <div class="shop-tabs" style="margin-bottom:32px">
       <button class="shop-tab active" id="tab-btn-store" onclick="switchPage('store')">🛒 Store</button>
       <button class="shop-tab" id="tab-btn-staff" onclick="switchPage('staff')">👥 Apply for Staff</button>
+      <button class="shop-tab" id="tab-btn-rules" onclick="switchPage('rules')">📋 Rules</button>
     </div>
 
     <!-- STORE PAGE -->
@@ -222,6 +223,83 @@
       </div>
     </div><!-- end #page-staff -->
 
+    <!-- RULES PAGE -->
+    <div id="page-rules" style="display:none">
+      <div class="page-header">
+        <div class="page-header-tag">📋 Read Before Playing</div>
+        <h1>Server <span>Rules</span></h1>
+        <p>Breaking these rules can result in a kick, ban, or character jail.</p>
+      </div>
+
+      <div class="rules-list">
+
+        <div class="rule-card">
+          <div class="rule-header">
+            <div class="rule-num">01</div>
+            <div class="rule-title">Random Killing (RK)</div>
+          </div>
+          <div class="rule-body">Random-killing, or RK, is the act of killing or attacking another player completely randomly, without a good reason, or for an unrealistic reason. You must have good build-up before attempting to kill someone.</div>
+        </div>
+
+        <div class="rule-card">
+          <div class="rule-header">
+            <div class="rule-num">02</div>
+            <div class="rule-title">New Life Rule (NLR)</div>
+          </div>
+          <div class="rule-body">After your in-game death, you roleplay as a new character. You cannot remember any actions leading up to your death, nor contact friends about it. You can still remember your friends, enemies, and even the person who killed you — but not the fact that they killed you. It's like it never happened. <strong>Police are immune</strong> to this rule due to cloud-backed bodycams and dashcams.</div>
+        </div>
+
+        <div class="rule-card">
+          <div class="rule-header">
+            <div class="rule-num">03</div>
+            <div class="rule-title">Gang Fear</div>
+          </div>
+          <div class="rule-body">You must have reasonable fear of gangs and large numbers. If you're outnumbered 5-to-1 on an enemy gang block, roleplay accordingly — comply with demands or attempt to flee. <strong>Police are immune</strong> to this rule as they are government-backed and can call backup, armed units, and helicopters.</div>
+        </div>
+
+        <div class="rule-card">
+          <div class="rule-header">
+            <div class="rule-num">04</div>
+            <div class="rule-title">Cop Fear</div>
+          </div>
+          <div class="rule-body">You must have reasonable fear of police and should never attempt to kill, shoot, or stab an officer. Disrespect, assault (with good reason), and evading police are permitted as they are realistic. The death rate for UK police is extremely low — attempting to murder an officer will result in character jail or a ban.</div>
+        </div>
+
+        <div class="rule-card">
+          <div class="rule-header">
+            <div class="rule-num">05</div>
+            <div class="rule-title">Exploiting</div>
+          </div>
+          <div class="rule-body">Using cheats, hacks, or any exploit is strictly forbidden. This covers every possible exploit including teleports, job hacks, kill scripts, and anything else that gives an unfair advantage.</div>
+        </div>
+
+        <div class="rule-card">
+          <div class="rule-header">
+            <div class="rule-num">06</div>
+            <div class="rule-title">Glitching</div>
+          </div>
+          <div class="rule-body">Intentionally glitching to benefit yourself is strictly forbidden. This includes glitching through walls, duping items, and any other intentional exploitation of game bugs for personal gain.</div>
+        </div>
+
+        <div class="rule-card">
+          <div class="rule-header">
+            <div class="rule-num">07</div>
+            <div class="rule-title">Metagaming</div>
+          </div>
+          <div class="rule-body">Metagaming is using out-of-character (OOC) information in-character (IC). For example: screensharing your murder to a friend so they rush to your aid. In the roleplay universe your character has no supernatural awareness of events they weren't present for. <strong>Your character is NOT aware — you are.</strong></div>
+        </div>
+
+        <div class="rule-card">
+          <div class="rule-header">
+            <div class="rule-num">08</div>
+            <div class="rule-title">Powergaming</div>
+          </div>
+          <div class="rule-body">Powergaming is performing unrealistic actions or not giving someone a chance to react. For example: roleplaying disarming a knife off someone with no counterplay. You must allow the opposing party a chance for your action to succeed or fail — it's up to them how they react.</div>
+        </div>
+
+      </div>
+    </div><!-- end #page-rules -->
+
   </div>
 </main>
 
@@ -297,8 +375,10 @@ function toggleMenu() {
 function switchPage(page) {
   document.getElementById('page-store').style.display = page === 'store' ? 'block' : 'none';
   document.getElementById('page-staff').style.display = page === 'staff' ? 'block' : 'none';
+  document.getElementById('page-rules').style.display = page === 'rules' ? 'block' : 'none';
   document.getElementById('tab-btn-store').classList.toggle('active', page === 'store');
   document.getElementById('tab-btn-staff').classList.toggle('active', page === 'staff');
+  document.getElementById('tab-btn-rules').classList.toggle('active', page === 'rules');
 }
 
 // On load — handle OAuth callback or restore session
