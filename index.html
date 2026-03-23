@@ -146,30 +146,66 @@
       <div class="page-header">
         <div class="page-header-tag">👥 Join the Team</div>
         <h1>Apply for <span>Staff</span></h1>
-        <p>Fill in the form below and your application will be sent straight to us.</p>
+        <p>Login with Discord, fill in the form, and we'll review your application.</p>
       </div>
 
       <div class="apply-form-wrap">
-        <form id="staff-form" onsubmit="submitApp(event)">
-          <div class="apply-field">
-            <label>Name</label>
-            <input type="text" name="name" placeholder="Your real name" required />
+
+        <!-- Discord login banner -->
+        <div id="discord-login-box" class="discord-login-box">
+          <div class="dlb-left">
+            <svg width="28" height="20" viewBox="0 0 71 55" fill="currentColor"><path d="M60.1 4.98A58.55 58.55 0 0 0 45.1.39a.22.22 0 0 0-.23.11 40.84 40.84 0 0 0-1.8 3.7 54.03 54.03 0 0 0-16.21 0 37.4 37.4 0 0 0-1.83-3.7.23.23 0 0 0-.23-.11A58.37 58.37 0 0 0 9.8 4.98a.21.21 0 0 0-.1.08C1.58 17.09-.95 28.83.3 40.42c.005.06.04.11.08.15a58.84 58.84 0 0 0 17.72 8.95.23.23 0 0 0 .25-.08 42.09 42.09 0 0 0 3.62-5.89.22.22 0 0 0-.12-.31 38.77 38.77 0 0 1-5.54-2.64.23.23 0 0 1-.02-.38c.37-.28.74-.57 1.1-.86a.22.22 0 0 1 .23-.03c11.62 5.31 24.21 5.31 35.7 0a.22.22 0 0 1 .23.03c.35.3.73.59 1.1.87.13.1.12.3-.03.38a36.37 36.37 0 0 1-5.54 2.63.23.23 0 0 0-.12.32 47.25 47.25 0 0 0 3.61 5.88c.06.08.16.12.26.09a58.65 58.65 0 0 0 17.74-8.95.23.23 0 0 0 .08-.15c1.48-15.27-2.48-28.92-10.5-40.34a.18.18 0 0 0-.09-.08Z"/></svg>
+            <div>
+              <div class="dlb-title">Login with Discord</div>
+              <div class="dlb-sub">Auto-fills your username and ID</div>
+            </div>
           </div>
-          <div class="apply-field">
-            <label>Age</label>
-            <input type="number" name="age" placeholder="Your age" min="1" max="99" required />
+          <button class="dlb-btn" onclick="discordLogin()">Login with Discord</button>
+        </div>
+
+        <!-- Logged in as bar -->
+        <div id="discord-user-box" class="discord-user-box" style="display:none">
+          <img id="dc-avatar" class="dc-avatar" src="" alt="" />
+          <div>
+            <div class="dc-name" id="dc-name"></div>
+            <div class="dc-tag">Logged in via Discord</div>
+          </div>
+          <button class="dc-logout" onclick="discordLogout()">Switch Account</button>
+        </div>
+
+        <form id="staff-form" onsubmit="submitApp(event)">
+          <div class="apply-section-title">Personal Info</div>
+          <div class="apply-row">
+            <div class="apply-field">
+              <label>Name</label>
+              <input type="text" name="name" placeholder="Your real name" required />
+            </div>
+            <div class="apply-field">
+              <label>Age</label>
+              <input type="number" name="age" placeholder="Age" min="1" max="99" required />
+            </div>
           </div>
           <div class="apply-field">
             <label>Ingame Name</label>
             <input type="text" name="ingame" placeholder="Your Roblox username" required />
           </div>
-          <div class="apply-field">
-            <label>Discord Username</label>
-            <input type="text" name="discord_user" placeholder="e.g. username#0000 or username" required />
+
+          <div class="apply-section-title" style="margin-top:28px">Discord</div>
+          <div class="apply-row">
+            <div class="apply-field">
+              <label>Discord Username</label>
+              <input type="text" name="discord_user" id="field-discord-user" placeholder="username" required />
+            </div>
+            <div class="apply-field">
+              <label>Discord ID</label>
+              <input type="text" name="discord_id" id="field-discord-id" placeholder="123456789012345678" required />
+            </div>
           </div>
+
+          <div class="apply-section-title" style="margin-top:28px">Application</div>
           <div class="apply-field">
-            <label>Discord ID</label>
-            <input type="text" name="discord_id" placeholder="e.g. 123456789012345678" required />
+            <label>Rank You Are Applying For</label>
+            <input type="text" name="rank" placeholder="e.g. Moderator, Admin, Support..." required />
           </div>
           <div class="apply-field">
             <label>Why Do You Want to Be Staff?</label>
@@ -179,10 +215,7 @@
             <label>Why You and Not Someone Else?</label>
             <textarea name="why_you" rows="4" placeholder="What makes you stand out?" required></textarea>
           </div>
-          <div class="apply-field">
-            <label>Rank You Are Applying For</label>
-            <input type="text" name="rank" placeholder="e.g. Moderator, Admin, Support..." required />
-          </div>
+
           <div id="apply-msg" style="display:none"></div>
           <button type="submit" class="apply-submit" id="apply-btn">Submit Application</button>
         </form>
@@ -197,6 +230,65 @@
 </footer>
 
 <script>
+// ── Discord OAuth ────────────────────────────────────────────
+const CLIENT_ID   = '1470840282760085515';
+const REDIRECT_URI = location.origin + location.pathname;
+
+function discordLogin() {
+  const url = 'https://discord.com/oauth2/authorize'
+    + '?client_id=' + CLIENT_ID
+    + '&response_type=token'
+    + '&redirect_uri=' + encodeURIComponent(REDIRECT_URI)
+    + '&scope=identify'
+    + '&state=staff';
+  location.href = url;
+}
+
+function discordLogout() {
+  sessionStorage.removeItem('dc_token');
+  document.getElementById('discord-login-box').style.display = 'flex';
+  document.getElementById('discord-user-box').style.display = 'none';
+  document.getElementById('field-discord-user').value = '';
+  document.getElementById('field-discord-id').value = '';
+  document.getElementById('field-discord-user').readOnly = false;
+  document.getElementById('field-discord-id').readOnly = false;
+}
+
+async function handleDiscordCallback() {
+  const hash = location.hash.slice(1);
+  if (!hash) return;
+  const params = new URLSearchParams(hash);
+  const token = params.get('access_token');
+  if (!token) return;
+  history.replaceState(null, '', location.pathname); // clean URL
+  sessionStorage.setItem('dc_token', token);
+  switchPage('staff');
+  await loadDiscordUser(token);
+}
+
+async function loadDiscordUser(token) {
+  try {
+    const res = await fetch('https://discord.com/api/users/@me', {
+      headers: { Authorization: 'Bearer ' + token }
+    });
+    if (!res.ok) return;
+    const u = await res.json();
+    const tag = u.discriminator && u.discriminator !== '0' ? u.username + '#' + u.discriminator : u.username;
+    document.getElementById('field-discord-user').value = tag;
+    document.getElementById('field-discord-id').value   = u.id;
+    document.getElementById('field-discord-user').readOnly = true;
+    document.getElementById('field-discord-id').readOnly   = true;
+    document.getElementById('discord-login-box').style.display = 'none';
+    document.getElementById('discord-user-box').style.display  = 'flex';
+    document.getElementById('dc-name').textContent = tag;
+    const av = document.getElementById('dc-avatar');
+    av.src = u.avatar
+      ? 'https://cdn.discordapp.com/avatars/' + u.id + '/' + u.avatar + '.png?size=64'
+      : 'https://cdn.discordapp.com/embed/avatars/' + (parseInt(u.id) % 5) + '.png';
+  } catch {}
+}
+
+// ── Page switcher ────────────────────────────────────────────
 function toggleMenu() {
   document.getElementById('hamburger').classList.toggle('open');
   document.getElementById('mobileMenu').classList.toggle('open');
@@ -208,6 +300,13 @@ function switchPage(page) {
   document.getElementById('tab-btn-store').classList.toggle('active', page === 'store');
   document.getElementById('tab-btn-staff').classList.toggle('active', page === 'staff');
 }
+
+// On load — handle OAuth callback or restore session
+window.addEventListener('load', async () => {
+  await handleDiscordCallback();
+  const saved = sessionStorage.getItem('dc_token');
+  if (saved) await loadDiscordUser(saved);
+});
 
 async function submitApp(e) {
   e.preventDefault();
