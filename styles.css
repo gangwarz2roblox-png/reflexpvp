@@ -402,3 +402,32 @@ footer span { color: var(--accent); }
   color: var(--text); letter-spacing: .05em; margin-bottom: 10px;
 }
 .faction-desc { font-size: 13px; color: var(--text-muted); }
+
+/* ── Music player bar ── */
+.music-bar {
+  position: fixed; bottom: 0; right: 20px;
+  width: 320px; background: #111118;
+  border: 1px solid var(--border); border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -4px 24px rgba(0,0,0,.5);
+  z-index: 999; overflow: hidden;
+}
+.music-bar-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; cursor: pointer;
+  background: var(--bg-card2); border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+.music-bar-title {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 700; color: var(--accent);
+}
+.music-toggle {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 12px; cursor: pointer; padding: 0;
+}
+.music-tracks {
+  display: flex; flex-direction: column; gap: 0;
+  padding: 10px; gap: 8px;
+  max-height: 300px; overflow-y: auto;
+}

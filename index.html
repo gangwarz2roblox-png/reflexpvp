@@ -352,6 +352,22 @@
   <p>Shot In Brum — Purchases handled via <span>Discord tickets</span></p>
 </footer>
 
+<!-- MUSIC PLAYER -->
+<div id="music-bar" class="music-bar">
+  <div class="music-bar-header" onclick="toggleMusic()">
+    <div class="music-bar-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+      SIB Music
+    </div>
+    <button class="music-toggle" id="music-toggle-btn">▲</button>
+  </div>
+  <div class="music-tracks" id="music-tracks">
+    <iframe style="border-radius:8px" src="https://open.spotify.com/embed/track/42gdryeACmyCAyvFWKPkdU?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe style="border-radius:8px" src="https://open.spotify.com/embed/track/3NDu4uZQNWAaJFYRFQXVfR?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe style="border-radius:8px" src="https://open.spotify.com/embed/track/0qYq93vFiv5DiRYrKJNVE6?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+</div>
+
 <script>
 // ── Discord OAuth ────────────────────────────────────────────
 const CLIENT_ID   = '1470840282760085515';
@@ -412,6 +428,16 @@ async function loadDiscordUser(token) {
 }
 
 // ── Page switcher ────────────────────────────────────────────
+function toggleMusic() {
+  const tracks = document.getElementById('music-tracks');
+  const btn = document.getElementById('music-toggle-btn');
+  const bar = document.getElementById('music-bar');
+  const open = tracks.style.display !== 'none';
+  tracks.style.display = open ? 'none' : 'flex';
+  btn.textContent = open ? '▲' : '▼';
+  bar.style.paddingBottom = open ? '0' : '';
+}
+
 function toggleMenu() {
   document.getElementById('hamburger').classList.toggle('open');
   document.getElementById('mobileMenu').classList.toggle('open');
