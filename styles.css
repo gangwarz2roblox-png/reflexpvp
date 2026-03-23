@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --accent: #a855f7;
-  --accent-dark: #7c3aed;
-  --accent-glow: rgba(168,85,247,0.3);
+  --accent: #22c55e;
+  --accent-dark: #16a34a;
+  --accent-glow: rgba(34,197,94,0.3);
   --bg: #08080e;
   --bg-card: #0f0f18;
   --bg-card2: #14141f;
-  --border: rgba(168,85,247,0.15);
+  --border: rgba(34,197,94,0.15);
   --text: #e8e8f0;
   --text-muted: #55556a;
   --green: #22c55e;
