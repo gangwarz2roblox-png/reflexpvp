@@ -431,3 +431,12 @@ footer span { color: var(--accent); }
   padding: 10px; gap: 8px;
   max-height: 300px; overflow-y: auto;
 }
+
+/* ── Faction app select ── */
+.apply-field select {
+  width: 100%; background: var(--bg-card2); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); padding: 10px 14px;
+  font-size: 14px; font-family: 'Inter', sans-serif; outline: none;
+  transition: border-color .15s;
+}
+.apply-field select:focus { border-color: var(--accent); }

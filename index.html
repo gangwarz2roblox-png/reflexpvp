@@ -42,6 +42,7 @@
       <button class="shop-tab" id="tab-btn-staff" onclick="switchPage('staff')">👥 Apply for Staff</button>
       <button class="shop-tab" id="tab-btn-rules" onclick="switchPage('rules')">📋 Rules</button>
       <button class="shop-tab" id="tab-btn-factions" onclick="switchPage('factions')">🔫 Factions</button>
+      <button class="shop-tab" id="tab-btn-factionapp" onclick="switchPage('factionapp')">📝 Apply for Faction</button>
     </div>
 
     <!-- STORE PAGE -->
@@ -345,6 +346,53 @@
       </div>
     </div><!-- end #page-factions -->
 
+    <!-- FACTION APPLICATION PAGE -->
+    <div id="page-factionapp" style="display:none">
+      <div class="page-header">
+        <div class="page-header-tag">📝 Register Your Gang</div>
+        <h1>Apply for <span>Faction</span></h1>
+        <p>Fill in the form below to register your faction in Shot In Brum.</p>
+      </div>
+
+      <div class="apply-form-wrap">
+        <form id="faction-form" onsubmit="submitFactionApp(event)">
+
+          <div class="apply-section-title">Gang Info</div>
+          <div class="apply-row">
+            <div class="apply-field">
+              <label>Gang Name</label>
+              <input type="text" name="gang_name" placeholder="e.g. NPK, HBZ..." required />
+            </div>
+            <div class="apply-field">
+              <label>Gang Colour</label>
+              <input type="text" name="gang_colour" placeholder="e.g. Red, Blue, Black..." required />
+            </div>
+          </div>
+
+          <div class="apply-section-title" style="margin-top:28px">Details</div>
+          <div class="apply-field">
+            <label>Owner(s)</label>
+            <input type="text" name="owners" placeholder="Discord username(s) of owner(s)" required />
+          </div>
+          <div class="apply-field">
+            <label>Gang Size</label>
+            <input type="number" name="size" placeholder="How many members?" min="1" required />
+          </div>
+          <div class="apply-field">
+            <label>Have you Paid or Got it for Free?</label>
+            <select name="paid" required>
+              <option value="" disabled selected>Select one...</option>
+              <option value="Paid">Paid</option>
+              <option value="Got it for free">Got it for free</option>
+            </select>
+          </div>
+
+          <div id="faction-msg" style="display:none"></div>
+          <button type="submit" class="apply-submit" id="faction-btn">Submit Application</button>
+        </form>
+      </div>
+    </div><!-- end #page-factionapp -->
+
   </div>
 </main>
 
@@ -448,10 +496,12 @@ function switchPage(page) {
   document.getElementById('page-staff').style.display = page === 'staff' ? 'block' : 'none';
   document.getElementById('page-rules').style.display = page === 'rules' ? 'block' : 'none';
   document.getElementById('page-factions').style.display = page === 'factions' ? 'block' : 'none';
+  document.getElementById('page-factionapp').style.display = page === 'factionapp' ? 'block' : 'none';
   document.getElementById('tab-btn-store').classList.toggle('active', page === 'store');
   document.getElementById('tab-btn-staff').classList.toggle('active', page === 'staff');
   document.getElementById('tab-btn-rules').classList.toggle('active', page === 'rules');
   document.getElementById('tab-btn-factions').classList.toggle('active', page === 'factions');
+  document.getElementById('tab-btn-factionapp').classList.toggle('active', page === 'factionapp');
 }
 
 // On load — handle OAuth callback or restore session
@@ -502,6 +552,51 @@ async function submitApp(e) {
     } else {
       throw new Error('Failed');
     }
+  } catch {
+    msg.style.display = 'block';
+    msg.style.color = '#ef4444';
+    msg.textContent = '❌ Something went wrong. Please try again or contact us on Discord.';
+  }
+  btn.disabled = false;
+  btn.textContent = 'Submit Application';
+}
+
+async function submitFactionApp(e) {
+  e.preventDefault();
+  const btn = document.getElementById('faction-btn');
+  const msg = document.getElementById('faction-msg');
+  const f = e.target;
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const fields = [
+    { name: 'Gang Name',               value: f.gang_name.value },
+    { name: 'Gang Colour',             value: f.gang_colour.value },
+    { name: 'Owner(s)',                value: f.owners.value },
+    { name: 'Gang Size',               value: f.size.value },
+    { name: 'Paid or Got it for Free', value: f.paid.value },
+  ];
+
+  const embed = {
+    title: '🔫 New Faction Application',
+    color: 0x22c55e,
+    fields: fields.map(x => ({ name: x.name, value: x.value || '—', inline: false })),
+    footer: { text: 'Shot In Brum • Faction Application' },
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    const res = await fetch('https://discord.com/api/webhooks/1485584708397174845/nm0UxbWWpSofJCXYWqjUzrxlmvKBTtF9Ovfhc8FjYATSyl5TwlYQub5Ax9f1tWOBNdK-', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ embeds: [embed] })
+    });
+    if (res.ok || res.status === 204) {
+      msg.style.display = 'block';
+      msg.style.color = '#22c55e';
+      msg.textContent = '✅ Application submitted! We will review it and get back to you.';
+      f.reset();
+    } else { throw new Error('Failed'); }
   } catch {
     msg.style.display = 'block';
     msg.style.color = '#ef4444';
