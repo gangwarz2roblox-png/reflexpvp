@@ -1,0 +1,16 @@
+[
+  {
+    "username": "ExampleBanned",
+    "status": "banned",
+    "reason": "Exploiting",
+    "date": "2026-03-27",
+    "by": "Staff"
+  },
+  {
+    "username": "ExampleWarned",
+    "status": "warned",
+    "reason": "Random Killing (RK)",
+    "date": "2026-03-27",
+    "by": "Staff"
+  }
+]

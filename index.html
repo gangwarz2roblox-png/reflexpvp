@@ -35,6 +35,7 @@
   <a href="#" onclick="switchPage('factionapp');toggleMenu()">📝 Apply for Faction</a>
   <a href="#" onclick="switchPage('report');toggleMenu()">🚨 Report a Player</a>
   <a href="#" onclick="switchPage('unban');toggleMenu()">🔓 Unban Appeal</a>
+  <a href="#" onclick="switchPage('lookup');toggleMenu()">🔍 Player Lookup</a>
   <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="discord-mob">Discord</a>
 </div>
 
@@ -53,6 +54,7 @@
         <button class="shop-tab" id="tab-btn-factionapp" onclick="switchPage('factionapp')">📝 Apply for Faction</button>
         <button class="shop-tab" id="tab-btn-report" onclick="switchPage('report')">🚨 Report a Player</button>
         <button class="shop-tab" id="tab-btn-unban" onclick="switchPage('unban')">🔓 Unban Appeal</button>
+        <button class="shop-tab" id="tab-btn-lookup" onclick="switchPage('lookup')">🔍 Player Lookup</button>
       </div>
       <button class="tab-arrow tab-arrow-right" id="tab-arrow-right" onclick="scrollTabs(1)">&#8250;</button>
     </div>
@@ -514,6 +516,23 @@
       </div>
     </div><!-- end #page-unban -->
 
+    <!-- PLAYER LOOKUP PAGE -->
+    <div id="page-lookup" style="display:none">
+      <div class="page-header">
+        <div class="page-header-tag">🔍 Check a Player</div>
+        <h1>Player <span>Lookup</span></h1>
+        <p>Search a Roblox username to see if they are banned or warned.</p>
+      </div>
+
+      <div class="lookup-wrap">
+        <div class="lookup-search-row">
+          <input type="text" id="lookup-input" placeholder="Enter Roblox username..." onkeydown="if(event.key==='Enter')doLookup()" autocomplete="off" />
+          <button class="apply-submit lookup-btn" onclick="doLookup()">Search</button>
+        </div>
+        <div id="lookup-result"></div>
+      </div>
+    </div><!-- end #page-lookup -->
+
   </div>
 </main>
 
@@ -643,6 +662,8 @@ function switchPage(page) {
   document.getElementById('tab-btn-factionapp').classList.toggle('active', page === 'factionapp');
   document.getElementById('tab-btn-report').classList.toggle('active', page === 'report');
   document.getElementById('tab-btn-unban').classList.toggle('active', page === 'unban');
+  document.getElementById('page-lookup').style.display    = page === 'lookup'    ? 'block' : 'none';
+  document.getElementById('tab-btn-lookup').classList.toggle('active', page === 'lookup');
 }
 
 // On load — handle OAuth callback or restore session
@@ -747,6 +768,48 @@ async function submitFactionApp(e) {
   }
   btn.disabled = false;
   btn.textContent = 'Submit Application';
+}
+
+async function doLookup() {
+  const input = document.getElementById('lookup-input');
+  const result = document.getElementById('lookup-result');
+  const query = input.value.trim().toLowerCase();
+  if (!query) return;
+
+  result.innerHTML = '<div class="lookup-loading">Searching...</div>';
+
+  try {
+    const res = await fetch('players.json?v=' + Date.now());
+    const players = await res.json();
+    const match = players.find(p => p.username.toLowerCase() === query);
+
+    if (!match) {
+      result.innerHTML = `
+        <div class="lookup-card lookup-clean">
+          <div class="lookup-icon">✅</div>
+          <div class="lookup-info">
+            <div class="lookup-name">${input.value.trim()}</div>
+            <div class="lookup-status-label clean">No record found</div>
+            <div class="lookup-detail">This player has no bans or warnings on record.</div>
+          </div>
+        </div>`;
+    } else {
+      const isBan = match.status === 'banned';
+      result.innerHTML = `
+        <div class="lookup-card ${isBan ? 'lookup-banned' : 'lookup-warned'}">
+          <div class="lookup-icon">${isBan ? '🚫' : '⚠️'}</div>
+          <div class="lookup-info">
+            <div class="lookup-name">${match.username}</div>
+            <div class="lookup-status-label ${match.status}">${isBan ? 'Banned' : 'Warned'}</div>
+            <div class="lookup-detail"><strong>Reason:</strong> ${match.reason}</div>
+            <div class="lookup-detail"><strong>Date:</strong> ${match.date}</div>
+            <div class="lookup-detail"><strong>By:</strong> ${match.by}</div>
+          </div>
+        </div>`;
+    }
+  } catch {
+    result.innerHTML = '<div class="lookup-error">❌ Could not load player data. Try again later.</div>';
+  }
 }
 
 async function submitReport(e) {
