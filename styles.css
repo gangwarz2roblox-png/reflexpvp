@@ -440,3 +440,22 @@ footer span { color: var(--accent); }
   transition: border-color .15s;
 }
 .apply-field select:focus { border-color: var(--accent); }
+
+/* ── Tab scroll arrows ── */
+.tabs-wrapper {
+  display: flex; align-items: center; gap: 6px;
+}
+.shop-tabs {
+  overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  scroll-snap-type: x mandatory; flex: 1;
+}
+.shop-tabs::-webkit-scrollbar { display: none; }
+.shop-tab { scroll-snap-align: start; }
+.tab-arrow {
+  flex-shrink: 0; background: var(--bg-card2); border: 1px solid var(--border);
+  color: var(--text); border-radius: 8px; width: 34px; height: 34px;
+  font-size: 20px; line-height: 1; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background .15s, opacity .2s;
+}
+.tab-arrow:hover { background: var(--accent); color: #fff; }

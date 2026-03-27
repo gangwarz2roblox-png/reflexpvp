@@ -43,14 +43,18 @@
   <div class="container">
 
     <!-- PAGE TABS -->
-    <div class="shop-tabs" style="margin-bottom:32px">
-      <button class="shop-tab active" id="tab-btn-store" onclick="switchPage('store')">🛒 Store</button>
-      <button class="shop-tab" id="tab-btn-staff" onclick="switchPage('staff')">👥 Apply for Staff</button>
-      <button class="shop-tab" id="tab-btn-rules" onclick="switchPage('rules')">📋 Rules</button>
-      <button class="shop-tab" id="tab-btn-factions" onclick="switchPage('factions')">🔫 Factions</button>
-      <button class="shop-tab" id="tab-btn-factionapp" onclick="switchPage('factionapp')">📝 Apply for Faction</button>
-      <button class="shop-tab" id="tab-btn-report" onclick="switchPage('report')">🚨 Report a Player</button>
-      <button class="shop-tab" id="tab-btn-unban" onclick="switchPage('unban')">🔓 Unban Appeal</button>
+    <div class="tabs-wrapper" style="margin-bottom:32px">
+      <button class="tab-arrow tab-arrow-left" id="tab-arrow-left" onclick="scrollTabs(-1)">&#8249;</button>
+      <div class="shop-tabs" id="shop-tabs-scroll">
+        <button class="shop-tab active" id="tab-btn-store" onclick="switchPage('store')">🛒 Store</button>
+        <button class="shop-tab" id="tab-btn-staff" onclick="switchPage('staff')">👥 Apply for Staff</button>
+        <button class="shop-tab" id="tab-btn-rules" onclick="switchPage('rules')">📋 Rules</button>
+        <button class="shop-tab" id="tab-btn-factions" onclick="switchPage('factions')">🔫 Factions</button>
+        <button class="shop-tab" id="tab-btn-factionapp" onclick="switchPage('factionapp')">📝 Apply for Faction</button>
+        <button class="shop-tab" id="tab-btn-report" onclick="switchPage('report')">🚨 Report a Player</button>
+        <button class="shop-tab" id="tab-btn-unban" onclick="switchPage('unban')">🔓 Unban Appeal</button>
+      </div>
+      <button class="tab-arrow tab-arrow-right" id="tab-arrow-right" onclick="scrollTabs(1)">&#8250;</button>
     </div>
 
     <!-- STORE PAGE -->
@@ -603,6 +607,22 @@ function toggleMusic() {
   bar.style.paddingBottom = open ? '0' : '';
 }
 
+function scrollTabs(dir) {
+  const el = document.getElementById('shop-tabs-scroll');
+  el.scrollBy({ left: dir * 180, behavior: 'smooth' });
+}
+
+function updateTabArrows() {
+  const el = document.getElementById('shop-tabs-scroll');
+  const left = document.getElementById('tab-arrow-left');
+  const right = document.getElementById('tab-arrow-right');
+  if (!el) return;
+  left.style.opacity  = el.scrollLeft > 4 ? '1' : '0.3';
+  left.style.pointerEvents = el.scrollLeft > 4 ? 'auto' : 'none';
+  right.style.opacity = el.scrollLeft + el.clientWidth < el.scrollWidth - 4 ? '1' : '0.3';
+  right.style.pointerEvents = el.scrollLeft + el.clientWidth < el.scrollWidth - 4 ? 'auto' : 'none';
+}
+
 function toggleMenu() {
   document.getElementById('hamburger').classList.toggle('open');
   document.getElementById('mobileMenu').classList.toggle('open');
@@ -627,6 +647,8 @@ function switchPage(page) {
 
 // On load — handle OAuth callback or restore session
 window.addEventListener('load', async () => {
+  const tabsEl = document.getElementById('shop-tabs-scroll');
+  if (tabsEl) { tabsEl.addEventListener('scroll', updateTabArrows); updateTabArrows(); }
   await handleDiscordCallback();
   const saved = sessionStorage.getItem('dc_token');
   if (saved) await loadDiscordUser(saved);
