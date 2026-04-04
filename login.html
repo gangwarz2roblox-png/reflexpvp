@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shot In Brum</title>
+  <link rel="icon" type="image/webp" href="favicon.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #22c55e;
+      --accent-dark: #16a34a;
+      --accent-glow: rgba(34,197,94,0.35);
+      --bg: #06060d;
+      --discord: #5865f2;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* ── Background orbs ── */
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(100px); pointer-events: none; opacity: .6;
+    }
+    .orb-1 {
+      width: 600px; height: 600px; top: -150px; left: -150px;
+      background: radial-gradient(circle, rgba(34,197,94,.2) 0%, transparent 70%);
+      animation: drift1 20s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 500px; height: 500px; bottom: -100px; right: -100px;
+      background: radial-gradient(circle, rgba(16,185,129,.15) 0%, transparent 70%);
+      animation: drift2 25s ease-in-out infinite;
+    }
+    .orb-3 {
+      width: 300px; height: 300px; top: 40%; left: 55%;
+      background: radial-gradient(circle, rgba(34,197,94,.08) 0%, transparent 70%);
+      animation: drift3 30s ease-in-out infinite;
+    }
+    @keyframes drift1 { 0%,100%{transform:translate(0,0)}50%{transform:translate(60px,-40px)} }
+    @keyframes drift2 { 0%,100%{transform:translate(0,0)}50%{transform:translate(-50px,30px)} }
+    @keyframes drift3 { 0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(calc(-50% + 80px),calc(-50% - 50px))} }
+
+    /* ── Grid overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(34,197,94,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,197,94,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* ── Card ── */
+    .card {
+      position: relative; z-index: 10;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0; text-align: center;
+      animation: card-in .8s cubic-bezier(.22,1,.36,1) both;
+      padding: 20px;
+    }
+    @keyframes card-in {
+      from { opacity:0; transform: translateY(30px) scale(.96); }
+      to   { opacity:1; transform: none; }
+    }
+
+    /* ── Logo ── */
+    .logo {
+      width: 120px; height: 120px; object-fit: contain;
+      filter: drop-shadow(0 0 40px rgba(34,197,94,.65));
+      animation: logo-float 4s ease-in-out infinite, logo-in .9s cubic-bezier(.34,1.56,.64,1) both .1s;
+      margin-bottom: 28px;
+    }
+    @keyframes logo-float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+    @keyframes logo-in {
+      from { opacity:0; transform: scale(.4) translateY(20px); }
+      to   { opacity:1; transform: none; }
+    }
+
+    /* ── Title ── */
+    .title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 64px; font-weight: 700;
+      letter-spacing: 8px; line-height: 1;
+      background: linear-gradient(135deg, #ffffff 0%, #bbf7d0 50%, #22c55e 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: title-in .7s ease both .25s;
+      margin-bottom: 10px;
+    }
+    @keyframes title-in {
+      from { opacity:0; transform: translateY(16px); }
+      to   { opacity:1; transform: none; }
+    }
+
+    .subtitle {
+      font-size: 13px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: rgba(255,255,255,.35);
+      animation: fade-up .6s ease both .4s;
+      margin-bottom: 48px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 100%; max-width: 340px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(34,197,94,.3), transparent);
+      margin-bottom: 40px;
+      animation: fade-up .6s ease both .5s;
+    }
+
+    /* ── Buttons ── */
+    .btn-discord {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--discord); color: #fff; border: none;
+      border-radius: 14px; padding: 16px 44px;
+      font-size: 17px; font-weight: 700; cursor: pointer;
+      font-family: 'Inter', sans-serif; letter-spacing: .3px;
+      box-shadow: 0 6px 30px rgba(88,101,242,.5);
+      transition: background .2s, transform .15s, box-shadow .2s;
+      animation: fade-up .6s ease both .55s;
+      margin-bottom: 16px;
+    }
+    .btn-discord:hover {
+      background: #4752c4;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(88,101,242,.65);
+    }
+    .btn-discord:active { transform: scale(.97); }
+
+    .btn-guest {
+      background: none; border: none; color: rgba(255,255,255,.3);
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      font-family: 'Inter', sans-serif; letter-spacing: .5px;
+      transition: color .2s; padding: 8px 12px;
+      animation: fade-up .6s ease both .7s;
+    }
+    .btn-guest:hover { color: var(--accent); }
+
+    @keyframes fade-up {
+      from { opacity:0; transform: translateY(12px); }
+      to   { opacity:1; transform: none; }
+    }
+
+    /* ── Logged-in state ── */
+    .logged-in-box {
+      display: none;
+      flex-direction: column; align-items: center; gap: 16px;
+      animation: fade-up .4s ease both;
+    }
+    .logged-in-box.show { display: flex; }
+    .user-card {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(34,197,94,.3);
+      border-radius: 14px; padding: 16px 28px;
+    }
+    .user-card img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--accent); }
+    .user-name { font-size: 17px; font-weight: 700; }
+    .user-tag  { font-size: 12px; color: var(--accent); margin-top: 3px; font-weight: 600; letter-spacing: .5px; }
+    .entering-text {
+      font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      animation: fade-up .4s ease both .2s;
+    }
+
+    /* ── Transition out ── */
+    body.leaving {
+      animation: page-leave .6s cubic-bezier(.86,0,.07,1) forwards;
+    }
+    @keyframes page-leave {
+      to { opacity:0; transform: scale(1.04); }
+    }
+
+    @media (max-width: 480px) {
+      .title { font-size: 44px; letter-spacing: 5px; }
+      .btn-discord { padding: 14px 32px; font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="card">
+    <img src="favicon.webp" class="logo" alt="Shot In Brum" />
+    <h1 class="title">SHOT IN BRUM</h1>
+    <p class="subtitle">Birmingham's #1 Roleplay Server</p>
+    <div class="divider"></div>
+
+    <!-- Login buttons -->
+    <div id="login-box">
+      <button class="btn-discord" onclick="loginDiscord()">
+        <svg width="22" height="17" viewBox="0 0 71 55" fill="currentColor"><path d="M60.1 4.98A58.55 58.55 0 0 0 45.1.39a.22.22 0 0 0-.23.11 40.84 40.84 0 0 0-1.8 3.7 54.03 54.03 0 0 0-16.21 0 37.4 37.4 0 0 0-1.83-3.7.23.23 0 0 0-.23-.11A58.37 58.37 0 0 0 9.8 4.98a.21.21 0 0 0-.1.08C1.58 17.09-.95 28.83.3 40.42c.005.06.04.11.08.15a58.84 58.84 0 0 0 17.72 8.95.23.23 0 0 0 .25-.08 42.09 42.09 0 0 0 3.62-5.89.22.22 0 0 0-.12-.31 38.77 38.77 0 0 1-5.54-2.64.23.23 0 0 1-.02-.38c.37-.28.74-.57 1.1-.86a.22.22 0 0 1 .23-.03c11.62 5.31 24.21 5.31 35.7 0a.22.22 0 0 1 .23.03c.35.3.73.59 1.1.87.13.1.12.3-.03.38a36.37 36.37 0 0 1-5.54 2.63.23.23 0 0 0-.12.32 47.25 47.25 0 0 0 3.61 5.88c.06.08.16.12.26.09a58.65 58.65 0 0 0 17.74-8.95.23.23 0 0 0 .08-.15c1.48-15.27-2.48-28.92-10.5-40.34a.18.18 0 0 0-.09-.08Z"/></svg>
+        Login with Discord
+      </button>
+      <button class="btn-guest" onclick="enterAsGuest()">Continue as guest &rarr;</button>
+    </div>
+
+    <!-- Logged in state -->
+    <div class="logged-in-box" id="logged-in-box">
+      <div class="user-card">
+        <img id="user-avatar" src="" alt="" />
+        <div>
+          <div class="user-name" id="user-name"></div>
+          <div class="user-tag">✓ Logged in with Discord</div>
+        </div>
+      </div>
+      <p class="entering-text">Entering...</p>
+    </div>
+  </div>
+
+  <script>
+    const CLIENT_ID = '1470840282760085515';
+    const REDIRECT = location.origin + '/';
+
+    function loginDiscord() {
+      const url = 'https://discord.com/oauth2/authorize'
+        + '?client_id=' + CLIENT_ID
+        + '&response_type=token'
+        + '&redirect_uri=' + encodeURIComponent(REDIRECT)
+        + '&scope=identify&state=login';
+      location.href = url;
+    }
+
+    function enterAsGuest() {
+      sessionStorage.setItem('visited', '1');
+      document.body.classList.add('leaving');
+      setTimeout(() => { location.href = 'index.html'; }, 550);
+    }
+
+    async function handleCallback() {
+      const params = new URLSearchParams(location.hash.slice(1));
+      const token = params.get('access_token');
+      const state = params.get('state');
+      if (!token || state !== 'login') return false;
+
+      history.replaceState(null, '', location.pathname);
+      sessionStorage.setItem('dc_token', token);
+      sessionStorage.setItem('visited', '1');
+
+      // fetch user
+      const res = await fetch('https://discord.com/api/users/@me', {
+        headers: { Authorization: 'Bearer ' + token }
+      });
+      if (!res.ok) { enterAsGuest(); return true; }
+      const u = await res.json();
+      const tag = u.discriminator && u.discriminator !== '0'
+        ? u.username + '#' + u.discriminator : u.username;
+
+      document.getElementById('user-name').textContent = tag;
+      document.getElementById('user-avatar').src = u.avatar
+        ? 'https://cdn.discordapp.com/avatars/' + u.id + '/' + u.avatar + '.png?size=64'
+        : 'https://cdn.discordapp.com/embed/avatars/0.png';
+
+      document.getElementById('login-box').style.display = 'none';
+      document.getElementById('logged-in-box').classList.add('show');
+
+      setTimeout(() => {
+        document.body.classList.add('leaving');
+        setTimeout(() => { location.href = 'index.html'; }, 550);
+      }, 1500);
+
+      return true;
+    }
+
+    window.addEventListener('load', async () => {
+      const handled = await handleCallback();
+      if (!handled && sessionStorage.getItem('visited')) {
+        location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>
