@@ -609,3 +609,128 @@ footer span { color: var(--accent); }
   pointer-events: none;
 }
 .mobile-menu.open { transform: none; opacity: 1; pointer-events: all; }
+
+/* ══════════════════════════════════════
+   SPLASH SCREEN
+══════════════════════════════════════ */
+#splash {
+  position: fixed; inset: 0; z-index: 99999;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: all;
+}
+
+/* curtain panels */
+.splash-panel {
+  position: absolute; top: 0; bottom: 0; width: 50%;
+  background: #06060d;
+  transition: transform .9s cubic-bezier(.86,0,.07,1) .15s;
+}
+.splash-panel-l { left: 0; }
+.splash-panel-r { right: 0; }
+
+/* opening state — panels part */
+#splash.opening .splash-panel-l { transform: translateX(-100%); }
+#splash.opening .splash-panel-r { transform: translateX(100%);  }
+#splash.opening .splash-inner   { opacity: 0; transform: scale(.92); }
+
+/* content */
+.splash-inner {
+  position: relative; z-index: 1; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+/* background glow blob behind logo */
+.splash-glow {
+  position: absolute; width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(34,197,94,.18) 0%, transparent 70%);
+  filter: blur(60px); top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: splash-glow-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes splash-glow-pulse {
+  0%,100% { opacity:.7; transform: translate(-50%,-50%) scale(1); }
+  50%      { opacity:1;  transform: translate(-50%,-50%) scale(1.15); }
+}
+
+/* logo */
+.splash-logo {
+  width: 110px; height: 110px; object-fit: contain;
+  animation: splash-logo-in .8s cubic-bezier(.34,1.56,.64,1) both .2s;
+  filter: drop-shadow(0 0 30px rgba(34,197,94,.6));
+}
+@keyframes splash-logo-in {
+  from { opacity:0; transform: scale(.5) translateY(20px); }
+  to   { opacity:1; transform: none; }
+}
+
+/* title */
+.splash-title {
+  font-family: 'Rajdhani', sans-serif; font-size: 52px; font-weight: 700;
+  letter-spacing: 6px; color: white; line-height: 1;
+  background: linear-gradient(135deg, #fff 0%, #86efac 60%, #22c55e 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: splash-title-in .7s ease both .4s;
+}
+@keyframes splash-title-in {
+  from { opacity:0; transform: translateY(14px) letterSpacing(12px); }
+  to   { opacity:1; transform: none; }
+}
+
+/* subtitle */
+.splash-sub {
+  font-size: 14px; color: var(--text-muted); letter-spacing: 2px;
+  text-transform: uppercase; font-weight: 500;
+  animation: splash-fade-in .6s ease both .55s;
+}
+
+/* discord button */
+.splash-btn {
+  display: flex; align-items: center; gap: 10px;
+  background: #5865f2; color: #fff; border: none;
+  border-radius: 12px; padding: 14px 36px;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 24px rgba(88,101,242,.5);
+  transition: background .2s, transform .15s, box-shadow .2s;
+  animation: splash-fade-in .6s ease both .7s;
+}
+.splash-btn:hover {
+  background: #4752c4; transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(88,101,242,.65);
+}
+
+/* skip button */
+.splash-skip {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  font-family: 'Inter', sans-serif; letter-spacing: .5px;
+  transition: color .2s; padding: 4px 8px;
+  animation: splash-fade-in .6s ease both .85s;
+}
+.splash-skip:hover { color: var(--accent); }
+
+/* splash user box (shown after login) */
+.splash-user-box {
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(34,197,94,.3);
+  border-radius: 12px; padding: 14px 22px; min-width: 260px;
+  animation: splash-fade-in .4s ease both;
+}
+.splash-user-box img { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--accent); }
+.splash-user-name { font-size: 15px; font-weight: 700; color: #fff; }
+.splash-user-tag  { font-size: 12px; color: var(--accent); margin-top: 2px; font-weight: 600; }
+
+@keyframes splash-fade-in {
+  from { opacity:0; transform: translateY(10px); }
+  to   { opacity:1; transform: none; }
+}
+
+/* hide main content until splash is gone */
+body.splash-active .navbar,
+body.splash-active .page,
+body.splash-active footer,
+body.splash-active .bg-orb,
+body.splash-active .bg-overlay,
+body.splash-active .music-bar { visibility: hidden; }

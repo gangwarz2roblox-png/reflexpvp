@@ -9,6 +9,23 @@
 </head>
 <body>
 
+<!-- ── SPLASH SCREEN ── -->
+<div id="splash">
+  <div class="splash-panel splash-panel-l"></div>
+  <div class="splash-panel splash-panel-r"></div>
+  <div class="splash-inner">
+    <div class="splash-glow"></div>
+    <img src="favicon.webp" class="splash-logo" alt="Shot In Brum" />
+    <h1 class="splash-title">SHOT IN BRUM</h1>
+    <p class="splash-sub">Birmingham's #1 Roleplay Server</p>
+    <button class="splash-btn" onclick="splashDiscordLogin()">
+      <svg width="20" height="15" viewBox="0 0 71 55" fill="currentColor"><path d="M60.1 4.98A58.55 58.55 0 0 0 45.1.39a.22.22 0 0 0-.23.11 40.84 40.84 0 0 0-1.8 3.7 54.03 54.03 0 0 0-16.21 0 37.4 37.4 0 0 0-1.83-3.7.23.23 0 0 0-.23-.11A58.37 58.37 0 0 0 9.8 4.98a.21.21 0 0 0-.1.08C1.58 17.09-.95 28.83.3 40.42c.005.06.04.11.08.15a58.84 58.84 0 0 0 17.72 8.95.23.23 0 0 0 .25-.08 42.09 42.09 0 0 0 3.62-5.89.22.22 0 0 0-.12-.31 38.77 38.77 0 0 1-5.54-2.64.23.23 0 0 1-.02-.38c.37-.28.74-.57 1.1-.86a.22.22 0 0 1 .23-.03c11.62 5.31 24.21 5.31 35.7 0a.22.22 0 0 1 .23.03c.35.3.73.59 1.1.87.13.1.12.3-.03.38a36.37 36.37 0 0 1-5.54 2.63.23.23 0 0 0-.12.32 47.25 47.25 0 0 0 3.61 5.88c.06.08.16.12.26.09a58.65 58.65 0 0 0 17.74-8.95.23.23 0 0 0 .08-.15c1.48-15.27-2.48-28.92-10.5-40.34a.18.18 0 0 0-.09-.08Z"/></svg>
+      Login with Discord
+    </button>
+    <button class="splash-skip" onclick="openSite()">Continue as guest &rarr;</button>
+  </div>
+</div>
+
 <div class="bg-overlay"></div>
 <div class="bg-orb bg-orb-1"></div>
 <div class="bg-orb bg-orb-2"></div>
@@ -611,14 +628,60 @@ function discordLogout() {
   document.getElementById('field-discord-id').readOnly = false;
 }
 
+// ── Splash helpers ─────────────────────────────────────────
+function openSite() {
+  const splash = document.getElementById('splash');
+  splash.classList.add('opening');
+  document.body.classList.remove('splash-active');
+  setTimeout(() => { splash.style.display = 'none'; }, 1100);
+  sessionStorage.setItem('splash_done', '1');
+}
+
+function splashDiscordLogin() {
+  sessionStorage.setItem('splash_oauth', '1');
+  const url = 'https://discord.com/oauth2/authorize'
+    + '?client_id=' + CLIENT_ID
+    + '&response_type=token'
+    + '&redirect_uri=' + encodeURIComponent(location.origin + location.pathname)
+    + '&scope=identify&state=splash';
+  location.href = url;
+}
+
+async function showSplashUser(token) {
+  const res = await fetch('https://discord.com/api/users/@me', { headers: { Authorization: 'Bearer ' + token } });
+  if (!res.ok) { openSite(); return; }
+  const u = await res.json();
+  const tag = u.discriminator && u.discriminator !== '0' ? u.username + '#' + u.discriminator : u.username;
+  const inner = document.querySelector('.splash-inner');
+  inner.innerHTML = `
+    <div class="splash-glow"></div>
+    <div class="splash-user-box">
+      <img src="${u.avatar ? 'https://cdn.discordapp.com/avatars/'+u.id+'/'+u.avatar+'.png?size=64' : 'https://cdn.discordapp.com/embed/avatars/0.png'}" />
+      <div>
+        <div class="splash-user-name">${tag}</div>
+        <div class="splash-user-tag">✓ Logged in</div>
+      </div>
+    </div>
+    <p class="splash-sub" style="animation:none;opacity:1">Welcome to Shot In Brum</p>
+  `;
+  setTimeout(openSite, 1400);
+}
+
 async function handleDiscordCallback() {
   const hash = location.hash.slice(1);
   if (!hash) return;
   const params = new URLSearchParams(hash);
   const token = params.get('access_token');
+  const state = params.get('state');
   if (!token) return;
-  history.replaceState(null, '', location.pathname); // clean URL
+  history.replaceState(null, '', location.pathname);
   sessionStorage.setItem('dc_token', token);
+  if (state === 'splash') {
+    await showSplashUser(token);
+    // also load into staff form
+    await loadDiscordUser(token);
+    return;
+  }
   switchPage('staff');
   await loadDiscordUser(token);
 }
@@ -721,6 +784,12 @@ window.addEventListener('scroll', () => {
 
 // On load — handle OAuth callback or restore session
 window.addEventListener('load', async () => {
+  // Splash logic
+  if (sessionStorage.getItem('splash_done')) {
+    document.getElementById('splash').style.display = 'none';
+  } else {
+    document.body.classList.add('splash-active');
+  }
   initReveal();
   const tabsEl = document.getElementById('shop-tabs-scroll');
   if (tabsEl) { tabsEl.addEventListener('scroll', updateTabArrows); updateTabArrows(); }
