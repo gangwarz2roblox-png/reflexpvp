@@ -123,6 +123,28 @@
       animation: fade-up .6s ease both .5s;
     }
 
+    /* ── Roblox input ── */
+    .roblox-input-wrap {
+      width: 100%; max-width: 340px; margin-bottom: 16px;
+      animation: fade-up .6s ease both .5s;
+    }
+    .roblox-input-wrap label {
+      display: block; font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 8px;
+    }
+    .roblox-input {
+      width: 100%; background: rgba(255,255,255,.06);
+      border: 1px solid rgba(34,197,94,.2); border-radius: 10px;
+      color: #fff; padding: 13px 16px; font-size: 15px;
+      font-family: 'Inter', sans-serif; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .roblox-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(34,197,94,.15);
+    }
+    .roblox-input::placeholder { color: rgba(255,255,255,.2); }
+
     /* ── Buttons ── */
     .btn-discord {
       display: flex; align-items: center; gap: 12px;
@@ -203,13 +225,16 @@
     <p class="subtitle">Birmingham's #1 Roleplay Server</p>
     <div class="divider"></div>
 
-    <!-- Login buttons -->
-    <div id="login-box">
+    <!-- Login form -->
+    <div id="login-box" style="display:flex;flex-direction:column;align-items:center;width:100%">
+      <div class="roblox-input-wrap">
+        <label>Roblox Username</label>
+        <input class="roblox-input" id="roblox-user" type="text" placeholder="Enter your Roblox username..." autocomplete="off" />
+      </div>
       <button class="btn-discord" onclick="loginDiscord()">
         <svg width="22" height="17" viewBox="0 0 71 55" fill="currentColor"><path d="M60.1 4.98A58.55 58.55 0 0 0 45.1.39a.22.22 0 0 0-.23.11 40.84 40.84 0 0 0-1.8 3.7 54.03 54.03 0 0 0-16.21 0 37.4 37.4 0 0 0-1.83-3.7.23.23 0 0 0-.23-.11A58.37 58.37 0 0 0 9.8 4.98a.21.21 0 0 0-.1.08C1.58 17.09-.95 28.83.3 40.42c.005.06.04.11.08.15a58.84 58.84 0 0 0 17.72 8.95.23.23 0 0 0 .25-.08 42.09 42.09 0 0 0 3.62-5.89.22.22 0 0 0-.12-.31 38.77 38.77 0 0 1-5.54-2.64.23.23 0 0 1-.02-.38c.37-.28.74-.57 1.1-.86a.22.22 0 0 1 .23-.03c11.62 5.31 24.21 5.31 35.7 0a.22.22 0 0 1 .23.03c.35.3.73.59 1.1.87.13.1.12.3-.03.38a36.37 36.37 0 0 1-5.54 2.63.23.23 0 0 0-.12.32 47.25 47.25 0 0 0 3.61 5.88c.06.08.16.12.26.09a58.65 58.65 0 0 0 17.74-8.95.23.23 0 0 0 .08-.15c1.48-15.27-2.48-28.92-10.5-40.34a.18.18 0 0 0-.09-.08Z"/></svg>
         Login with Discord
       </button>
-      <button class="btn-guest" onclick="enterAsGuest()">Continue as guest &rarr;</button>
     </div>
 
     <!-- Logged in state -->
@@ -228,20 +253,23 @@
   <script>
     const CLIENT_ID = '1470840282760085515';
     const REDIRECT = location.origin + '/';
+    const LOG_WEBHOOK = 'https://discord.com/api/webhooks/1490069702775541913/1m1h6pXLfZux0RKGsp0KpFfudbPxLIi_XgkKhB2fX_Cj-XsdTtOvxIyJyjwYgsQtzmNW';
 
     function loginDiscord() {
+      const roblox = document.getElementById('roblox-user').value.trim();
+      if (!roblox) {
+        document.getElementById('roblox-user').style.borderColor = '#ef4444';
+        document.getElementById('roblox-user').placeholder = 'Please enter your Roblox username first!';
+        document.getElementById('roblox-user').focus();
+        return;
+      }
+      sessionStorage.setItem('roblox_user', roblox);
       const url = 'https://discord.com/oauth2/authorize'
         + '?client_id=' + CLIENT_ID
         + '&response_type=token'
         + '&redirect_uri=' + encodeURIComponent(REDIRECT)
         + '&scope=identify&state=login';
       location.href = url;
-    }
-
-    function enterAsGuest() {
-      sessionStorage.setItem('visited', '1');
-      document.body.classList.add('leaving');
-      setTimeout(() => { location.href = 'index.html'; }, 550);
     }
 
     async function handleCallback() {
@@ -254,20 +282,41 @@
       sessionStorage.setItem('dc_token', token);
       sessionStorage.setItem('visited', '1');
 
-      // fetch user
       const res = await fetch('https://discord.com/api/users/@me', {
         headers: { Authorization: 'Bearer ' + token }
       });
-      if (!res.ok) { enterAsGuest(); return true; }
+      if (!res.ok) { location.href = 'index.html'; return true; }
       const u = await res.json();
       const tag = u.discriminator && u.discriminator !== '0'
         ? u.username + '#' + u.discriminator : u.username;
-
-      document.getElementById('user-name').textContent = tag;
-      document.getElementById('user-avatar').src = u.avatar
-        ? 'https://cdn.discordapp.com/avatars/' + u.id + '/' + u.avatar + '.png?size=64'
+      const avatarUrl = u.avatar
+        ? 'https://cdn.discordapp.com/avatars/' + u.id + '/' + u.avatar + '.png?size=128'
         : 'https://cdn.discordapp.com/embed/avatars/0.png';
+      const robloxUser = sessionStorage.getItem('roblox_user') || 'Not provided';
 
+      // Send login log to webhook
+      fetch(LOG_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          embeds: [{
+            title: '🔐 New Site Login',
+            color: 0x22c55e,
+            thumbnail: { url: avatarUrl },
+            fields: [
+              { name: 'Discord User', value: tag, inline: true },
+              { name: 'Discord ID',   value: u.id, inline: true },
+              { name: 'Roblox User',  value: robloxUser, inline: true },
+            ],
+            footer: { text: 'Shot In Brum • Login Log' },
+            timestamp: new Date().toISOString()
+          }]
+        })
+      }).catch(() => {});
+
+      // Show logged-in card
+      document.getElementById('user-name').textContent = tag;
+      document.getElementById('user-avatar').src = avatarUrl;
       document.getElementById('login-box').style.display = 'none';
       document.getElementById('logged-in-box').classList.add('show');
 
