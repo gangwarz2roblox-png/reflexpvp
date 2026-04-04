@@ -10,11 +10,14 @@
 <body>
 
 <div class="bg-overlay"></div>
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
   <a href="index.html" class="nav-brand">
-    <div class="nav-logo">SIB</div>
+    <img src="favicon.webp" class="nav-logo" alt="SIB" />
     <div class="nav-title">Shot In Brum <span>| Website</span></div>
   </a>
   <div class="nav-links">
@@ -61,7 +64,7 @@
     </div>
 
     <!-- STORE PAGE -->
-    <div id="page-store">
+    <div id="page-store" class="page-anim">
     <div class="page-header">
       <div class="page-header-tag">🛒 Available Now</div>
       <h1>Shot In Brum <span>Store</span></h1>
@@ -72,7 +75,7 @@
     <div id="tab-met" class="shop-grid">
 
       <!-- MET CARD 1 -->
-      <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="shop-card met-card">
+      <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="reveal reveal shop-card met-card" data-delay="0">
         <div class="card-body met-body">
           <div class="met-icon">👮</div>
           <div class="met-tier">Tier 1</div>
@@ -94,7 +97,7 @@
       </a>
 
       <!-- MET CARD 2 -->
-      <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="shop-card met-card met-card-silver">
+      <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="reveal reveal shop-card met-card met-card-silver" data-delay="90">
         <div class="card-badge">🔫 Armed</div>
         <div class="card-body met-body">
           <div class="met-icon">👮🔫</div>
@@ -118,7 +121,7 @@
       </a>
 
       <!-- MET CARD 3 -->
-      <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="shop-card met-card met-card-gold">
+      <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="reveal reveal shop-card met-card met-card-gold" data-delay="180">
         <div class="card-badge">⭐ Elite</div>
         <div class="card-body met-body">
           <div class="met-icon">🕵️</div>
@@ -150,7 +153,7 @@
     </div>
     <div class="shop-grid" id="tab-clothing">
 
-      <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="shop-card clothing-card">
+      <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="reveal reveal shop-card clothing-card" data-delay="270">
         <div class="card-badge sold-badge">1/1</div>
         <div class="clothing-img-wrap">
           <img src="scarf.png" alt="Dalmatian Scarf" class="clothing-img" />
@@ -276,7 +279,7 @@
 
       <div class="rules-list">
 
-        <div class="rule-card">
+        <div class="reveal rule-card" data-delay="0">
           <div class="rule-header">
             <div class="rule-num">01</div>
             <div class="rule-title">Random Killing (RK)</div>
@@ -284,7 +287,7 @@
           <div class="rule-body">Random-killing, or RK, is the act of killing or attacking another player completely randomly, without a good reason, or for an unrealistic reason. You must have good build-up before attempting to kill someone.</div>
         </div>
 
-        <div class="rule-card">
+        <div class="reveal rule-card" data-delay="70">
           <div class="rule-header">
             <div class="rule-num">02</div>
             <div class="rule-title">New Life Rule (NLR)</div>
@@ -292,7 +295,7 @@
           <div class="rule-body">After your in-game death, you roleplay as a new character. You cannot remember any actions leading up to your death, nor contact friends about it. You can still remember your friends, enemies, and even the person who killed you — but not the fact that they killed you. It's like it never happened. <strong>Police are immune</strong> to this rule due to cloud-backed bodycams and dashcams.</div>
         </div>
 
-        <div class="rule-card">
+        <div class="reveal rule-card" data-delay="140">
           <div class="rule-header">
             <div class="rule-num">03</div>
             <div class="rule-title">Gang Fear</div>
@@ -300,7 +303,7 @@
           <div class="rule-body">You must have reasonable fear of gangs and large numbers. If you're outnumbered 5-to-1 on an enemy gang block, roleplay accordingly — comply with demands or attempt to flee. <strong>Police are immune</strong> to this rule as they are government-backed and can call backup, armed units, and helicopters.</div>
         </div>
 
-        <div class="rule-card">
+        <div class="reveal rule-card" data-delay="210">
           <div class="rule-header">
             <div class="rule-num">04</div>
             <div class="rule-title">Cop Fear</div>
@@ -308,7 +311,7 @@
           <div class="rule-body">You must have reasonable fear of police and should never attempt to kill, shoot, or stab an officer. Disrespect, assault (with good reason), and evading police are permitted as they are realistic. The death rate for UK police is extremely low — attempting to murder an officer will result in character jail or a ban.</div>
         </div>
 
-        <div class="rule-card">
+        <div class="reveal rule-card" data-delay="280">
           <div class="rule-header">
             <div class="rule-num">05</div>
             <div class="rule-title">Exploiting</div>
@@ -316,7 +319,7 @@
           <div class="rule-body">Using cheats, hacks, or any exploit is strictly forbidden. This covers every possible exploit including teleports, job hacks, kill scripts, and anything else that gives an unfair advantage.</div>
         </div>
 
-        <div class="rule-card">
+        <div class="reveal rule-card" data-delay="350">
           <div class="rule-header">
             <div class="rule-num">06</div>
             <div class="rule-title">Glitching</div>
@@ -324,7 +327,7 @@
           <div class="rule-body">Intentionally glitching to benefit yourself is strictly forbidden. This includes glitching through walls, duping items, and any other intentional exploitation of game bugs for personal gain.</div>
         </div>
 
-        <div class="rule-card">
+        <div class="reveal rule-card" data-delay="420">
           <div class="rule-header">
             <div class="rule-num">07</div>
             <div class="rule-title">Metagaming</div>
@@ -332,7 +335,7 @@
           <div class="rule-body">Metagaming is using out-of-character (OOC) information in-character (IC). For example: screensharing your murder to a friend so they rush to your aid. In the roleplay universe your character has no supernatural awareness of events they weren't present for. <strong>Your character is NOT aware — you are.</strong></div>
         </div>
 
-        <div class="rule-card">
+        <div class="reveal rule-card" data-delay="490">
           <div class="rule-header">
             <div class="rule-num">08</div>
             <div class="rule-title">Powergaming</div>
@@ -674,27 +677,51 @@ function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
+const ALL_PAGES = ['store','staff','rules','factions','factionapp','report','unban','lookup'];
 function switchPage(page) {
-  document.getElementById('page-store').style.display = page === 'store' ? 'block' : 'none';
-  document.getElementById('page-staff').style.display = page === 'staff' ? 'block' : 'none';
-  document.getElementById('page-rules').style.display = page === 'rules' ? 'block' : 'none';
-  document.getElementById('page-factions').style.display = page === 'factions' ? 'block' : 'none';
-  document.getElementById('page-factionapp').style.display = page === 'factionapp' ? 'block' : 'none';
-  document.getElementById('page-report').style.display     = page === 'report'     ? 'block' : 'none';
-  document.getElementById('page-unban').style.display      = page === 'unban'      ? 'block' : 'none';
-  document.getElementById('tab-btn-store').classList.toggle('active', page === 'store');
-  document.getElementById('tab-btn-staff').classList.toggle('active', page === 'staff');
-  document.getElementById('tab-btn-rules').classList.toggle('active', page === 'rules');
-  document.getElementById('tab-btn-factions').classList.toggle('active', page === 'factions');
-  document.getElementById('tab-btn-factionapp').classList.toggle('active', page === 'factionapp');
-  document.getElementById('tab-btn-report').classList.toggle('active', page === 'report');
-  document.getElementById('tab-btn-unban').classList.toggle('active', page === 'unban');
-  document.getElementById('page-lookup').style.display    = page === 'lookup'    ? 'block' : 'none';
-  document.getElementById('tab-btn-lookup').classList.toggle('active', page === 'lookup');
+  ALL_PAGES.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    const btn = document.getElementById('tab-btn-' + p);
+    if (!el) return;
+    if (p === page) {
+      el.style.display = 'block';
+      // re-trigger page-anim
+      el.classList.remove('page-anim');
+      void el.offsetWidth;
+      el.classList.add('page-anim');
+      // re-run reveal for items in this page
+      el.querySelectorAll('.reveal').forEach(r => { r.classList.remove('visible'); });
+      setTimeout(() => revealObserver && el.querySelectorAll('.reveal').forEach(r => revealObserver.observe(r)), 50);
+    } else {
+      el.style.display = 'none';
+    }
+    if (btn) btn.classList.toggle('active', p === page);
+  });
 }
+
+// ── Scroll reveal ──────────────────────────────────────────
+let revealObserver;
+function initReveal() {
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        const delay = e.target.dataset.delay || 0;
+        setTimeout(() => e.target.classList.add('visible'), delay);
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+
+// ── Navbar scroll shadow ───────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 10);
+});
 
 // On load — handle OAuth callback or restore session
 window.addEventListener('load', async () => {
+  initReveal();
   const tabsEl = document.getElementById('shop-tabs-scroll');
   if (tabsEl) { tabsEl.addEventListener('scroll', updateTabArrows); updateTabArrows(); }
   await handleDiscordCallback();
