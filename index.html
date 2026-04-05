@@ -32,14 +32,14 @@
   </button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#" onclick="switchPage('store');toggleMenu()">🛒 Store</a>
-  <a href="#" onclick="switchPage('staff');toggleMenu()">👥 Apply for Staff</a>
-  <a href="#" onclick="switchPage('rules');toggleMenu()">📋 Rules</a>
-  <a href="#" onclick="switchPage('factions');toggleMenu()">🔫 Factions</a>
-  <a href="#" onclick="switchPage('factionapp');toggleMenu()">📝 Apply for Faction</a>
-  <a href="#" onclick="switchPage('report');toggleMenu()">🚨 Report a Player</a>
-  <a href="#" onclick="switchPage('unban');toggleMenu()">🔓 Unban Appeal</a>
-  <a href="#" onclick="switchPage('lookup');toggleMenu()">🔍 Player Lookup</a>
+  <a href="#" onclick="switchPage('store');toggleMenu()">Store</a>
+  <a href="#" onclick="switchPage('staff');toggleMenu()">Apply for Staff</a>
+  <a href="#" onclick="switchPage('rules');toggleMenu()">Rules</a>
+  <a href="#" onclick="switchPage('factions');toggleMenu()">Factions</a>
+  <a href="#" onclick="switchPage('factionapp');toggleMenu()">Apply for Faction</a>
+  <a href="#" onclick="switchPage('report');toggleMenu()">Report a Player</a>
+  <a href="#" onclick="switchPage('unban');toggleMenu()">Unban Appeal</a>
+  <a href="#" onclick="switchPage('lookup');toggleMenu()">Player Lookup</a>
   <a href="https://discord.gg/qapB9M3yU7" target="_blank" class="discord-mob">Discord</a>
 </div>
 
@@ -51,14 +51,15 @@
     <div class="tabs-wrapper" style="margin-bottom:32px">
       <button class="tab-arrow tab-arrow-left" id="tab-arrow-left" onclick="scrollTabs(-1)">&#8249;</button>
       <div class="shop-tabs" id="shop-tabs-scroll">
-        <button class="shop-tab active" id="tab-btn-store" onclick="switchPage('store')">🛒 Store</button>
-        <button class="shop-tab" id="tab-btn-staff" onclick="switchPage('staff')">👥 Apply for Staff</button>
-        <button class="shop-tab" id="tab-btn-rules" onclick="switchPage('rules')">📋 Rules</button>
-        <button class="shop-tab" id="tab-btn-factions" onclick="switchPage('factions')">🔫 Factions</button>
-        <button class="shop-tab" id="tab-btn-factionapp" onclick="switchPage('factionapp')">📝 Apply for Faction</button>
-        <button class="shop-tab" id="tab-btn-report" onclick="switchPage('report')">🚨 Report a Player</button>
-        <button class="shop-tab" id="tab-btn-unban" onclick="switchPage('unban')">🔓 Unban Appeal</button>
-        <button class="shop-tab" id="tab-btn-lookup" onclick="switchPage('lookup')">🔍 Player Lookup</button>
+        <button class="shop-tab active" id="tab-btn-store" onclick="switchPage('store')">Store</button>
+        <button class="shop-tab" id="tab-btn-staff" onclick="switchPage('staff')">Apply for Staff</button>
+        <button class="shop-tab" id="tab-btn-rules" onclick="switchPage('rules')">Rules</button>
+        <button class="shop-tab" id="tab-btn-factions" onclick="switchPage('factions')">Factions</button>
+        <button class="shop-tab" id="tab-btn-factionapp" onclick="switchPage('factionapp')">Apply for Faction</button>
+        <button class="shop-tab" id="tab-btn-report" onclick="switchPage('report')">Report a Player</button>
+        <button class="shop-tab" id="tab-btn-unban" onclick="switchPage('unban')">Unban Appeal</button>
+        <button class="shop-tab" id="tab-btn-lookup" onclick="switchPage('lookup')">Player Lookup</button>
+        <button class="shop-tab" id="tab-btn-changelog" onclick="switchPage('changelog')">Changelog</button>
       </div>
       <button class="tab-arrow tab-arrow-right" id="tab-arrow-right" onclick="scrollTabs(1)">&#8250;</button>
     </div>
@@ -563,6 +564,39 @@
       </div>
     </div><!-- end #page-lookup -->
 
+    <!-- CHANGELOG PAGE -->
+    <div id="page-changelog" style="display:none">
+      <div class="page-header">
+        <div class="page-header-tag">Latest Updates</div>
+        <h1>Shot In Brum <span>Changelog</span></h1>
+        <p>Every update to the server, logged here.</p>
+      </div>
+      <div class="changelog-list">
+
+        <div class="changelog-entry reveal">
+          <div class="changelog-meta">
+            <span class="changelog-version">v1.1</span>
+            <span class="changelog-date">05 Apr 2026</span>
+          </div>
+          <div class="changelog-body">
+            <div class="changelog-item changelog-item-change">
+              <span class="cl-tag">Changed</span>
+              JD location updated
+            </div>
+            <div class="changelog-item changelog-item-add">
+              <span class="cl-tag">Added</span>
+              Unorb Safe added for certain people
+            </div>
+            <div class="changelog-item changelog-item-add">
+              <span class="cl-tag">Added</span>
+              New undercover X5 vehicle
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- end #page-changelog -->
+
   </div>
 </main>
 
@@ -744,7 +778,7 @@ function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-const ALL_PAGES = ['store','staff','rules','factions','factionapp','report','unban','lookup'];
+const ALL_PAGES = ['store','staff','rules','factions','factionapp','report','unban','lookup','changelog'];
 function switchPage(page) {
   ALL_PAGES.forEach(p => {
     const el = document.getElementById('page-' + p);
@@ -986,7 +1020,7 @@ async function submitUnban(e) {
   const f = e.target;
   btn.disabled = true; btn.textContent = 'Sending...';
   const embed = {
-    title: '🔓 Unban Appeal',
+    title: 'Unban Appeal',
     color: 0xf59e0b,
     fields: [
       { name: 'Roblox Username',  value: f.unban_roblox.value || '—', inline: true },
